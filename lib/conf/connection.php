@@ -28,9 +28,9 @@ class Connection {
     private function connect(){
         $this->link = mysqli_connect($this->host, $this-> user, $this->password, $this-> database, $this-> port);
 
-        if(!$link){
-            die(mysqli_error($link));
-        }else{
+    if(!$this->link){
+    die(mysqli_error($this->link));
+    }else{
         
         }
     }
