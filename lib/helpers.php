@@ -1,55 +1,62 @@
 <?php
-    session_start();
-    function redirect($url){
-        echo "<script>";
-            echo "window.location.href='$url'";
-        echo "</script>";
-    }
-    function dd($var){
-        echo "<pre>";
-        die(print_r($var));
-    }
 
-    function getUrl($modulo, $controlador, $funcion, $parametros=false, $pagina=false){
-    $url = "index.php?modulo=$modulo&controlador=$controlador&funcion=$funcion";
+function redirect($url) {
+    echo "<script>";
+        echo "window.location.href='$url'";
+    echo "</script>";
+}
 
-    if($pagina == false){
+function dd($var) {
+    echo "<pre>";
+    die(print_r($var));
+}
+
+function getUrl($modulo, $controlador, $funcion, $parametros = false, $pagina = false) {
+    if ($pagina == false) {
         $pagina = "index";
     }
 
-    return $url;
     $url = "$pagina.php?modulo=$modulo&controlador=$controlador&funcion=$funcion";
+
+    if ($parametros != false) {
+        $url .= "&" . $parametros;
     }
 
+    return $url;
+}
 
-    function resolve(){
-        $modulo = ucwords($_GET['modulo']); //modulo -> carpeta dentro controller
-        $controlador = ucwords($_GET['controlador']); //archivo dentro de módullo
-        $funcion = $_GET['funcion']; //función -métodoo dentro de lla clase del controlador
-    
+function resolve() {
 
-    //Toda ruta empieza desde index.php -> carpeta web
+    if (!isset($_GET['modulo']) || !isset($_GET['controlador']) || !isset($_GET['funcion'])) {
+        echo "Parámetros de ruta incompletos";
+        return;
+    }
 
-    if(is_dir("../controller/$modulo")){
+    $modulo      = ucwords($_GET['modulo']);
+    $controlador = ucwords($_GET['controlador']);
+    $funcion     = $_GET['funcion'];
 
-        if(is_file("../controller/$modulo/".$controlador."Controller.php")){
+    if (is_dir("../controller/$modulo")) {
 
-            include_once "../controller/$modulo/$controlador"."Controller.php";
+        if (is_file("../controller/$modulo/" . $controlador . "Controller.php")) {
 
-            $nombreClase = $controlador."Controller";
+            include_once "../controller/$modulo/" . $controlador . "Controller.php";
 
-            $objeto = new $nombreClase();
+            $nombreClase = $controlador . "Controller";
+            $objeto      = new $nombreClase();
 
-            if(method_exists($objeto, $funcion)){
-                $objeto ->$funcion();
-            }else{
+            if (method_exists($objeto, $funcion)) {
+                $objeto->$funcion();
+            } else {
                 echo "La función especificada no existe";
             }
-        }else{
+
+        } else {
             echo "El controlador especificado no existe";
         }
-    }else{
+
+    } else {
         echo "El módulo especificado no existe";
     }
-    }
+}
 ?>
