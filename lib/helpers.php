@@ -1,54 +1,55 @@
-<?php 
-
+<?php
+    session_start();
     function redirect($url){
         echo "<script>";
-            echo "window.location.href = '$url';";
+            echo "window.location.href='$url'";
         echo "</script>";
     }
-
-    function dd($data){
+    function dd($var){
         echo "<pre>";
-        die(print_r($data));
+        die(print_r($var));
     }
 
-    function getUrl($modulo,$controador,$funcion,$parametros=false, $pagina=false){
+    function getUrl($modulo, $controlador, $funcion, $parametros=false, $pagina=false){
+    $url = "index.php?modulo=$modulo&controlador=$controlador&funcion=$funcion";
 
-        if($pagina == false){
-            $pagina = "index";
-        }
-        $url = "$pagina.php?modulo=$modulo&controlador=$controador&funcion=$funcion";
-
-        if($parametros != false){
-            foreach ($parametros as $key => $value) {
-                $url .= "&$key=$value";
-            }
-        }
-        return $url;
+    if($pagina == false){
+        $pagina = "index";
     }
+
+    return $url;
+    $url = "$pagina.php?modulo=$modulo&controlador=$controlador&funcion=$funcion";
+    }
+
 
     function resolve(){
-        $modulo = ucwords($_GET['modulo']);
-        $controlador = ucwords($_GET['controlador']);
-        $funtion = $_GET['funcion'];
+        $modulo = ucwords($_GET['modulo']); //modulo -> carpeta dentro controller
+        $controlador = ucwords($_GET['controlador']); //archivo dentro de módullo
+        $funcion = $_GET['funcion']; //función -métodoo dentro de lla clase del controlador
+    
 
-        if(is_dir("../controller/$modulo/")){
-            
-            if(is_file("../controller/$modulo/".$controlador."Controller.php")){
+    //Toda ruta empieza desde index.php -> carpeta web
 
-                include_once "../controller/$modulo/".$controlador."Controller.php";
+    if(is_dir("../controller/$modulo")){
 
-                $nombreClase = $controlador."Controller";
+        if(is_file("../controller/$modulo/".$controlador."Controller.php")){
 
-                $objeto = new $nombreClase();
+            include_once "../controller/$modulo/$controlador"."Controller.php";
 
-                if(method_exists($objeto,$funtion)){
-                    $objecto->$function();
-                }else{
-                    echo "La funcion especificada no existe";
-                }
+            $nombreClase = $controlador."Controller";
+
+            $objeto = new $nombreClase();
+
+            if(method_exists($objeto, $funcion)){
+                $objeto ->$funcion();
             }else{
-                echo "El controlador especificado no existe";
+                echo "La función especificada no existe";
             }
+        }else{
+            echo "El controlador especificado no existe";
         }
+    }else{
+        echo "El módulo especificado no existe";
+    }
     }
 ?>

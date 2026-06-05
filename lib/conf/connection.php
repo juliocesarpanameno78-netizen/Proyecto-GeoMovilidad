@@ -1,43 +1,45 @@
-<?php 
-    class Connection {
-        private $server;
-        private $user;
-        private $password;
-        private $database;
-        private $port;
-        private $link;
+<?php
 
-        function __construct() {
-            $this->connection();
-            $this->connect();
-        }
+class Connection {
 
-        private function connection() {
-            require 'conf.php';
-            $this->server = $server;
-            $this->user = $user;
-            $this->password = $password;
-            $this->database = $database;
-            $this->port = $port;
-        }
+    private $host;
+    private $user;
+    private $password;
+    private $database;
+    private $port;
+    private $link;
 
-        private function connect(){
-            $this->link = pg_connect("host={$this->server} port={$this->port} dbname={$this->database} user={$this->user} password={$this->password}");
-            if (!$this->link) {
-                die(pg_last_error($this->link));
-            }else{
-                echo "Conexion Exitosa";
-            }
-        }
 
-        public function getConnect(){
-            return $this->link;
-        }
-
-        public function close(){
-            pg_close($this->link);
-        }
+    private function __construct(){
+        $this->setConnect();
+        $this->connect();
     }
 
+    private function setConnect(){
+        require_once 'conf.php';
+
+        $this->host = $host;
+        $this->user = $user;
+        $this->password = $password;
+        $this->database = $database;
+        $this->port = $port;
+    }
+
+    private function connect(){
+        $this->link = mysqli_connect($this->host, $this-> user, $this->password, $this-> database, $this-> port);
+
+        if(!$link){
+            die(mysqli_error($link));
+        }else{
+        
+        }
+    }
+    PUBLIC function getConnect(){
+        return $this->link;
+    }
+    protected function close(){
+        mysqli_close($link);
+    }
+}
 
 ?>
