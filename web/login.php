@@ -16,7 +16,7 @@
             <div class="col-12 col-sm-10 col-md-6 col-lg-4 mx-auto">
                 <div class="card shadow-lg border-0 rounded-4">
                     <div class="card-body p4 p-md-5">
-                        <h3 class="text-center mb-4 fw-bold">Iniciar Session</h3>
+                        <h3 class="text-center mb-4 fw-bold">Iniciar Sesion</h3>
 
                         <form action="<?php echo getUrl("","","","")?>" method="post">
                             <label for="email">Correo electronico</label>
@@ -32,6 +32,12 @@
                                 <button type="submit" class="btn btn-primary btn-lg">
                                     Iniciar sesion
                                 </button>
+                            </div>
+                            <div class="">
+                                <a href="<?php echo getUrl("","","","")?>">¿No tienes una cuenta? Registrate</a>
+                            </div>
+                            <div class="">
+                                <a href="<?php echo getUrl("","","","")?>">¿Olvidaste tu contraseña?</a>
                             </div>
                         </form>
                     </div>
