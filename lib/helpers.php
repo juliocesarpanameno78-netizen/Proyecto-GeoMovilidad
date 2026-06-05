@@ -12,12 +12,10 @@ function dd($var) {
 }
 
 function getUrl($modulo, $controlador, $funcion, $parametros = false, $pagina = false) {
-    
     if ($pagina == false) {
         $pagina = "index";
     }
 
-    
     $url = "$pagina.php?modulo=$modulo&controlador=$controlador&funcion=$funcion";
 
     if ($parametros != false) {
@@ -42,10 +40,10 @@ function resolve() {
 
         if (is_file("../controller/$modulo/" . $controlador . "Controller.php")) {
 
-            include_once "../controller/$modulo/$controlador" . "Controller.php";
+            include_once "../controller/$modulo/" . $controlador . "Controller.php";
 
             $nombreClase = $controlador . "Controller";
-            $objeto = new $nombreClase();
+            $objeto      = new $nombreClase();
 
             if (method_exists($objeto, $funcion)) {
                 $objeto->$funcion();
@@ -61,3 +59,4 @@ function resolve() {
         echo "El módulo especificado no existe";
     }
 }
+?>

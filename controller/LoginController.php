@@ -9,30 +9,30 @@
 
         public function login() {
 
-            $email      = $_POST['usuario'];
+            $correo    = $_POST['usuario'];
             $contrasena = md5($_POST['contrasena']);
 
             $modelo    = new Acceso();
-            $resultado = $modelo->findOne("usuarios", "*", "email='$email' AND contrasena='$contrasena'");
+            $resultado = $modelo->getUsuario($correo, $contrasena);
 
             if ($resultado == "No se encontró ningún registro") {
                 $_SESSION['error'] = "Correo o contraseña incorrectos";
-                redirect('../web/login.php');
+                redirect('login.php');
             } else {
-                $usuario = mysqli_fetch_assoc($resultado);
+                $usuario = pg_fetch_assoc($resultado);
 
-                $_SESSION['id']     = $usuario['id'];
-                $_SESSION['email']  = $usuario['email'];
-                $_SESSION['nombre'] = $usuario['nombre'];
+                $_SESSION['id']     = $usuario['id_usuario'];
+                $_SESSION['nombre'] = $usuario['nombre_usuario'];
+                $_SESSION['correo'] = $usuario['correo_electronico'];
+                $_SESSION['rol']    = $usuario['nombre_rol'];
 
-                redirect('../web/index.php');
+                redirect('index.php?modulo=Dashboard&controlador=Dashboard&funcion=index');
             }
         }
 
         public function logout() {
             session_destroy();
-            redirect('../web/login.php');
+            redirect('login.php');
         }
     }
 ?>
-

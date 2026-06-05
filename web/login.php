@@ -113,7 +113,7 @@
   <div class="login-card">
     <h1 class="login-title">Iniciar sesión</h1>
 
-    <form class="login-form" action="#" method="post">
+    <form class="login-form" action="index.php?modulo=Login&controlador=Login&funcion=login" method="post">
 
       <div class="form-group">
         <label for="usuario" class="form-label">Usuario o correo</label>

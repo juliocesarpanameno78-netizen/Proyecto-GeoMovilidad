@@ -9,36 +9,32 @@ class Connection {
     private $port;
     private $link;
 
-
-    private function __construct(){
+    public function __construct() {
         $this->setConnect();
         $this->connect();
     }
 
-    private function setConnect(){
+    private function setConnect() {
         require_once 'conf.php';
 
-        $this->host = $host;
-        $this->user = $user;
+        $this->host     = $host;
+        $this->user     = $user;
         $this->password = $password;
         $this->database = $database;
-        $this->port = $port;
+        $this->port     = $port;
     }
 
-    private function connect(){
-        $this->link = mysqli_connect($this->host, $this-> user, $this->password, $this-> database, $this-> port);
+    private function connect() {
+        $cadena = "host={$this->host} port={$this->port} dbname={$this->database} user={$this->user} password={$this->password}";
+        $this->link = pg_connect($cadena);
 
-    if(!$this->link){
-    die(mysqli_error($this->link));
-    }else{
-        
+        if (!$this->link) {
+            die("Error al conectar con la base de datos");
         }
     }
-    PUBLIC function getConnect(){
+
+    public function getConnect() {
         return $this->link;
-    }
-    protected function close(){
-        mysqli_close($link);
     }
 }
 

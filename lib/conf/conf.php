@@ -1,10 +1,9 @@
 <?php
 
- $host = "localhost";
- $user = "root";
- $password = "";
- $database = "adso541";
- $port = "3306";
- //postgres -> 5432
+$host     = "localhost";
+$user     = "postgres";
+$password = "";
+$database = "terravision";
+$port     = "5432";
 
 ?>
