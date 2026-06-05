@@ -1,9 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colombia</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
-    rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Geovisor - Accidentabilidad Cali</title>
+    <link rel="icon" href="../../assets/img/kaiadmin/favicon.ico" type="image/x-icon">
+
+    <script src="../../assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: {"families": ["Public Sans:300,400,500,600,700"]},
+            custom: {
+                "families": ["Font Awesome 5 Solid","Font Awesome 5 Regular","Font Awesome 5 Brands","simple-line-icons"],
+                urls: ['../../assets/css/fonts.min.css']
+            },
+            active: function() { sessionStorage.fonts = true; }
+        });
+    </script>
+
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/plugins.min.css">
+    <link rel="stylesheet" href="../../assets/css/kaiadmin.min.css">
 </head>
+<body>
+<div class="wrapper">

@@ -1,9 +1,18 @@
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
-crossorigin="anonymous"></script>
+<footer class="footer">
+        <div class="container-fluid">
+            <div class="copyright ms-auto">
+                2024 &copy; Geovisor Accidentabilidad Cali - SENA
+            </div>
+        </div>
+    </footer>
 
-<script src="https://code.jquery.com/jquery-4.0.0.js" 
-integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" 
-crossorigin="anonymous"></script>
+</div> <!-- cierra main-panel -->
+</div> <!-- cierra wrapper -->
 
-<script src="js/global.js"></script>
+<script src="../../assets/js/core/jquery-3.7.1.min.js"></script>
+<script src="../../assets/js/core/popper.min.js"></script>
+<script src="../../assets/js/core/bootstrap.min.js"></script>
+<script src="../../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="../../assets/js/kaiadmin.min.js"></script>
+</body>
+</html>
