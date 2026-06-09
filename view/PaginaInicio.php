@@ -29,9 +29,10 @@
 		
 	</head>
 	<body>
+		<!-- Contenedor principal de la página -->
 		<div class="wrapper">
 
-
+			<!-- Barra lateral de navegación -->
 			<div class="sidebar" data-background-color="dark">
 				<div class="sidebar-logo">
 					<div class="logo-header" data-background-color="dark">
@@ -58,13 +59,13 @@
 								<a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
 									<i class="fas fa-home"></i>
 									<p>Dashboard</p>
-									<span class="caret"></span>
+									<span class="caret">dashboard</span>
 								</a>
 								<div class="collapse" id="dashboard">
 									<ul class="nav nav-collapse">
 										<li>
 											<a href="../demo1/index.html">
-												<span class="sub-item">Dashboard 1</span>
+												<span class="sub-item"></span>
 											</a>
 										</li>
 									</ul>
@@ -76,7 +77,9 @@
 				</div>
 			</div>
 		
+			<!-- Panel principal del contenido -->
 			<div class="main-panel">
+				<!-- Cabecera superior de la aplicación -->
 				<div class="main-header">
 					<div class="main-header-logo">
 						<div class="logo-header" data-background-color="dark">
@@ -166,6 +169,7 @@
 				</div>
 
 		
+				<!-- Sección del contenido principal: mapa interactivo -->
 				<div class="container-fluid mapa">
 					<div class="page-inner">
 
@@ -207,7 +211,8 @@
 				</div>
 
                 
-                <style>
+<!-- Estilos personalizados para la sección del mapa -->
+				<style>
                     .mapa{
                         margin-top: 5%;
                     }
@@ -237,6 +242,7 @@
 		<script src="assets/js/demo.js"></script>
 
 
+		<!-- Scripts de la plantilla, librerías y lógica del visor -->
 		<script src="../misc/lib/mscross-1.1.9.js" type="text/javascript"></script>
 
 		<script>
