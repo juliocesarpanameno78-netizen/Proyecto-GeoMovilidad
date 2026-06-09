@@ -19,9 +19,9 @@
         });
     </script>
 
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/plugins.min.css">
-    <link rel="stylesheet" href="../../assets/css/kaiadmin.min.css">
+    <link rel="stylesheet" href="/Geomovilidad/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Geomovilidad/assets/css/plugins.min.css">
+    <link rel="stylesheet" href="/Geomovilidad/assets/css/kaiadmin.min.css">
 </head>
 <body>
 <div class="wrapper">

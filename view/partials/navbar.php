@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <nav class="navbar navbar-light bg-primary justify-content-between">
     <div class="container-fluid">
         <a class="navbar-brand">Navbar</a>
@@ -71,7 +71,6 @@
 					</ul>
 				</div>
 			</div>
-=======
 <div class="sidebar" data-background-color="dark">
     <div class="sidebar-logo">
         <div class="logo-header" data-background-color="dark">
@@ -208,4 +207,4 @@
             </div>
         </nav>
     </div>
->>>>>>> 7367345bf1967d26e52e642af76293ce9b6948f4
+
