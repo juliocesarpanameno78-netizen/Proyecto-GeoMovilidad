@@ -1,0 +1,74 @@
+MAP
+    NAME "primerMapa"
+    SIZE 700 800
+    STATUS ON
+    IMAGETYPE PNG
+
+    EXTENT -88 -5 -62 13
+
+    SHAPEPATH "shapeCali41/"
+
+    IMAGECOLOR 255 255 255
+
+    WEB
+        IMAGEPATH "C:/ms4w/tmp/ms_tmp/"
+        IMAGEURL "/ms_tmp/"
+    END
+
+    LAYER
+        NAME "barrios"
+        TYPE POLYGON
+        STATUS DEFAULT
+        DATA "Barrios.shp"
+
+        CLASS
+            STYLE
+                COLOR 255 123 0
+                OUTLINECOLOR 0 0 0
+            END
+        END
+    END
+
+    LAYER
+        NAME "cali_area"
+        TYPE POLYGON
+        STATUS DEFAULT
+        DATA "CaliArea.shp"
+
+        CLASS
+            STYLE
+                COLOR 200 200 200
+                OUTLINECOLOR 0 0 0
+            END
+        END
+    END
+
+    LAYER
+        NAME "comunas"
+        TYPE POLYGON
+        STATUS DEFAULT
+        DATA "ComunasC.shp"
+
+        CLASS
+            STYLE
+                COLOR 180 180 255
+                OUTLINECOLOR 0 0 0
+            END
+        END
+    END
+
+    LAYER
+        NAME "vias"
+        TYPE LINE
+        STATUS DEFAULT
+        DATA "MallaVialC.shp"
+
+        CLASS
+            STYLE
+                COLOR 0 0 0
+                WIDTH 1
+            END
+        END
+    END
+
+END
