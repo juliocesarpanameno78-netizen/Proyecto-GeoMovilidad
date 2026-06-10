@@ -12,12 +12,6 @@
                 <input type="text" name="rol_nombre" id="rol_nombre" class="form-control" placeholder="Ingrese el rol">
             </div>
 
-            <div class="col-4 mt-3">
-                <label for="rol_descripcion">Descripción:</label>
-                <input type="text" name="rol_descripcion" id="rol_descripcion" class="form-control"
-                    placeholder="Ingrese la descripción">
-            </div>
-
         </div>
 
         <div class="mt-5">
@@ -36,3 +30,27 @@
                         ?>
                     </tr>
                 </thead>
+                <tbody>
+                    <?php
+                    while ($accion = pg_fetch_assoc($acciones)) {
+                        echo "<tr>";
+                        echo "<td>" . $accion['acc_nombre'] . "</td>";
+                        foreach ($modulosArray as $mod) {
+
+                            echo "<td> 
+                                    <input type='checkbox' name='permisos[" . $mod['mod_id'] . "][" . $accion['acc_id'] . "]'
+                                    value='1'>
+                                    </td>";
+                        }
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+
+            </table>
+        </div>
+        <div class="col-4">
+            <input type="submit" value="Registrar" class="btn btn-success mt-4">
+        </div>
+    </form>
+</div>
