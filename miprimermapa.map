@@ -4,7 +4,7 @@ MAP
     STATUS ON
     EXTENT 1053867 860190  1068491 879441
 
-    SHAPEPATH "shapeCali41"
+    SHAPEPATH "C:/xampp/htdocs/Geomovilidad/shapeCali41/"
 
     WEB
         IMAGEPATH "C:/ms4w/tmp/ms_tmp/"
@@ -14,7 +14,7 @@ MAP
     LAYER
         NAME "barrios"
         TYPE LINE
-        STATUS OFF
+        STATUS DEFAULT
         DATA "Barrios.shp"
 
         CLASS

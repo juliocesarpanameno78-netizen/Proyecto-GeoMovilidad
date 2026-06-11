@@ -57,23 +57,6 @@
 <script src="../lib/mscross-1.1.9.js" type="text/javascript"></script>
 
 <script>
-
-    $('#lineChart').sparkline([102, 109, 120, 99, 110, 105, 115], {
-        type: 'line', height: '70', width: '100%',
-        lineWidth: '2', lineColor: '#177dff',
-        fillColor: 'rgba(23, 125, 255, 0.14)'
-    });
-    $('#lineChart2').sparkline([99, 125, 122, 105, 110, 124, 115], {
-        type: 'line', height: '70', width: '100%',
-        lineWidth: '2', lineColor: '#f3545d',
-        fillColor: 'rgba(243, 84, 93, .14)'
-    });
-    $('#lineChart3').sparkline([105, 103, 123, 100, 95, 105, 115], {
-        type: 'line', height: '70', width: '100%',
-        lineWidth: '2', lineColor: '#ffa534',
-        fillColor: 'rgba(255, 165, 52, .14)'
-    });
-
     var mapStatus = document.getElementById("mapStatus");
     var myMap1 = null;
     var myMap2 = null;
@@ -81,15 +64,15 @@
     if (typeof window.msMap !== "undefined") {
         myMap1 = new msMap(document.getElementById("dc_main"), "standardRight");
         myMap1.setCgi("/cgi-bin/mapserv.exe");
-        myMap1.setMapFile("/xampp/htdocs/ProyectoTerravision/miprimermapa.map");
-        myMap1.setFullExtent(-88, -5, -62, 13);
-        myMap1.setLayers("Poligonos Lineas Puntos");
+        myMap1.setMapFile("C:/xampp/htdocs/Geomovilidad/miprimermapa.map");
+        myMap1.setFullExtent(1053867, 860190, 1068491, 879441);
+        myMap1.setLayers("barrios cali_area comunas vias");
 
         myMap2 = new msMap(document.getElementById("dc_main2"));
         myMap2.setActionNone();
-        myMap2.setFullExtent(-88, -5, -62, 13);
-        myMap2.setMapFile("/xampp/htdocs/ProyectoTerravision/miprimermapa.map");
-        myMap2.setLayers("Poligonos");
+        myMap2.setFullExtent(1053867, 860190, 1068491, 879441);
+        myMap2.setMapFile("C:/xampp/htdocs/Geomovilidad/miprimermapa.map");
+        myMap2.setLayers("cali_area");
 
         myMap1.setReferenceMap(myMap2);
         myMap1.redraw();
@@ -100,13 +83,11 @@
     }
 
     function chgLayers() {
-        if (!myMap1 || !myMap2) {
-            return;
-        }
+        if (!myMap1 || !myMap2) return;
 
         var list = "";
         var objForm = document.forms["select_layers"];
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 4; i++) {
             var elemento = objForm.elements["Layer[" + i + "]"];
             if (elemento && elemento.checked) {
                 list += elemento.value + " ";
