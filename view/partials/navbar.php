@@ -33,22 +33,22 @@
             <div class="collapse" id="solicitud">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="<?php echo getUrl("SolicitudSeñales","SolicitudSeñales","getCreate")?>">
+                  <a href="<?php echo getUrl("Señales","Señales","getCreate")?>">
                     <span class="sub-item">Solicitud de Señal</span>
                   </a>
                 </li>
                 <li>
-                  <a href="?modulo=dashboard">
+                  <a href="<?php echo getUrl("SolicitudReductor","SolicitudReductor","getCreate")?>">
                     <span class="sub-item">Solicitud de Reductor</span>
                   </a>
                 </li>
                 <li>
-                  <a href="?modulo=dashboard">
+                  <a href="<?php echo getUrl("SolictudVias","SolictudVias","getCreate")?>">
                     <span class="sub-item">Solicitud de Vía</span>
                   </a>
                 </li>
                 <li>
-                  <a href="?modulo=dashboard">
+                  <a href="<?php echo getUrl("SolicitudDemacarciones","SolicitudDemacarciones","getCreate")?>">
                     <span class="sub-item">Solicitud de Demarcación</span>
                   </a>
                 </li>
@@ -189,63 +189,3 @@
       </nav>
       <!-- End Navbar -->
     </div>
-
-
-    <!-- Sección del contenido principal: mapa interactivo -->
-    <!-- <div class="container-fluid mapa">
-      <div class="page-inner">
-
-        <div class="row mb-4">
-          <div class="col-md-12">
-            <div class="card card-round">
-              <div class="card-header">
-                <div class="card-title">Mapa Interactivo</div>
-              </div>
-              <div class="card-body">
-                <div id="mapStatus" class="alert alert-warning mb-3" role="alert"></div>
-                <div
-                  style="position: relative; width: 100%; height: 500px; border: 1px solid #ddd; background: #f8f9fa;">
-                  <div id="dc_main" class="mscross"
-                    style="overflow:hidden; width:100%; height:100%; position:relative; -moz-user-select:none;">
-                  </div>
-                  <div id="Layer2"
-                    style="position:absolute; right:10px; bottom:10px; width:190px; background:#fff; padding:10px; border:1px solid #ddd; z-index:101;">
-                    <form name="select_layers">
-                      <p class="mb-2">
-                        <input checked onclick="chgLayers()" type="checkbox" name="Layer[0]" value="Poligonos">
-                        <strong>Polígonos</strong>
-                      </p>
-                      <p class="mb-2">
-                        <input checked onclick="chgLayers()" type="checkbox" name="Layer[1]" value="Puntos">
-                        <strong>Puntos</strong>
-                      </p>
-                      <p class="mb-0">
-                        <input checked onclick="chgLayers()" type="checkbox" name="Layer[2]" value="Lineas">
-                        <strong>Líneas</strong>
-                      </p>
-                    </form>
-                  </div>
-                  <div id="Layer1"
-                    style="position:absolute; right:10px; top:10px; width:140px; height:140px; z-index:102;">
-                    <div id="dc_main2" style="overflow:auto; width:100%; height:100%; position:relative;">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-
-    <!-- Estilos personalizados para la sección del mapa -->
-    <!-- <style>
-      .mapa {
-        margin-top: 5%;
-      }
-    </style> -->
-
-
-
-
