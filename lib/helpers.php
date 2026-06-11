@@ -1,9 +1,9 @@
 <?php 
 
     function redirect( $url ) {
-        echo "<script>".
-            "window.location.href = '$url';".
-        "</script>";
+        echo "<script>";
+            echo "window.location.href = '$url'";
+        echo"</script>";
         
     }
 
