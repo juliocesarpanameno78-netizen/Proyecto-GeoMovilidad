@@ -5,7 +5,7 @@
     <div class="sidebar-logo">
       <div class="logo-header" data-background-color="dark">
         <a href="index.html" class="logo">
-          <img src="../Imagenes/GEOMOVILIDAD-LOGO-FINAL.svg" alt="navbar brand" class="navbar-brand" height="40"
+          <img src="../view/assets/img/GEOMOVILIDAD-LOGO-FINAL.svg" alt="navbar brand" class="navbar-brand" height="40"
             style="max-width: 100%; width: auto;">
         </a>
         <div class="nav-toggle">
@@ -25,16 +25,67 @@
       <div class="sidebar-content">
         <ul class="nav nav-secondary">
           <li class="nav-item active">
-            <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+            <a data-bs-toggle="collapse" href="#solicitud" class="collapsed" aria-expanded="false">
               <i class="fas fa-home"></i>
-              <p>Dashboard</p>
+              <p>Hacer una Solicitud</p>
               <span class="caret"></span>
             </a>
-            <div class="collapse" id="dashboard">
+            <div class="collapse" id="solicitud">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="../demo1/index.html">
-                    <span class="sub-item"></span>
+                  <a href="<?php echo getUrl("SolicitudSeñales","SolicitudSeñales","getCreate")?>">
+                    <span class="sub-item">Solicitud de Señal</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="?modulo=dashboard">
+                    <span class="sub-item">Solicitud de Reductor</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="?modulo=dashboard">
+                    <span class="sub-item">Solicitud de Vía</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="?modulo=dashboard">
+                    <span class="sub-item">Solicitud de Demarcación</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav nav-secondary">
+          <li class="nav-item active">
+            <a data-bs-toggle="collapse" href="#reporte" class="collapsed" aria-expanded="false">
+              <i class="fas fa-home"></i>
+              <p>Hacer un Reporte</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="reporte">
+              <ul class="nav nav-collapse">
+                <li>
+                  <a href="?modulo=dashboard">
+                    <span class="sub-item">Hacer un reporte</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav nav-secondary">
+          <li class="nav-item active">
+            <a data-bs-toggle="collapse" href="#pqrsf" class="collapsed" aria-expanded="false">
+              <i class="fas fa-home"></i>
+              <p>Hacer una PQRSF</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="pqrsf">
+              <ul class="nav nav-collapse">
+                <li>
+                  <a href="?modulo=dashboard">
+                    <span class="sub-item">Hacer una PQRSF</span>
                   </a>
                 </li>
               </ul>

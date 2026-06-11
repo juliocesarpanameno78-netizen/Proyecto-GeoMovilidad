@@ -81,14 +81,14 @@
     if (typeof window.msMap !== "undefined") {
         myMap1 = new msMap(document.getElementById("dc_main"), "standardRight");
         myMap1.setCgi("/cgi-bin/mapserv.exe");
-        myMap1.setMapFile("/Terravision/miprimermapa.map");
+        myMap1.setMapFile("/xampp/htdocs/ProyectoTerravision/miprimermapa.map");
         myMap1.setFullExtent(-88, -5, -62, 13);
         myMap1.setLayers("Poligonos Lineas Puntos");
 
         myMap2 = new msMap(document.getElementById("dc_main2"));
         myMap2.setActionNone();
         myMap2.setFullExtent(-88, -5, -62, 13);
-        myMap2.setMapFile("/Terravision/miprimermapa.map");
+        myMap2.setMapFile("/xampp/htdocs/ProyectoTerravision/miprimermapa.map");
         myMap2.setLayers("Poligonos");
 
         myMap1.setReferenceMap(myMap2);
