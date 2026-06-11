@@ -5,7 +5,7 @@
     <div class="sidebar-logo">
       <div class="logo-header" data-background-color="dark">
         <a href="index.php" class="logo">
-          <img src="../view/assets/img/geomovilidad.ico" alt="navbar brand"  style="max-width: 100%; width: auto; height: 85px;">
+          <img src="../view/assets/img/geomovilidad.ico" alt="navbar brand" class="navbar-brand" style="max-width: 100%; width: auto; height: 85px;">
         </a>
         <div class="nav-toggle">
           <button class="btn btn-toggle toggle-sidebar">
