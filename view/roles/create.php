@@ -1,56 +1,82 @@
-<div class="mt-5">
-    <h1 class="display-4">Registro Roles</h1>
-</div>
+<div class="container-fluid">
+    <div class="page-inner">
 
-<div class="mt-5">
-    <form action="<?= getUrl('Roles', 'Roles', 'postCreate'); ?>" method="post">
+        
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h3 class="m-3 display-3">Registro Roles</h3>
+            </div>
+        </div>
 
-        <div class="row">
+        <?php
+        if (isset($_SESSION['error_roles'])) {
+            ?>
+            <div class="alert alert-danger mt-3">
+                <?php
+                echo $_SESSION['error_roles'];
+                unset($_SESSION['error_roles']);
+                ?>
+            </div>
+            <?php
+        }
+        ?>
 
-            <div class="col-4 mt-3">
-                <label for="rol_nombre">Nombre:</label>
-                <input type="text" name="rol_nombre" id="rol_nombre" class="form-control" placeholder="Ingrese el rol">
+
+        <form action="<?php echo getUrl('Roles', 'Roles', 'postCreate'); ?>" method="post">
+
+            <div class="row mt-5">
+
+                <div class="col-md-4 mb-4">
+                    <label for="rol_nombre">Nombre:</label>
+                    <input type="text" name="rol_nombre" id="rol_nombre" class="form-control p-2"
+                        placeholder="Ingrese el rol" required>
+                </div>
+
             </div>
 
-        </div>
+            <div class="mt-5">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Accion/Modulo</th>
 
-        <div class="mt-5">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Acción/Módulo</th>
+                            <?php
+                            $modulosArray = array();
 
+                            foreach ($modulos as $modulo) {
+                                echo "<th>" . $modulo['mod_nombre'] . "</th>";
+                                $modulosArray[] = $modulo;
+                            }
+                            ?>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <?php
-                        $modulosArray = [];
+                        foreach ($acciones as $accion) {
+                            echo "<tr>";
+                            echo "<td>" . $accion['acc_nombre'] . "</td>";
 
-                        while ($modulo = pg_fetch_assoc($modulos)) {
-                            echo "<th>" . $modulo['mod_nombre'] . "</th>";
-                            $modulosArray[] = $modulo;
+                            foreach ($modulosArray as $mod) {
+
+                                echo "<td>
+                                        <input type='checkbox' name='permisos[" . $mod['mod_id'] . "][" . $accion['acc_id'] . "]'
+                                        value='1'>
+                                      </td>";
+                            }
+
+                            echo "</tr>";
                         }
                         ?>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    while ($accion = pg_fetch_assoc($acciones)) {
-                        echo "<tr>";
-                        echo "<td>" . $accion['acc_nombre'] . "</td>";
-                        foreach ($modulosArray as $mod) {
+                    </tbody>
 
-                            echo "<td> 
-                                    <input type='checkbox' name='permisos[" . $mod['mod_id'] . "][" . $accion['acc_id'] . "]'
-                                    value='1'>
-                                    </td>";
-                        }
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
+                </table>
+            </div>
 
-            </table>
-        </div>
-        <div class="col-4">
-            <input type="submit" value="Registrar" class="btn btn-success mt-4">
-        </div>
-    </form>
+            <div class="d-flex justify-content-center mt-4">
+                <input type="submit" value="Registrar" class="btn btn-warning mt-4 p-2">
+            </div>
+
+        </form>
+
+    </div>
 </div>

@@ -1,4 +1,5 @@
 <?php
+
     include_once '../model/MasterModel.php';
 
     class RolesController{
@@ -13,14 +14,31 @@
             $sql = "SELECT * FROM acciones";
             $acciones = $obj->select($sql);
 
-            include_once '../view/Roles/create.php';
+            include_once '../view/roles/create.php';
         }
 
         public function postCreate()
         {
 
             $obj = new MasterModel();
-            $rol_nombre = $_POST['rol_nombre'];
+
+            $rol_nombre = trim($_POST['rol_nombre']);
+
+            if($rol_nombre == ""){
+                $_SESSION['error_roles'] = "Debe ingresar un nombre para el rol";
+                redirect(getUrl("Roles","Roles","getCreate"));
+                return;
+            }
+
+            $sql = "SELECT * FROM roles WHERE UPPER(nombre_rol)=UPPER('$rol_nombre')";
+            $rol_existente = $obj->select($sql);
+
+            if(count($rol_existente) > 0){
+                $_SESSION['error_roles'] = "Ya existe un rol con ese nombre";
+                redirect(getUrl("Roles","Roles","getCreate"));
+                return;
+            }
+
             $rol_id = $obj->autoincrement("roles", "id_rol");
 
             $sql = "INSERT INTO roles VALUES ('$rol_id', '$rol_nombre')";
@@ -29,10 +47,11 @@
             if (isset($_POST['permisos'])) {
                 $permisos = $_POST['permisos'];
             } else {
-                $permisos = [];
+                $permisos = array();
             }
 
-            $permisosFormateados = [];
+            $permisosFormateados = array();
+
             foreach ($permisos as $mod_id => $acciones) {
                 foreach ($acciones as $acc_id => $val) {
 
@@ -45,7 +64,9 @@
                 }
             }
 
-            redirect(getUrl('Roles', 'Roles', 'getCreate'));
+            $_SESSION['success_roles'] = "Rol registrado correctamente";
+
+            redirect(getUrl("Roles","Roles","getRoles"));
         }
 
         public function getRoles()
@@ -76,9 +97,9 @@
             $sql = "SELECT * FROM permisos WHERE rol_id = $rol_id";
             $permisos = $obj->select($sql);
 
-            $permisos_rol = [];
+            $permisos_rol = array();
 
-            while ($permiso = pg_fetch_assoc($permisos)) {
+            foreach ($permisos as $permiso) {
                 $permisos_rol[$permiso['mod_id']][] = $permiso['acc_id'];
             }
 
@@ -90,7 +111,22 @@
             $obj = new MasterModel();
 
             $rol_id = $_POST['rol_id'];
-            $rol_nombre = $_POST['rol_nombre'];
+            $rol_nombre = trim($_POST['rol_nombre']);
+
+            if($rol_nombre == ""){
+                $_SESSION['error_roles'] = "Debe ingresar un nombre para el rol";
+                redirect(getUrl("Roles","Roles","getUpdate")."&rol_id=".$rol_id);
+                return;
+            }
+
+            $sql = "SELECT * FROM roles WHERE UPPER(nombre_rol)=UPPER('$rol_nombre') AND id_rol <> $rol_id";
+            $rol_existente = $obj->select($sql);
+
+            if(count($rol_existente) > 0){
+                $_SESSION['error_roles'] = "Ya existe un rol con ese nombre";
+                redirect(getUrl("Roles","Roles","getUpdate")."&rol_id=".$rol_id);
+                return;
+            }
 
             $sql = "UPDATE roles SET nombre_rol='$rol_nombre' WHERE id_rol=$rol_id";
             $obj->update($sql);
@@ -101,7 +137,7 @@
             if (isset($_POST['permisos'])) {
                 $permisos = $_POST['permisos'];
             } else {
-                $permisos = [];
+                $permisos = array();
             }
 
             foreach ($permisos as $mod_id => $acciones) {
@@ -115,7 +151,9 @@
                 }
             }
 
-            redirect(getUrl("Roles", "Roles", "getRoles"));
+            $_SESSION['success_roles'] = "Rol actualizado correctamente";
+
+            redirect(getUrl("Roles","Roles","getRoles"));
         }
 
     }

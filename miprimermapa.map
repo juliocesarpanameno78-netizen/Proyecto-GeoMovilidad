@@ -1,70 +1,60 @@
 MAP
     NAME "primerMapa"
-    SIZE 700 800
+    SIZE 800 500
     STATUS ON
-    EXTENT 1053867 860190  1068491 879441
-
-    SHAPEPATH "C:/xampp/htdocs/Geomovilidad/shapeCali41/"
-
+    EXTENT 1053867 860190 1068491 879441
+    SHAPEPATH "C:/ms4w/Apache/htdocs/Geomovilidad/shapeCali41/"
+    IMAGECOLOR 232 153 81
     WEB
         IMAGEPATH "C:/ms4w/tmp/ms_tmp/"
         IMAGEURL "/ms_tmp/"
     END
-
-    LAYER
-        NAME "barrios"
-        TYPE LINE
-        STATUS DEFAULT
-        DATA "Barrios.shp"
-
-        CLASS
-            STYLE
-                COLOR 255 123 0
-                OUTLINECOLOR 0 0 0
-            END
-        END
-    END
-
     LAYER
         NAME "cali_area"
         TYPE POLYGON
         STATUS ON
         DATA "CaliArea.shp"
-
         CLASS
             STYLE
-                COLOR 200 200 200
+                COLOR 17 46 129
                 OUTLINECOLOR 0 0 0
             END
         END
     END
-
     LAYER
         NAME "comunas"
         STATUS ON
         TYPE LINE
         DATA "ComunasC.shp"
-
         CLASS
             STYLE
-                COLOR 180 180 255
-                OUTLINECOLOR 0 0 0
+                COLOR 100 100 255
+                OUTLINECOLOR 100 100 255
             END
         END
     END
-
+    LAYER
+        NAME "barrios"
+        TYPE LINE
+        STATUS ON
+        DATA "Barrios.shp"
+        CLASS
+            STYLE
+                COLOR 255 123 0
+                OUTLINECOLOR 255 123 0
+            END
+        END
+    END
     LAYER
         NAME "vias"
         STATUS OFF
         TYPE LINE
         DATA "MallaVialC.shp"
-
         CLASS
             STYLE
-                COLOR 0 0 0
-                OUTLINECOLOR 0 0 0
+                COLOR 80 80 80
+                OUTLINECOLOR 80 80 80
             END
         END
     END
-
 END
