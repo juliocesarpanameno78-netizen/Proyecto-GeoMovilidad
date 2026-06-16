@@ -2,15 +2,15 @@
     <div class="page-inner">
         <div class="row mt-5">
             <div class="col-md-5">
-                <h3 class="m-3 display-3 text-nowrap">Solicitar una Señal</h3>
+                <h3 class="m-3 display-3 text-nowrap">Hacer un reporte</h3>
             </div>
             <div class="col-md-7 d-flex justify-content-end">
-                <button class="btn btn-primary m-4 p-2 text-nowrap">Ver mis solicitudes</button>
+                <button class="btn btn-primary m-4 p-2 text-nowrap">Ver mis reportes</button>
             </div>
         </div>
         
 
-        <form method="post" action="<?php echo getUrl("Señales","Señales","postCreate")?>">
+        <form method="post" action="<?php echo getUrl("Reportes","Reportes","postCreate")?>">
             <div class="row mt-5">
                 <div class="col-md-4 mb-4">
                     <label for="nombre">Nombre completo:</label>

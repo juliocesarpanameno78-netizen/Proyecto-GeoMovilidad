@@ -37,17 +37,17 @@
                   </a>
                 </li>
                 <li>
-                  <a href="<?php echo getUrl("SolicitudReductor","SolicitudReductor","getCreate")?>">
+                  <a href="<?php echo getUrl("Reductor","Reductor","getCreate")?>">
                     <span class="sub-item">Solicitud de Reductor</span>
                   </a>
                 </li>
                 <li>
-                  <a href="<?php echo getUrl("SolictudVias","SolictudVias","getCreate")?>">
+                  <a href="<?php echo getUrl("Via","Via","getCreate")?>">
                     <span class="sub-item">Solicitud de Vía</span>
                   </a>
                 </li>
                 <li>
-                  <a href="<?php echo getUrl("SolicitudDemacarciones","SolicitudDemacarciones","getCreate")?>">
+                  <a href="<?php echo getUrl("Demarcaciones","Demarcaciones","getCreate")?>">
                     <span class="sub-item">Solicitud de Demarcación</span>
                   </a>
                 </li>
@@ -65,7 +65,7 @@
             <div class="collapse" id="reporte">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="?modulo=dashboard">
+                  <a href="<?php echo getUrl("Reportes","Reportes","getCreate")?>">
                     <span class="sub-item">Hacer un reporte</span>
                   </a>
                 </li>
