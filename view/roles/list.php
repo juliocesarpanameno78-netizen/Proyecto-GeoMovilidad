@@ -7,7 +7,7 @@
             </div>
 
             <div class="col-md-6 d-flex justify-content-end">
-                <a href="<?php echo getUrl("Roles","Roles","getCreate"); ?>">
+                <a href="<?php echo getUrl("Roles", "Roles", "getCreate"); ?>">
                     <button class="btn btn-success m-4 p-2 text-nowrap">Nuevo Rol</button>
                 </a>
             </div>
@@ -26,14 +26,14 @@
                     <?php
                     foreach ($roles as $rol) {
                         echo "<tr>";
-                        echo "<td>".$rol['id_rol']."</td>";
-                        echo "<td>".$rol['nombre_rol']."</td>";
+                        echo "<td>" . $rol['id_rol'] . "</td>";
+                        echo "<td>" . $rol['nombre_rol'] . "</td>";
 
                         echo "<td>
-                                <a href='".getUrl("Roles","Roles","getUpdate")."&rol_id=".$rol['id_rol']."'>
+                                <a href='" . getUrl("Roles", "Roles", "getUpdate") . "&rol_id=" . $rol['id_rol'] . "'>
                                     <button class='btn btn-warning'>Editar</button>
                                 </a>
-                              </td>";
+                            </td>";
 
                         echo "</tr>";
                     }
