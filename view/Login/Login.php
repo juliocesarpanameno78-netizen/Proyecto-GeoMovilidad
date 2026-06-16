@@ -31,7 +31,7 @@
                     <input type="password" name="contrasena" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Ingresar</button>
-                <p>¿No tiene una cuenta? <a href="../Registro/Registro.php">Regístrese</a></p>
+                <p>¿No tiene una cuenta? <a href="<?php echo getUrl('Registro','Registro','getCreate')?>">Regístrese</a></p>
             </form>
 
         </div>

@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'C:/xampp/htdocs/Geomovilidad/model/MasterModel.php';
+include_once '../MasterModel.php';
 
 class RegistroModel extends MasterModel {
 
