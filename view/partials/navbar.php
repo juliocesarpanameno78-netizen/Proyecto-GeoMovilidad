@@ -98,7 +98,7 @@
             <li class="nav-item active">
               <a data-bs-toggle="collapse" href="#roles" class="collapsed" aria-expanded="false">
                 <i class="fas fa-user-shield"></i>
-                <p>Gestion de Roles</p>
+                <p>Gestión de Roles</p>
                 <span class="caret"></span>
               </a>
               <div class="collapse" id="roles">
