@@ -38,17 +38,17 @@
                 </li>
                 <li>
                   <a href="<?php echo getUrl("Reductor","Reductor","getCreate")?>">
-                    <span class="sub-item">Solicitud de Reductor</span>
+                    <span class="sub-item">Solicitud de Nuevo Reductor</span>
                   </a>
                 </li>
                 <li>
                   <a href="<?php echo getUrl("Via","Via","getCreate")?>">
-                    <span class="sub-item">Solicitud de Vía</span>
+                    <span class="sub-item">Solicitud de Vía en Mal Estado</span>
                   </a>
                 </li>
                 <li>
                   <a href="<?php echo getUrl("Demarcaciones","Demarcaciones","getCreate")?>">
-                    <span class="sub-item">Solicitud de Demarcación</span>
+                    <span class="sub-item">Solicitud de Nueva Demarcación</span>
                   </a>
                 </li>
               </ul>

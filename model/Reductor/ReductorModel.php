@@ -2,7 +2,7 @@
 
     include_once '../model/MasterModel.php';
 
-    class DemarcacionesModel extends MasterModel {
+    class ReductorModel extends MasterModel {
 
     }
 
