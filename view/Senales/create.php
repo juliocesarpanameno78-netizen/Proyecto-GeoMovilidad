@@ -29,10 +29,10 @@
                     <select name="tiposeñal" id="tiposeñal" class="form-control p-2">
                         <option value="" disabled selected hidden>seleciona una señal</option>
                         <?php 
-                            foreach($tiposeñales as $señal){
+                            foreach($tiposenales as $senal){
                         ?>
-                        <option value="<?php echo $señal['id_tipo_senal'];?>">
-                            <?php echo $señal['tipo_senal']?>
+                        <option value="<?php echo $senal['id_tipo_senal'];?>">
+                            <?php echo $senal['tipo_senal']?>
                         </option>
                         <?php
                             }

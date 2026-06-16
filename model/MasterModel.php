@@ -5,8 +5,12 @@ require_once '../lib/conf/connection.php';
 class MasterModel extends Connection {
 
     public function select($sql) {
-        $result = pg_query($this->getConnection(), $sql);
-        return $result;
+    $result = pg_query($this->getConnection(), $sql);
+    $rows = array();
+    while ($row = pg_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+    return $rows;
     }
 
     public function insert($sql) {

@@ -32,7 +32,7 @@
             <div class="collapse" id="solicitud">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="<?php echo getUrl("Señales","Señales","getCreate")?>">
+                  <a href="<?php echo getUrl("Senales","Senales","getCreate")?>">
                     <span class="sub-item">Solicitud de Señal</span>
                   </a>
                 </li>
