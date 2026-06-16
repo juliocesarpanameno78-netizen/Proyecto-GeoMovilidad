@@ -1,5 +1,9 @@
 <?php 
 
+
+   if(!session_id()){
+    session_start();
+    }
     function redirect( $url ) {
         echo "<script>";
             echo "window.location.href = '$url'";
@@ -20,12 +24,18 @@
     }
 
     function resolve(){
+
+
+    
         $modulo = ucwords($_GET['modulo']); //carpeta dentro del controlador 
         $controlador = ucwords($_GET['controlador']); //controlador -> archivo controller dentro del modulo
         $function = $_GET['function']; // funcion -> metodo dentro de la clase del controlador  
 
         if(is_dir("../controller/".$modulo)){
             if(is_file("../controller/".$modulo."/".$controlador."Controller.php")){
+
+            
+                
                 require_once("../controller/".$modulo."/".$controlador."Controller.php");
 
                 $controlador = $controlador."Controller";
