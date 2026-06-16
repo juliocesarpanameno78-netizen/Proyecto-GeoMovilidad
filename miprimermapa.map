@@ -3,14 +3,12 @@ MAP
     SIZE 800 500
     STATUS ON
     EXTENT 1053867 860190 1068491 879441
-
     SHAPEPATH "C:/ms4w/Apache/htdocs/Geomovilidad/shapeCali41/"
-
+    IMAGECOLOR 232 153 81
     WEB
         IMAGEPATH "C:/ms4w/tmp/ms_tmp/"
         IMAGEURL "/ms_tmp/"
     END
-
     LAYER
         NAME "cali_area"
         TYPE POLYGON
@@ -18,12 +16,11 @@ MAP
         DATA "CaliArea.shp"
         CLASS
             STYLE
-                COLOR 200 230 200
+                COLOR 17 46 129
                 OUTLINECOLOR 0 0 0
             END
         END
     END
-
     LAYER
         NAME "comunas"
         STATUS ON
@@ -36,7 +33,6 @@ MAP
             END
         END
     END
-
     LAYER
         NAME "barrios"
         TYPE LINE
@@ -49,7 +45,6 @@ MAP
             END
         END
     END
-
     LAYER
         NAME "vias"
         STATUS OFF
@@ -62,5 +57,4 @@ MAP
             END
         END
     END
-
 END
