@@ -25,8 +25,8 @@
                     <input type="text" name="direccion" id="dirección" class="form-control p-2" placeholder="Ejemplo: Carrera 1 #0-0">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="tiposeñal">Tipo de señal</label><br>
-                    <select name="tiposeñal" id="tiposeñal" class="form-control p-2">
+                    <label for="tiposenal">Tipo de señal</label><br>
+                    <select name="tiposenal" id="tiposenal" class="form-control p-2">
                         <option value="" disabled selected hidden>seleciona una señal</option>
                         <?php 
                             foreach($tiposeñales as $señal){
@@ -40,8 +40,8 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="catergoriaseñal">Categoría de la señal </label><br>
-                    <select name="catergoriaseñal" id="catergoriaseñal" class="form-control p-2">
+                    <label for="categoriasenal">Categoría de la señal </label><br>
+                    <select name="categoriasenal" id="categoriasenal" class="form-control p-2">
                         <option value="" disabled selected hidden>seleciona la categoría</option>
                     </select>
                 </div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="imagenes">Insetar imagen:</label>
-                    <input type="file" name="imagenes" id="imagenes" class="form-control p-2" accept="image/*">
+                    <input type="file" name="imagen" id="imagen" class="form-control p-2" accept="image/*">
                 </div>
             </div>
 

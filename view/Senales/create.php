@@ -17,22 +17,18 @@
                     <input type="text" name="nombre" id="nombre" class="form-control p-2" placeholder="nombre">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="cedula">Numero de cédula:</label>
-                    <input type="number" name="cedula" id="cedula" class="form-control p-2" placeholder="11******">
-                </div>
-                <div class="col-md-4 mb-4">
                     <label for="direccion">Dirección:</label>
                     <input type="text" name="direccion" id="dirección" class="form-control p-2" placeholder="Ejemplo: Carrera 1 #0-0">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="tiposeñal">Tipo de señal</label><br>
-                    <select name="tiposeñal" id="tiposeñal" class="form-control p-2">
-                        <option value="" disabled selected hidden>seleciona una señal</option>
+                    <label for="tiposenal">Tipo de señal</label><br>
+                    <select name="tiposenal" id="tiposenal" class="form-control p-2">
+                        <option value="" disabled selected hidden>Selecciona una señal</option>
                         <?php 
                             foreach($tiposenales as $senal){
                         ?>
                         <option value="<?php echo $senal['id_tipo_senal'];?>">
-                            <?php echo $senal['tipo_senal']?>
+                            <?php echo $senal['nombre_tipo_senal']?>
                         </option>
                         <?php
                             }
@@ -40,9 +36,25 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="catergoriaseñal">Categoría de la señal </label><br>
-                    <select name="catergoriaseñal" id="catergoriaseñal" class="form-control p-2">
+                    <label for="categoriasenal">Categoría de la señal </label><br>
+                    <select name="categoriasenal" id="categoriasenal" class="form-control p-2">
                         <option value="" disabled selected hidden>seleciona la categoría</option>
+                        <?php foreach($categoriasenales as $cate) {?>
+                        <option value="<?php echo $cate['id_categoria'];?>">
+                        <?php echo $cate['nombre_categoria']?>
+                        </option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label for="orientacionsenal">Orientación de la señal </label><br>
+                    <select name="orientacionsenal" id="orientacionsenal" class="form-control p-2">
+                        <option value="" disabled selected hidden>seleciona la orientación</option>
+                        <?php foreach($tiposenales as $senal) {?>
+                        <option value="<?php echo $senal['id_tipo_senal'];?>">
+                        <?php echo $senal['orientacion']?>
+                        </option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -50,15 +62,7 @@
                     <input type="text" name="descripcion" id="descripcion" class="form-control p-2" placeholder="">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="barrio">Barrio:</label>
-                    <input type="text" name="barrio" id="barrio" class="form-control p-2" placeholder="Ejemplo: villa sur">
-                </div>
-                <div class="col-md-4 mb-4">
-                    <label for="comuna">Comuna:</label>
-                    <input type="text" name="comuna" id="comuna" class="form-control p-2" placeholder="ejemplo: Comuna 0">
-                </div>
-                <div class="col-md-4 mb-4">
-                    <label for="imagenes">Insetar imagen:</label>
+                    <label for="imagenes">Insertar imagen:</label>
                     <input type="file" name="imagenes" id="imagenes" class="form-control p-2" accept="image/*">
                 </div>
             </div>

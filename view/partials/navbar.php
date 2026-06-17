@@ -85,7 +85,7 @@
               <div class="collapse" id="pqrsf">
                 <ul class="nav nav-collapse">
                   <li>
-                    <a href="?modulo=dashboard">
+                    <a href="<?php echo getUrl("Pqrfs", "Pqrfs", "getCreate") ?></a>">
                       <span class="sub-item">Hacer una PQRSF</span>
                     </a>
                   </li>
