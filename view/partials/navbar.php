@@ -118,25 +118,6 @@
             </li>
           </ul>
 
-          <ul class="nav nav-secondary">
-            <li class="nav-item active">
-              <a data-bs-toggle="collapse" href="#usuarios" class="collapsed" aria-expanded="false">
-                <i class="fas fa-users"></i>
-                <p>Gestión de Usuarios</p>
-                <span class="caret"></span>
-              </a>
-              <div class="collapse" id="usuarios">
-                <ul class="nav nav-collapse">
-                  <li>
-                    <a href="<?php echo getUrl("Usuarios", "Usuarios", "getUsuarios") ?>">
-                      <span class="sub-item">Listar Usuarios</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-
           <!-- comentario épico -->
 
         </div>
@@ -201,7 +182,7 @@
                     <img src="../view/assets/img/usuario.png" alt="..." class="avatar-img rounded-circle">
                   </div>
                   <span class="profile-username">
-                    <span class="op-7">Bienvenido,</span> <span class="fw-bold">Invitad@</span>
+                    <span class="op-7">Bienvenido,</span> <span class="fw-bold"><?php echo isset($_SESSION['nombre_usuario']) ? htmlspecialchars($_SESSION['nombre_usuario']) : 'Invitad@'; ?></span>
                   </span>
                 </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -211,8 +192,8 @@
                         <div class="avatar-lg"><img src="../view/assets/img/usuario.png" alt="image profile"
                             class="avatar-img rounded"></div>
                         <div class="u-text">
-                          <h4>Invitado</h4>
-                          <p class="text-muted">hello@example.com</p>
+                          <h4><?php echo isset($_SESSION['nombre_usuario']) ? htmlspecialchars($_SESSION['nombre_usuario']) : 'Invitado'; ?></h4>
+                          <p class="text-muted"><?php echo isset($_SESSION['correo_usuario']) ? htmlspecialchars($_SESSION['correo_usuario']) : 'hello@example.com'; ?></p>
                           <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">Ver Perfil</a>
                         </div>
                       </div>
@@ -223,7 +204,7 @@
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">Configuración de Cuenta</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                      <a class="dropdown-item" href="<?php echo getUrl('Login','Login','logout'); ?>">Cerrar Sesión</a>
                     </li>
                   </div>
                 </ul>

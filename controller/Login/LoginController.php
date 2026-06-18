@@ -35,7 +35,7 @@ class LoginController {
     public function logout() {
         session_start();
         session_destroy();
-        redirect('../view/Login.php');
+        redirect('../view/Login/Login.php');
     }
 }
 ?>

@@ -1,7 +1,7 @@
 <?php 
 $server = "localhost";
 $user = "postgres";
-$password = "123";
-$database = "terravision";
-$port = 5432;
+$password = "1234";
+$database = "Terravision";
+$port = 5433;
 ?>
