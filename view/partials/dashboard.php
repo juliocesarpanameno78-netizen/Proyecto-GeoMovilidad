@@ -1,8 +1,4 @@
     <!-- Sección del contenido principal: mapa interactivo -->
-     <br>
-     <br>
-     <br>
-     <br>
     <div class="container-fluid">
         <div class="page-inner">
             <div class="row mb-4">
