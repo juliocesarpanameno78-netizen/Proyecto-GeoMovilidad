@@ -26,6 +26,10 @@
                                             <input checked onclick="chgLayers()" type="checkbox" name="Layer[2]" value="barrios">
                                             <strong>Barrios</strong>
                                         </p>
+                                        <p class="mb-0">
+                                            <input checked onclick="chgLayers()" type="checkbox" name="Layer[3]" value="vias">
+                                            <strong>Vias</strong>
+                                        </p>
                                     </form>
                                 </div>
                                 <div id="Layer1"
@@ -82,7 +86,7 @@
     if (!myMap1 || !myMap2) return;
     var list = "";
     var objForm = document.forms["select_layers"];
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 4; i++) {
         var elemento = objForm.elements["Layer[" + i + "]"];
         if (elemento && elemento.checked) {
             list += elemento.value + " ";

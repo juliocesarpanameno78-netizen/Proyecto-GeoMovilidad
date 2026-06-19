@@ -118,6 +118,25 @@
             </li>
           </ul>
 
+          <ul class="nav nav-secondary">
+            <li class="nav-item active">
+              <a data-bs-toggle="collapse" href="#usuarios" class="collapsed" aria-expanded="false">
+                <i class="fas fa-users"></i>
+                <p>Gestión de Usuarios</p>
+                <span class="caret"></span>
+              </a>
+              <div class="collapse" id="usuarios">
+                <ul class="nav nav-collapse">
+                  <li>
+                    <a href="<?php echo getUrl("Usuarios", "Usuarios", "getUsuarios") ?>">
+                      <span class="sub-item">Listar Usuarios</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+
           <!-- comentario épico -->
 
         </div>
@@ -132,6 +151,7 @@
           <div class="logo-header" data-background-color="dark">
             <a href="index.html" class="logo">
               <img src="../Imagenes/GEOMOVILIDAD-LOGO-FINAL.svg" alt="navbar brand" class="navbar-brand" height="20">
+              
             </a>
             <div class="nav-toggle">
               <button class="btn btn-toggle toggle-sidebar">
