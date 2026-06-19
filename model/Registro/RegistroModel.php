@@ -1,7 +1,6 @@
 <?php
 
-include_once '../MasterModel.php';
-
+require_once dirname(__FILE__) . '/../MasterModel.php';
 class RegistroModel extends MasterModel {
 
     public function getTiposDocumento() {

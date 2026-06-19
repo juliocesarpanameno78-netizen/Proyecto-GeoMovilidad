@@ -1,8 +1,10 @@
+
 <?php
-require_once '../../model/Registro/RegistroModel.php';
+require_once dirname(__FILE__) . '/../../model/Registro/RegistroModel.php';
 $obj = new RegistroModel();
 $tipos_documento = $obj->getTiposDocumento();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -104,7 +106,7 @@ $tipos_documento = $obj->getTiposDocumento();
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100">Registrarse</button>
-                <a href="../Login/Login.php" class="btn btn-link w-100 mt-2">¿Ya tienes cuenta? Inicia sesión</a>
+                <a href="../view/Login/Login.php" class="btn btn-link w-100 mt-2">¿Ya tienes cuenta? Inicia sesión</a>
 
             </form>
         </div>

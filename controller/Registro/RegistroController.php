@@ -7,7 +7,7 @@ class RegistroController {
     public function getRegistro() {
         $obj = new RegistroModel();
         $tipos_documento = $obj->getTiposDocumento();
-        include_once '../view/Registro.php';
+        include_once dirname(__FILE__) . '/../../view/Registro/Registro.php';
     }
 
     public function postRegistro() {
@@ -51,5 +51,9 @@ class RegistroController {
             redirect('/Geomovilidad/view/Registro/Registro.php?error=general');
         }
     }
+
+    public function getCreate() {
+    $this->getRegistro();
+}
 }
 ?>
