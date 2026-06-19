@@ -117,6 +117,34 @@
               </div>
             </li>
           </ul>
+          <ul class="nav nav-secondary">
+            <li class="nav-item active">
+              <a data-bs-toggle="collapse" href="#historial" class="collapsed" aria-expanded="false">
+                <i class="fas fa-user-shield"></i>
+                <p>Mi historial</p>
+                <span class="caret"></span>
+              </a>
+              <div class="collapse" id="historial">
+                <ul class="nav nav-collapse">
+                  <li>
+                    <a href="<?php echo getUrl("Senales", "Senales", "list") ?>">
+                      <span class="sub-item">Historial de solicitudes</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?php echo getUrl("Reportes", "Reportes", "list") ?>">
+                      <span class="sub-item">Historial de repotes</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?php echo getUrl("Pqrfs", "Pqrfs", "list") ?>">
+                      <span class="sub-item">Historial de PQRFS</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
 
           <!-- comentario épico -->
 
