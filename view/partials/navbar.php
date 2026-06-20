@@ -24,9 +24,11 @@
       <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
           <ul class="nav nav-secondary">
-  <!-- ============================== -->
-  <!-- CIUDADANO -->
-  <!-- ============================== -->
+
+
+  <!-- Separación Ciudadano -->
+
+
   <?php if (esCiudadano()): ?>
   <li class="nav-item active">
     <a data-bs-toggle="collapse" href="#solicitud" class="collapsed" aria-expanded="false">
@@ -80,9 +82,9 @@
   <?php endif; ?>
 </ul>
 
-<!-- ============================== -->
-<!-- FUNCIONARIO -->
-<!-- ============================== -->
+
+<!-- Separación Funcionario -->
+
 <ul class="nav nav-secondary">
   <?php if (esFuncionario()): ?>
   <li class="nav-item active">
@@ -126,9 +128,8 @@
   <?php endif; ?>
 </ul>
 
-<!-- ============================== -->
-<!-- ADMINISTRADOR -->
-<!-- ============================== -->
+
+<!-- Separación Administrador -->
 <ul class="nav nav-secondary">
   <?php if (esAdministrador()): ?>
   <li class="nav-item active">
