@@ -65,23 +65,18 @@ function tieneRol($rol_id) {
     return isset($_SESSION['id_rol']) && $_SESSION['id_rol'] == $rol_id;
 }
 
-function esAdministrador() {
-    return tieneRol(1);
-}
-
-function esFuncionario() {
-    return tieneRol(2);
-}
-
-function esCiudadano() {
-    return tieneRol(3);
-}
+function esAdministrador() { 
+    return tieneRol(1); }
+function esCiudadano()     { 
+    return tieneRol(2); }
+function esFuncionario()   { 
+    return tieneRol(3); }
 
 function nombreRol() {
     $roles = array(
         1 => 'Administrador',
-        2 => 'Funcionario',
-        3 => 'Ciudadano'
+        2 => 'Ciudadano',
+        3 => 'Funcionario'
     );
     return isset($roles[$_SESSION['id_rol']]) ? $roles[$_SESSION['id_rol']] : 'Sin rol';
 }
