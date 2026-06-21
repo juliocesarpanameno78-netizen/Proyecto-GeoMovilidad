@@ -5,7 +5,7 @@ $obj = new RegistroModel();
 $tipos_documento = $obj->getTiposDocumento();
 ?>
 
-<?php
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -120,4 +120,3 @@ $tipos_documento = $obj->getTiposDocumento();
 </body>
 </html>
 
-?>
