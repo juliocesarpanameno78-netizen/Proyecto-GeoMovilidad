@@ -309,4 +309,105 @@ body[data-background-color="dark"] .demo-icon .icon-class {
     width: 85% !important;
     right: -85%; } }
 
+    /* ===== Logo-header y Navbar-header con celeste ===== */
+.logo-header[data-background-color="celeste"],
+.navbar-header[data-background-color="celeste"] {
+    background: #6DAEDB !important;
+}
+
+/* ===== Sidebar completo con celeste ===== */
+.sidebar[data-background-color="celeste"] {
+    background: #6DAEDB !important;
+}
+
+.sidebar[data-background-color="celeste"] .nav > .nav-item > a p,
+.sidebar[data-background-color="celeste"] .nav > .nav-item > a i {
+    color: #1a2035;
+}
+
+.sidebar[data-background-color="celeste"] .nav > .nav-item.active > a p,
+.sidebar[data-background-color="celeste"] .nav > .nav-item.active a:hover p,
+.sidebar[data-background-color="celeste"] .nav > .nav-item.active a:focus p {
+    color: #ffffff;
+}
+
+.sidebar[data-background-color="celeste"] .nav > .nav-item a:hover p,
+.sidebar[data-background-color="celeste"] .nav > .nav-item a:focus p,
+.sidebar[data-background-color="celeste"] .nav > .nav-item a[data-toggle="collapse"][aria-expanded="true"] p {
+    color: #ffffff;
+}
+
+.sidebar[data-background-color="celeste"] .nav > .nav-item.active > a,
+.sidebar[data-background-color="celeste"] .nav > .nav-item.active a:hover,
+.sidebar[data-background-color="celeste"] .nav > .nav-item.active a:focus {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Logo-header y Navbar-header con oliva ===== */
+.logo-header[data-background-color="oliva"],
+.navbar-header[data-background-color="oliva"] {
+    background: #BBD686 !important;
+}
+
+/* ===== Sidebar completo con oliva ===== */
+.sidebar[data-background-color="oliva"] {
+    background: #BBD686 !important;
+}
+
+.sidebar[data-background-color="oliva"] .nav > .nav-item > a p,
+.sidebar[data-background-color="oliva"] .nav > .nav-item > a i {
+    color: #1a2035;
+}
+
+.sidebar[data-background-color="oliva"] .nav > .nav-item.active > a p,
+.sidebar[data-background-color="oliva"] .nav > .nav-item.active a:hover p,
+.sidebar[data-background-color="oliva"] .nav > .nav-item.active a:focus p {
+    color: #ffffff;
+}
+
+.sidebar[data-background-color="oliva"] .nav > .nav-item a:hover p,
+.sidebar[data-background-color="oliva"] .nav > .nav-item a:focus p,
+.sidebar[data-background-color="oliva"] .nav > .nav-item a[data-toggle="collapse"][aria-expanded="true"] p {
+    color: #ffffff;
+}
+
+.sidebar[data-background-color="oliva"] .nav > .nav-item.active > a,
+.sidebar[data-background-color="oliva"] .nav > .nav-item.active a:hover,
+.sidebar[data-background-color="oliva"] .nav > .nav-item.active a:focus {
+    background: rgba(26, 32, 53, 0.15);
+}
+
+/* ===== Logo-header y Navbar-header con verdeoliva ===== */
+.logo-header[data-background-color="verdeoliva"],
+.navbar-header[data-background-color="verdeoliva"] {
+    background: #8A9B68 !important;
+}
+
+/* ===== Sidebar completo con verdeoliva ===== */
+.sidebar[data-background-color="verdeoliva"] {
+    background: #8A9B68 !important;
+}
+
+.sidebar[data-background-color="verdeoliva"] .nav > .nav-item > a p,
+.sidebar[data-background-color="verdeoliva"] .nav > .nav-item > a i {
+    color: #1a2035;
+}
+
+.sidebar[data-background-color="verdeoliva"] .nav > .nav-item.active > a p,
+.sidebar[data-background-color="verdeoliva"] .nav > .nav-item.active a:hover p,
+.sidebar[data-background-color="verdeoliva"] .nav > .nav-item.active a:focus p {
+    color: #ffffff;
+}
+
+.sidebar[data-background-color="verdeoliva"] .nav > .nav-item a:hover p,
+.sidebar[data-background-color="verdeoliva"] .nav > .nav-item a:focus p,
+.sidebar[data-background-color="verdeoliva"] .nav > .nav-item a[data-toggle="collapse"][aria-expanded="true"] p {
+    color: #ffffff;
+}
+
+.sidebar[data-background-color="verdeoliva"] .nav > .nav-item.active > a,
+.sidebar[data-background-color="verdeoliva"] .nav > .nav-item.active a:hover,
+.sidebar[data-background-color="verdeoliva"] .nav > .nav-item.active a:focus {
+    background: rgba(26, 32, 53, 0.25);
+}
 /*# sourceMappingURL=demo.css.map */

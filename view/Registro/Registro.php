@@ -20,7 +20,7 @@ $tipos_documento = $obj->getTiposDocumento();
 <div class="d-flex justify-content-center align-items-center min-vh-100 py-4">
     <div class="card" style="width: 500px;">
         <div class="card-header text-center fw-bold">
-            <img src="../assets/img/geomovilidad.ico" alt="Logo Geomovilidad" style="width:150px; height:auto;"><br>
+            <img src="../view/assets/img/geomovilidad.ico" alt="Logo Geomovilidad" style="width: 150px; height:auto;">
             Crear Cuenta
         </div>
         <div class="card-body">

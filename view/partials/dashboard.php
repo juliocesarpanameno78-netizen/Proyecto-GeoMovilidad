@@ -61,7 +61,7 @@
 
 
         if (typeof msMap !== "undefined") {
-            myMap1 = new msMap(document.getElementById("dc_main"), "standardRight");
+            myMap1 = new msMap(document.getElementById("dc_main"), "standardUp");
             myMap1.setCgi("/cgi-bin/mapserv.exe");
             myMap1.setMapFile("C:/ms4w/Apache/htdocs/Geomovilidad/miprimermapa.map");
             myMap1.setFullExtent(1053867, 1068491, 860190, 879441);

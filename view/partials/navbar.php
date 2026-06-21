@@ -1,10 +1,10 @@
 <body>
   <div class="wrapper">
     <!-- Barra lateral de navegación -->
-    <div class="sidebar" data-background-color="dark">
+    <div class="sidebar" data-background-color="white">
       <div class="sidebar-logo">
-        <div class="logo-header" data-background-color="dark">
-          <a href="index.php" class="logo">
+        <div class="logo-header" data-background-color="white">
+          <a href="index.php">
             <img src="../view/assets/img/geomovilidad.ico" alt="navbar brand" class="navbar-brand"
               style="max-width: 100%; width: auto; height: 85px;">
           </a>
