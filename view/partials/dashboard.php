@@ -26,6 +26,10 @@
                                             <input checked onclick="chgLayers()" type="checkbox" name="Layer[2]" value="barrios">
                                             <strong>Barrios</strong>
                                         </p>
+                                        <p class="mb-0">
+                                            <input checked onclick="chgLayers()" type="checkbox" name="Layer[3]" value="vias">
+                                            <strong>Vias</strong>
+                                        </p>
                                     </form>
                                 </div>
                                 <div id="Layer1"
@@ -57,7 +61,7 @@
 
 
         if (typeof msMap !== "undefined") {
-            myMap1 = new msMap(document.getElementById("dc_main"), "standardRight");
+            myMap1 = new msMap(document.getElementById("dc_main"), "standardUp");
             myMap1.setCgi("/cgi-bin/mapserv.exe");
             myMap1.setMapFile("C:/ms4w/Apache/htdocs/Geomovilidad/miprimermapa.map");
             myMap1.setFullExtent(1053867, 1068491, 860190, 879441);
@@ -82,7 +86,7 @@
     if (!myMap1 || !myMap2) return;
     var list = "";
     var objForm = document.forms["select_layers"];
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 4; i++) {
         var elemento = objForm.elements["Layer[" + i + "]"];
         if (elemento && elemento.checked) {
             list += elemento.value + " ";

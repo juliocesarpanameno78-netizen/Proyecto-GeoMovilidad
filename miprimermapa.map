@@ -4,7 +4,8 @@ MAP
     STATUS ON
     EXTENT 1053867 860190 1068491 879441
     SHAPEPATH "C:/ms4w/Apache/htdocs/Geomovilidad/shapeCali41/"
-    IMAGECOLOR 232 153 81
+
+    IMAGECOLOR 52 103 57
     WEB
         IMAGEPATH "C:/ms4w/tmp/ms_tmp/"
         IMAGEURL "/ms_tmp/"
@@ -16,8 +17,20 @@ MAP
         DATA "CaliArea.shp"
         CLASS
             STYLE
-                COLOR 17 46 129
+                COLOR 17 24 68
                 OUTLINECOLOR 0 0 0
+            END
+        END
+    END
+    LAYER
+        NAME "vias"
+        STATUS ON
+        TYPE LINE
+        DATA "MallaVialC.shp"
+        CLASS
+            STYLE
+                COLOR 75 86 148
+                OUTLINECOLOR 80 80 80
             END
         END
     END
@@ -28,7 +41,7 @@ MAP
         DATA "ComunasC.shp"
         CLASS
             STYLE
-                COLOR 100 100 255
+                COLOR 234 224 207
                 OUTLINECOLOR 100 100 255
             END
         END
@@ -38,22 +51,16 @@ MAP
         TYPE LINE
         STATUS ON
         DATA "Barrios.shp"
+        LABElITEM "BARRIO"
         CLASS
+            NAME "LABEL"
             STYLE
-                COLOR 255 123 0
-                OUTLINECOLOR 255 123 0
+                COLOR 0 0 0
+                OUTLINECOLOR 90 40 35
             END
-        END
-    END
-    LAYER
-        NAME "vias"
-        STATUS OFF
-        TYPE LINE
-        DATA "MallaVialC.shp"
-        CLASS
-            STYLE
-                COLOR 80 80 80
-                OUTLINECOLOR 80 80 80
+            LABEL   
+                SIZE MEDIUM
+                COLOR 255 255 255
             END
         END
     END

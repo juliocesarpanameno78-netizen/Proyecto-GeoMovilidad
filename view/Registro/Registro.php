@@ -5,6 +5,8 @@ $obj = new RegistroModel();
 $tipos_documento = $obj->getTiposDocumento();
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,7 +20,7 @@ $tipos_documento = $obj->getTiposDocumento();
 <div class="d-flex justify-content-center align-items-center min-vh-100 py-4">
     <div class="card" style="width: 500px;">
         <div class="card-header text-center fw-bold">
-            <img src="../assets/img/geomovilidad.ico" alt="Logo Geomovilidad" style="width:150px; height:auto;"><br>
+            <img src="../view/assets/img/geomovilidad.ico" alt="Logo Geomovilidad" style="width: 150px; height:auto;">
             Crear Cuenta
         </div>
         <div class="card-body">
@@ -108,6 +110,8 @@ $tipos_documento = $obj->getTiposDocumento();
                 <button type="submit" class="btn btn-primary w-100">Registrarse</button>
                 <a href="../view/Login/Login.php" class="btn btn-link w-100 mt-2">¿Ya tienes cuenta? Inicia sesión</a>
 
+            
+
             </form>
         </div>
     </div>
@@ -115,3 +119,4 @@ $tipos_documento = $obj->getTiposDocumento();
 
 </body>
 </html>
+

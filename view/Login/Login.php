@@ -36,6 +36,8 @@ require_once '../../lib/helpers.php';
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Ingresar</button>
                 <p>¿No tiene una cuenta? <a href="/Geomovilidad/web/index.php?modulo=Registro&controlador=Registro&function=getCreate">Regístrese</a></p>
+
+                
             </form>
         </div>
     </div>
