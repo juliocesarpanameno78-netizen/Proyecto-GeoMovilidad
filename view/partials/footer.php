@@ -15,6 +15,7 @@
 <script src="../view/assets/js/setting-demo.js"></script>
 <script src="../view/assets/js/demo.js"></script><!-- End wrapper -->
 
+</script>
 		</div> <!-- fin .main-panel -->
 	</div>
 </body>

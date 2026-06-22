@@ -4,9 +4,6 @@
             <div class="col-md-5">
                 <h3 class="m-3 display-3 text-nowrap">Solicitar un nuevo reductor</h3>
             </div>
-            <div class="col-md-7 d-flex justify-content-end">
-                <button class="btn btn-primary m-4 p-2 text-nowrap">Ver mis solicitudes</button>
-            </div>
         </div>
 
         <form method="post" action="<?php echo getUrl("Reductor","Reductor","postCreate")?>">
@@ -16,22 +13,18 @@
                     <input type="text" name="nombre" id="nombre" class="form-control p-2" placeholder="nombre">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="cedula">Numero de cédula:</label>
-                    <input type="number" name="cedula" id="cedula" class="form-control p-2" placeholder="11******">
-                </div>
-                <div class="col-md-4 mb-4">
                     <label for="direccion">Dirección:</label>
                     <input type="text" name="direccion" id="dirección" class="form-control p-2" placeholder="Ejemplo: Carrera 1 #0-0">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="tiposeñal">Tipo de Reductor</label><br>
-                    <select name="tiposeñal" id="tiposeñal" class="form-control p-2">
-                        <option value="" disabled selected hidden>selecciona el tipo de reductor</option>
+                    <label for="categoriareductor">Categoría del reductor</label><br>
+                    <select name="categoriareductor" id="categoriareductor" class="form-control p-2">
+                        <option value="" disabled selected hidden>seleciona la categoría</option>
                         <?php 
-                            foreach($tiposeñales as $señal){
+                            foreach($categoriareduc as $catereduc){
                         ?>
-                        <option value="<?php echo $señal['id_tipo_senal'];?>">
-                            <?php echo $señal['tipo_senal']?>
+                        <option value="<?php echo $catereduc['catr_id'];?>">
+                            <?php echo $catereduc['catr_nombre']?>
                         </option>
                         <?php
                             }
@@ -39,26 +32,30 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="catergoriaseñal">Categoría de la señal </label><br>
-                    <select name="catergoriaseñal" id="catergoriaseñal" class="form-control p-2">
-                        <option value="" disabled selected hidden>seleciona la categoría</option>
+                    <label for="tiporeductor">Tipo de Reductor</label><br>
+                    <select name="tiporeductor" id="tiporeductor" class="form-control p-2">
+                        <option value="" disabled selected hidden>Selecciona el tipo de reductor</option>
+                        <?php 
+                            foreach($tiposreductor as $reduc){
+                        ?>
+                        <option value="<?php echo $reduc['tred_id'];?>"
+                        data-categoria="<?php echo $reduc['catr_id'];?>"
+                        data-descripcion="<?php echo htmlspecialchars($reduc['tred_descripcion']);?>"
+                        data-orientacion="<?php echo $reduc['tred_orientacion'];?>">
+                            <?php echo $reduc['tred_nombre']?>
+                        </option>
+                        <?php
+                            }
+                        ?>
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
+                    <label for="orienta">Orientación del reductor</label>
+                    <input type="text" name="orienta" id="orienta" class="form-control p-2" readonly>
+                </div>
+                <div class="col-md-4 mb-4">
                     <label for="descripcion">Descripción:</label>
-                    <input type="text" name="descripcion" id="descripcion" class="form-control p-2" placeholder="">
-                </div>
-                <!-- <div class="col-md-4 mb-4">
-                    <label for="barrio">Barrio:</label>
-                    <input type="text" name="barrio" id="barrio" class="form-control p-2" placeholder="Ejemplo: villa sur">
-                </div>
-                <div class="col-md-4 mb-4">
-                    <label for="comuna">Comuna:</label>
-                    <input type="text" name="comuna" id="comuna" class="form-control p-2" placeholder="ejemplo: Comuna 0">
-                </div> -->
-                <div class="col-md-4 mb-4">
-                    <label for="imagenes">Insetar imagen:</label>
-                    <input type="file" name="imagenes" id="imagenes" class="form-control p-2" accept="image/*">
+                    <input type="text" name="descripcion" id="descripcion" class="form-control p-2" readonly>
                 </div>
             </div>
 
@@ -70,3 +67,62 @@
 </div>
 
 <!-- y falta poner la imagen de los redutores -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    <?php if(isset($_GET['status']) && $_GET['status'] == 'exito'): ?>
+    swal({
+        title: "¡Solicitud enviada!",
+        text: "Tu solicitud de señal fue registrada con éxito.",
+        icon: "success",
+        button: "Aceptar"
+    });
+    <?php elseif(isset($_GET['status']) && $_GET['status'] == 'error'): ?>
+    swal({
+        title: "Error al enviar",
+        text: "Hubo un error al registrar tu solicitud. Intenta nuevamente.",
+        icon: "error",
+        button: "Aceptar"
+    });
+    <?php endif; ?>
+
+    const selectCategoria = document.getElementById('categoriareductor');
+    const selectTipoSenal = document.getElementById('tiporeductor');
+    const inputOrientacion = document.getElementById('orienta');
+    const inputDescripcion = document.getElementById('descripcion');
+
+    // Aqui se guardanlos tipo de señal en la memoria
+    const todasLasOpciones = Array.from(selectTipoSenal.options);
+
+    // Cuando se cambia la Categoría de la Señal
+    selectCategoria.addEventListener('change', function () {
+        const categoriaSeleccionada = this.value;
+
+        // Reseteamos el select de tipos, limpiamos los inputs automáticos y habilitamos el select
+        selectTipoSenal.innerHTML = '<option value="" disabled selected hidden>Selecciona el tipo de reductor</option>';
+        inputOrientacion.value = '';
+        inputDescripcion.value = '';
+        selectTipoSenal.disabled = false;
+
+        // Aqui se filtra y se agrega solo los tipos de señales de la categoría seleccionada
+        todasLasOpciones.forEach(opcion => {
+            if (opcion.getAttribute('data-categoria') === categoriaSeleccionada) {
+                selectTipoSenal.appendChild(opcion.cloneNode(true));
+            }
+        });
+    });
+
+    // Cuando se cambia el Tipo de Señal
+    selectTipoSenal.addEventListener('change', function () {
+        const opcionSeleccionada = this.options[this.selectedIndex];
+        
+        // Con esto se trae la información de los atributos data-*
+        const orientacion = opcionSeleccionada.getAttribute('data-orientacion');
+        const descripcion = opcionSeleccionada.getAttribute('data-descripcion');
+
+        // y aca se insertan los valores automáticamente en los inputs readonly
+        inputOrientacion.value = orientacion ? orientacion : '';
+        inputDescripcion.value = descripcion ? descripcion : '';
+    });
+});
+</script>

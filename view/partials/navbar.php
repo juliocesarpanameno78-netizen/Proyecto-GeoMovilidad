@@ -127,17 +127,17 @@
               <div class="collapse" id="historial">
                 <ul class="nav nav-collapse">
                   <li>
-                    <a href="<?php echo getUrl("Senales", "Senales", "list") ?>">
+                    <a href="<?php echo getUrl("Senales", "Senales", "listar") ?>">
                       <span class="sub-item">Historial de solicitudes</span>
                     </a>
                   </li>
                   <li>
-                    <a href="<?php echo getUrl("Reportes", "Reportes", "list") ?>">
+                    <a href="<?php echo getUrl("Reportes", "Reportes", "listar") ?>">
                       <span class="sub-item">Historial de repotes</span>
                     </a>
                   </li>
                   <li>
-                    <a href="<?php echo getUrl("Pqrfs", "Pqrfs", "list") ?>">
+                    <a href="<?php echo getUrl("Pqrfs", "Pqrfs", "listar") ?>">
                       <span class="sub-item">Historial de PQRFS</span>
                     </a>
                   </li>

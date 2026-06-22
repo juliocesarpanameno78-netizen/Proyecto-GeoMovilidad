@@ -1,67 +1,72 @@
 <?php
 
 require_once dirname(__FILE__) . '/../MasterModel.php';
-class RegistroModel extends MasterModel {
+class RegistroModel extends MasterModel
+{
 
-    public function getTiposDocumento() {
-        $sql = "SELECT id_tipos_documentos, nombre_tipos_doc FROM tipos_de_documento ORDER BY id_tipos_documentos";
+    public function getTiposDocumento()
+    {
+        $sql = "SELECT tdoc_id, tdoc_nombre FROM tipos_de_documento ORDER BY tdoc_id";
         return pg_query($this->getConnection(), $sql);
     }
 
-    
-    public function existeCorreo($correo) {
-        $sql = "SELECT id_persona FROM personas WHERE correo_electronico = $1";
+
+    public function existeCorreo($correo)
+    {
+        $sql = "SELECT per_id FROM personas WHERE per_email = $1";
         $result = pg_query_params($this->getConnection(), $sql, array($correo));
         return pg_num_rows($result) > 0;
     }
 
-    
-    public function existeIdentificacion($numero) {
-        $sql = "SELECT id_persona FROM personas WHERE numero_identificacion = $1";
+
+    public function existeIdentificacion($numero)
+    {
+        $sql = "SELECT per_id FROM personas WHERE per_identificacion = $1";
         $result = pg_query_params($this->getConnection(), $sql, array($numero));
         return pg_num_rows($result) > 0;
     }
 
-    public function registrar($datos) {
-        
-        $id_persona = $this->autoincrement('personas', 'id_persona');
+    public function registrar($datos)
+    {
 
-       
+        $per_id = $this->autoincrement('personas', 'per_id');
+
+
         $sql_persona = "INSERT INTO personas 
-                        (id_persona, id_tipo_documento, numero_identificacion, apellido, nombre, correo_electronico, telefono, direccion)
+                        (per_id, tdoc_id, per_identificacion, per_apellido, per_nombre, per_email, per_telefono, per_direccion)
                         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
 
         $result_persona = pg_query_params($this->getConnection(), $sql_persona, array(
-            $id_persona,
-            $datos['id_tipo_documento'],
-            $datos['numero_identificacion'],
-            $datos['apellido'],
-            $datos['nombre'],
-            $datos['correo_electronico'],
-            $datos['telefono'],
-            $datos['direccion']
+            $per_id,
+            $datos['tdoc_id'],
+            $datos['per_identificacion'],
+            $datos['per_apellido'],
+            $datos['per_nombre'],
+            $datos['per_correo_electronico'],
+            $datos['per_telefono'],
+            $datos['per_direccion']
         ));
 
         if (!$result_persona) {
             return false;
         }
 
-        
-        $id_usuario = $this->autoincrement('usuarios', 'id_usuario');
 
-        
+        $usu_id = $this->autoincrement('usuarios', 'usu_id');
+
+
         $sql_usuario = "INSERT INTO usuarios 
-                        (id_usuario, id_persona, id_barrio, id_rol, nombre_usuario, contrasena, correo_electronico)
+                        (usu_id, per_id, bar_id, id_rol, usu_nombre, usu_contrasena, usu_email)
                         VALUES ($1, $2, $3, $4, $5, $6, $7)";
 
         $result_usuario = pg_query_params($this->getConnection(), $sql_usuario, array(
-            $id_usuario,
-            $id_persona,
-            1,                          
-            2,                          
-            $datos['nombre_usuario'],
-            md5($datos['contrasena']), 
-            $datos['correo_electronico']
+            $usu_id,
+            $per_id,
+            1,
+            2,
+            $datos['usu_nombre'],
+            md5($datos['usu_contrasena']),
+            $datos['per_correo_electronico']
         ));
 
         return $result_usuario ? true : false;

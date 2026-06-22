@@ -32,15 +32,15 @@ class RegistroController {
         }
 
         $datos = array(
-            'id_tipo_documento'      => $_POST['id_tipo_documento'],
-            'numero_identificacion'  => $_POST['numero_identificacion'],
-            'apellido'               => $_POST['apellido'],
-            'nombre'                 => $_POST['nombre'],
-            'correo_electronico'     => $_POST['correo_electronico'],
-            'telefono'               => $_POST['telefono'],
-            'direccion'              => $_POST['direccion'],
-            'nombre_usuario'         => $_POST['nombre_usuario'],
-            'contrasena'             => $_POST['contrasena']
+            'tdoc_id'      => $_POST['id_tipo_documento'],
+            'per_identificacion'  => $_POST['numero_identificacion'],
+            'per_apellido'               => $_POST['apellido'],
+            'per_nombre'                 => $_POST['nombre'],
+            'per_correo_electronico'     => $_POST['correo_electronico'],
+            'per_telefono'               => $_POST['telefono'],
+            'per_direccion'              => $_POST['direccion'],
+            'usu_nombre'         => $_POST['nombre_usuario'],
+            'usu_contrasena'             => $_POST['contrasena']
         );
 
         $resultado = $obj->registrar($datos);
@@ -54,6 +54,6 @@ class RegistroController {
 
     public function getCreate() {
     $this->getRegistro();
-}
+    }
 }
 ?>

@@ -57,8 +57,8 @@ $tipos_documento = $obj->getTiposDocumento();
                             <option value="">Seleccione...</option>
                             <?php if (isset($tipos_documento) && $tipos_documento): ?>
                                 <?php while ($tipo = pg_fetch_assoc($tipos_documento)): ?>
-                                    <option value="<?= $tipo['id_tipos_documentos'] ?>">
-                                        <?= $tipo['nombre_tipos_doc'] ?>
+                                    <option value="<?= $tipo['tdoc_id'] ?>">
+                                        <?= $tipo['tdoc_nombre'] ?>
                                     </option>
                                 <?php endwhile; ?>
                             <?php endif; ?>

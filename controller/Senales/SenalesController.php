@@ -18,16 +18,39 @@
         $obj = new SenalesModel();
         $direccion = $_POST['direccion'];
         $tiposenal = $_POST['tiposenal'];
-        $orientacionsenal = $_POST['orientacionsenal'];
+        $usuario = $_SESSION['id_usuario'];
+        $estadosenal = $_POST['estadosenal'];
         $categoriasenal = $_POST['categoriasenal'];
         $descripcion = $_POST['descripcion'];
         $imagen = $_FILES['imagen']['name'];
         $archivo = $_FILES['imagen']['tmp_name'];
-        $ruta = "view/assets/img".imagen;
+        $ruta = "../view/assets/img".$imagen;
 
         if(move_uploaded_file($archivo, $ruta)){
-            $sql = "INSERT INTO solicitud_nueva_senal (id_orientacion_senal, id_tipo_senal, tipo_senal, id_categoria, descripcion, id_usuario, imagen_nueva_senal, direccion) VALUES ('$orientacionsenal','$tiposenal','','$categoriasenal','$descripcion','','$ruta','$direccion') ";
+            $sns_id = $obj->autoincrement("solicitudes_nueva_senal", "sns_id");
+            $sql = "INSERT INTO solicitudes_nueva_senal (sns_id, tsen_id, cats_id, sns_descripcion,est_id, usu_id, sns_imagen, sns_direccion) VALUES ('$sns_id','$tiposenal','$categoriasenal','$descripcion','$estadosenal','$usuario','$ruta','$direccion')";
+            $ejecutar = $obj->insert($sql);
+
+            if($ejecutar){
+                redirect(getUrl("Senales","Senales","getCreate")."&status=exito");
+            }else{
+                redirect(getUrl("Senales","Senales","getCreate")."&status=error");
+            }
+        }else{
+            redirect(getUrl("Senales","Senales","getCreate")."&status=error");
         }
+    }
+
+    public function listar(){
+        $obj = new SenalesModel();
+        $sql = "SELECT s.sns_descripcion,t.tsen_nombre,t.tsen_orientacion,c.cats_nombre, e.est_nombre
+        FROM solicitudes_nueva_senal s
+        JOIN tipos_de_senales t ON s.tsen_id = t.tsen_id
+        JOIN categoria_senales c ON s.cats_id = c.cats_id
+        JOIN estadoatencion e on s.est_id = e.est_id";
+        $senales = $obj->select($sql);
+
+        include_once '../view/Senales/listar.php';
     }
 }
 
