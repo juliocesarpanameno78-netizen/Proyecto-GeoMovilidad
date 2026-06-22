@@ -9,8 +9,8 @@
         <form method="post" enctype="multipart/form-data" action="<?php echo getUrl("Senales", "Senales", "postCreate") ?> ">
             <div class="row mt-5">
                 <div class="col-md-4 mb-4">
-                    <label for="nombre">Nombre completo:</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control p-2" placeholder="nombre">
+                    <label for="nombre">Solicitante:</label>
+                    <input type="text" class="form-control p-2" value="<?php echo htmlspecialchars($_SESSION['nombre_usuario']) ?>" disabled>
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="direccion">Dirección:</label>
@@ -18,7 +18,7 @@
                         placeholder="Ejemplo: Carrera 1 #0-0">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="categoriasenal">Categoría de la señal </label><br>
+                    <label for="categoriasenal">Categoría de la señal:</label><br>
                     <select name="categoriasenal" id="categoriasenal" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona la categoría</option>
                         <?php foreach ($categoriasenales as $cate) { ?>
@@ -29,7 +29,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="tiposenal">Tipo de señal</label><br>
+                    <label for="tiposenal">Tipo de señal:</label><br>
                     <select name="tiposenal" id="tiposenal" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona una señal</option>
                         <?php
@@ -47,7 +47,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="orientacionsenal">Orientación de la señal </label><br>
+                    <label for="orientacionsenal">Orientación de la señal:</label><br>
                     <input type="text" id="orientacionsenal" class="form-control p-2" readonly
                         placeholder="se completa al elegir el tipo de señal">
                 </div>
@@ -55,10 +55,15 @@
                     <label for="imagen">Insertar imagen:</label>
                     <input type="file" name="imagen" id="imagen" class="form-control p-2" accept="image/*">
                 </div>
-                <div class="col-md-8 mb-4">
-                    <label for="descripcion">Descripción de la señal:</label>
-                    <input type="text" name="descripcion" id="descripcion" class="form-control p-2" readonly>
+                <div class="col-md-6 mb-4">
+                    <label for="descripcion">Información de la señal seleccionadad:</label>
+                    <input type="text" id="descripcion" class="form-control p-2" readonly>
                 </div>
+                <div class="col-md-6 mb-4">
+                    <label for="motivo">¿Por que solicitas esta señal?</label>
+                    <textarea name="motivo" id="motivo"  class="form-control p-2" required></textarea>
+                </div>
+
                 <input type="hidden" name="estadosenal" id="estadosenal" value="1">
             </div>
 

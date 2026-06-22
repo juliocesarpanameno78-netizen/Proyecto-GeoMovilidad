@@ -9,15 +9,15 @@
         <form method="post" action="<?php echo getUrl("Reductor","Reductor","postCreate")?>">
             <div class="row mt-5">
                 <div class="col-md-4 mb-4">
-                    <label for="nombre">Nombre completo:</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control p-2" placeholder="nombre">
+                    <label for="nombre">Solicitante:</label>
+                    <input type="text" id="nombre" class="form-control p-2" value="<?php echo htmlspecialchars($_SESSION['nombre_usuario'])?>" disabled>
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="direccion">Dirección:</label>
                     <input type="text" name="direccion" id="dirección" class="form-control p-2" placeholder="Ejemplo: Carrera 1 #0-0">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="categoriareductor">Categoría del reductor</label><br>
+                    <label for="categoriareductor">Categoría del reductor</label>
                     <select name="categoriareductor" id="categoriareductor" class="form-control p-2">
                         <option value="" disabled selected hidden>seleciona la categoría</option>
                         <?php 
@@ -51,12 +51,17 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="orienta">Orientación del reductor</label>
-                    <input type="text" name="orienta" id="orienta" class="form-control p-2" readonly>
+                    <input type="text" id="orienta" class="form-control p-2" readonly>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="descripcion">Descripción:</label>
-                    <input type="text" name="descripcion" id="descripcion" class="form-control p-2" readonly>
+                    <label for="descripcion">Información del reductor selecionado:</label>
+                    <input type="text" id="descripcion" class="form-control p-2" readonly>
                 </div>
+                <div class="col-md-8 mb-4">
+                    <label for="motivo">¿Por que solicitas esté reductor?</label>
+                    <textarea name="motivo" id="motivo" class="form-control p2"></textarea>
+                </div>
+                <input type="hidden" name="estadoreductor" id="estadoreductor" value="1">
             </div>
 
             <div class="d-flex justify-content-center mt-4">

@@ -43,11 +43,6 @@
                     </a>
                   </li>
                   <li>
-                    <a href="<?php echo getUrl("Via", "Via", "getCreate") ?>">
-                      <span class="sub-item">Solicitud de Vía</span>
-                    </a>
-                  </li>
-                  <li>
                     <a href="<?php echo getUrl("Demarcaciones", "Demarcaciones", "getCreate") ?>">
                       <span class="sub-item">Solicitud de Demarcación</span>
                     </a>
@@ -61,14 +56,19 @@
             <li class="nav-item active">
               <a data-bs-toggle="collapse" href="#reporte" class="collapsed" aria-expanded="false">
                 <i class="fas fa-home"></i>
-                <p>Hacer un Reporte</p>
+                <p>Reportar</p>
                 <span class="caret"></span>
               </a>
               <div class="collapse" id="reporte">
                 <ul class="nav nav-collapse">
                   <li>
                     <a href="<?php echo getUrl("Reportes", "Reportes", "getCreate") ?>">
-                      <span class="sub-item">Hacer un reporte</span>
+                      <span class="sub-item">Reportar accidente</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?php echo getUrl("Via", "Via", "getCreate") ?>">
+                      <span class="sub-item">Reportar vía en mal estado</span>
                     </a>
                   </li>
                 </ul>

@@ -2,7 +2,7 @@
     <div class="page-inner">
         <div class="row mt-5">
             <div class="col-md-5">
-                <h3 class="m-3 display-3 text-nowrap">Solicitud de vía en mal estado</h3>
+                <h3 class="m-3 display-3 text-nowrap">Reporte de vía en mal estado</h3>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="descripcion">Descripción:</label>
+                    <label for="descripcion">¿Por que solicitas?:</label>
                     <input type="text" name="descripcion" id="descripcion" class="form-control p-2" placeholder="Haz una descripcion detalla del mal estado de la via">
                 </div>
                 <div class="col-md-4 mb-4">

@@ -9,6 +9,11 @@
             $tipvias = $obj->select($sql);
             include_once '../view/Via/create.php';
         }
+
+        public function postCreate(){
+            $obj = new ViaModel();
+            
+        }
     
     }
 ?>

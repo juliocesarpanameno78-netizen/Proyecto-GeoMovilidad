@@ -5,10 +5,10 @@ class LoginModel extends MasterModel {
 
     public function login($correo, $contrasena) {
 
-        $sql = "SELECT u.id_usuario, u.nombre_usuario, u.correo_electronico, u.id_rol
+        $sql = "SELECT u.usu_id, u.usu_nombre, u.usu_email, u.id_rol
                 FROM usuarios u
-                WHERE u.correo_electronico = $1
-                AND u.contrasena = $2
+                WHERE u.usu_email = $1
+                AND u.usu_contrasena = $2
                 LIMIT 1";
 
         $result = pg_query_params($this->getConnection(), $sql, array($correo, md5($contrasena)));
