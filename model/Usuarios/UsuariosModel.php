@@ -2,9 +2,11 @@
 
 include_once '../model/MasterModel.php';
 
-class UsuariosModel extends MasterModel {
+class UsuariosModel extends MasterModel
+{
 
-    public function listarUsuarios() {
+    public function listarUsuarios()
+    {
 
         $sql = "SELECT
                     u.usu_id              AS id_usuario,
@@ -28,7 +30,8 @@ class UsuariosModel extends MasterModel {
         return $this->select($sql);
     }
 
-    public function obtenerUsuario($id_usuario) {
+    public function obtenerUsuario($id_usuario)
+    {
 
         $sql = "SELECT
                     u.usu_id              AS id_usuario,
@@ -58,14 +61,15 @@ class UsuariosModel extends MasterModel {
 
         $resultado = $this->select($sql);
 
-        if(count($resultado) > 0){
+        if (count($resultado) > 0) {
             return $resultado[0];
         }
 
         return null;
     }
 
-    public function listarRoles() {
+    public function listarRoles()
+    {
 
         $sql = "SELECT *
                 FROM roles
@@ -74,7 +78,8 @@ class UsuariosModel extends MasterModel {
         return $this->select($sql);
     }
 
-    public function existeCorreo($correo, $id_persona) {
+    public function existeCorreo($correo, $id_persona)
+    {
 
         $sql = "SELECT *
                 FROM personas
@@ -84,7 +89,8 @@ class UsuariosModel extends MasterModel {
         return $this->select($sql);
     }
 
-    public function existeUsuario($nombre_usuario, $id_usuario) {
+    public function existeUsuario($nombre_usuario, $id_usuario)
+    {
 
         $sql = "SELECT *
                 FROM usuarios
@@ -94,7 +100,8 @@ class UsuariosModel extends MasterModel {
         return $this->select($sql);
     }
 
-    public function existeRol($id_rol){
+    public function existeRol($id_rol)
+    {
 
         $sql = "SELECT *
                 FROM roles
@@ -103,25 +110,52 @@ class UsuariosModel extends MasterModel {
         return $this->select($sql);
     }
 
-    public function actualizarUsuario($datos) {
+    public function actualizarUsuario($datos)
+    {
 
         $sql_persona = "UPDATE personas SET
-                            per_nombre = '".$datos['nombre']."',
-                            per_apellido = '".$datos['apellido']."',
-                            per_telefono = '".$datos['telefono']."',
-                            per_direccion = '".$datos['direccion']."',
-                            per_email = '".$datos['correo']."'
-                        WHERE per_id = ".$datos['id_persona'];
+                            per_nombre = '" . $datos['nombre'] . "',
+                            per_apellido = '" . $datos['apellido'] . "',
+                            per_telefono = '" . $datos['telefono'] . "',
+                            per_direccion = '" . $datos['direccion'] . "',
+                            per_email = '" . $datos['correo'] . "'
+                        WHERE per_id = " . $datos['id_persona'];
 
         $this->update($sql_persona);
 
         $sql_usuario = "UPDATE usuarios SET
-                            usu_nombre = '".$datos['nombre_usuario']."',
-                            usu_email = '".$datos['correo']."',
-                            id_rol = ".$datos['id_rol']."
-                        WHERE usu_id = ".$datos['id_usuario'];
+                            usu_nombre = '" . $datos['nombre_usuario'] . "',
+                            usu_email = '" . $datos['correo'] . "',
+                            id_rol = " . $datos['id_rol'] . "
+                        WHERE usu_id = " . $datos['id_usuario'];
 
         return $this->update($sql_usuario);
+    }
+
+    public function buscarPorCedula($cedula)
+    {
+
+        $sql = "SELECT
+                u.usu_id              AS id_usuario,
+                td.tdoc_nombre        AS nombre_tipos_doc,
+                p.per_identificacion  AS numero_identificacion,
+                p.per_nombre          AS nombre,
+                p.per_apellido        AS apellido,
+                p.per_telefono        AS telefono,
+                u.usu_nombre          AS nombre_usuario,
+                u.usu_email           AS correo_electronico,
+                r.nombre_rol
+            FROM usuarios u
+            INNER JOIN personas p
+                ON p.per_id = u.per_id
+            INNER JOIN roles r
+                ON r.id_rol = u.id_rol
+            INNER JOIN tipos_de_documento td
+                ON td.tdoc_id = p.tdoc_id
+            WHERE p.per_identificacion = '$cedula'
+            ORDER BY u.usu_id";
+
+        return $this->select($sql);
     }
 
 }

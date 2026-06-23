@@ -7,6 +7,36 @@
             </div>
         </div>
 
+        <div class="row mb-4">
+            <div class="col-md-6">
+
+                <form action="<?= getUrl("Usuarios", "Usuarios", "buscarUsuario"); ?>" method="POST">
+
+                    <div class="input-group">
+
+                        <input
+                            type="text"
+                            name="cedula"
+                            class="form-control"
+                            placeholder="Ingrese número de identificación">
+
+                        <button type="submit" class="btn btn-success ">
+                            Buscar
+                        </button>
+
+                        <a href="<?= getUrl("Usuarios", "Usuarios", "getUsuarios"); ?>">
+                            <button type="button" class="btn btn-secondary">
+                                Mostrar Todos
+                            </button>
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
         <?php
         if (isset($_SESSION['success_usuario'])) {
         ?>
