@@ -229,7 +229,7 @@
               </div>
             </li>
           </ul>
-          <ul class="nav nav-secondary">
+          <!-- <ul class="nav nav-secondary">
             <li class="nav-item active">
               <a data-bs-toggle="collapse" href="#pqrsf" class="collapsed" aria-expanded="false">
                 <i class="fas fa-home"></i>
@@ -239,14 +239,14 @@
               <div class="collapse" id="pqrsf">
                 <ul class="nav nav-collapse">
                   <li>
-                    <a href="<?php echo getUrl("Pqrfs", "Pqrfs", "getCreate") ?></a>">
+                    <a href="<?php echo getUrl("Pqrfs", "Pqrfs", "getCreate") ?>">
                       <span class="sub-item">Hacer una PQRSF</span>
                     </a>
                   </li>
                 </ul>
               </div>
             </li>
-          </ul>
+          </ul> -->
 
           <ul class="nav nav-secondary">
             <li class="nav-item active">

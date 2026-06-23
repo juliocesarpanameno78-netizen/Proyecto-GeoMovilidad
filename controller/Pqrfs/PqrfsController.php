@@ -36,8 +36,7 @@ class PqrfsController
         }
     }
 
-    public function listar()
-    {
+    public function listar(){
         $obj = new PqrfsModel();
         $usuario = $_SESSION['id_usuario'];
         $id_rol = $_SESSION['id_rol'];
@@ -56,13 +55,17 @@ class PqrfsController
                     WHERE p.usu_id = $1
                     ORDER BY p.pqr_id DESC";
             $result = pg_query_params($obj->getConnection(), $sql, array($usuario));
-            $pqrs = [];
+            $pqrs = array();
             while ($row = pg_fetch_assoc($result)) {
-                $pqrs[] = $row;
+                array_push($pqrs, $row);
             }
         }
 
         include_once '../view/Pqrfs/listar.php';
+    }
+
+    public function getListar(){
+        $this->listar();
     }
 }
 ?>
