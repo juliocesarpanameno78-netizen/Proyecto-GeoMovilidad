@@ -7,23 +7,23 @@ class UsuariosModel extends MasterModel {
     public function listarUsuarios() {
 
         $sql = "SELECT
-                    u.id_usuario,
-                    td.nombre_tipos_doc,
-                    p.numero_identificacion,
-                    p.nombre,
-                    p.apellido,
-                    p.telefono,
-                    u.nombre_usuario,
-                    u.correo_electronico,
+                    u.usu_id              AS id_usuario,
+                    td.tdoc_nombre        AS nombre_tipos_doc,
+                    p.per_identificacion  AS numero_identificacion,
+                    p.per_nombre          AS nombre,
+                    p.per_apellido        AS apellido,
+                    p.per_telefono        AS telefono,
+                    u.usu_nombre          AS nombre_usuario,
+                    u.usu_email           AS correo_electronico,
                     r.nombre_rol
                 FROM usuarios u
                 INNER JOIN personas p
-                    ON p.id_persona = u.id_persona
+                    ON p.per_id = u.per_id
                 INNER JOIN roles r
                     ON r.id_rol = u.id_rol
                 INNER JOIN tipos_de_documento td
-                    ON td.id_tipos_documentos = p.id_tipo_documento
-                ORDER BY u.id_usuario";
+                    ON td.tdoc_id = p.tdoc_id
+                ORDER BY u.usu_id";
 
         return $this->select($sql);
     }
@@ -31,30 +31,30 @@ class UsuariosModel extends MasterModel {
     public function obtenerUsuario($id_usuario) {
 
         $sql = "SELECT
-                    u.id_usuario,
-                    u.id_persona,
+                    u.usu_id              AS id_usuario,
+                    u.per_id              AS id_persona,
                     u.id_rol,
-                    u.nombre_usuario,
-                    u.correo_electronico,
+                    u.usu_nombre          AS nombre_usuario,
+                    u.usu_email           AS correo_electronico,
 
-                    p.id_tipo_documento,
-                    p.numero_identificacion,
-                    p.nombre,
-                    p.apellido,
-                    p.telefono,
-                    p.direccion,
+                    p.tdoc_id             AS id_tipo_documento,
+                    p.per_identificacion  AS numero_identificacion,
+                    p.per_nombre          AS nombre,
+                    p.per_apellido        AS apellido,
+                    p.per_telefono        AS telefono,
+                    p.per_direccion       AS direccion,
 
-                    td.nombre_tipos_doc
+                    td.tdoc_nombre        AS nombre_tipos_doc
 
                 FROM usuarios u
 
                 INNER JOIN personas p
-                    ON p.id_persona = u.id_persona
+                    ON p.per_id = u.per_id
 
                 INNER JOIN tipos_de_documento td
-                    ON td.id_tipos_documentos = p.id_tipo_documento
+                    ON td.tdoc_id = p.tdoc_id
 
-                WHERE u.id_usuario = $id_usuario";
+                WHERE u.usu_id = $id_usuario";
 
         $resultado = $this->select($sql);
 
@@ -78,8 +78,8 @@ class UsuariosModel extends MasterModel {
 
         $sql = "SELECT *
                 FROM personas
-                WHERE UPPER(correo_electronico)=UPPER('$correo')
-                AND id_persona <> $id_persona";
+                WHERE UPPER(per_email)=UPPER('$correo')
+                AND per_id <> $id_persona";
 
         return $this->select($sql);
     }
@@ -88,8 +88,8 @@ class UsuariosModel extends MasterModel {
 
         $sql = "SELECT *
                 FROM usuarios
-                WHERE UPPER(nombre_usuario)=UPPER('$nombre_usuario')
-                AND id_usuario <> $id_usuario";
+                WHERE UPPER(usu_nombre)=UPPER('$nombre_usuario')
+                AND usu_id <> $id_usuario";
 
         return $this->select($sql);
     }
@@ -106,20 +106,20 @@ class UsuariosModel extends MasterModel {
     public function actualizarUsuario($datos) {
 
         $sql_persona = "UPDATE personas SET
-                            nombre = '".$datos['nombre']."',
-                            apellido = '".$datos['apellido']."',
-                            telefono = '".$datos['telefono']."',
-                            direccion = '".$datos['direccion']."',
-                            correo_electronico = '".$datos['correo']."'
-                        WHERE id_persona = ".$datos['id_persona'];
+                            per_nombre = '".$datos['nombre']."',
+                            per_apellido = '".$datos['apellido']."',
+                            per_telefono = '".$datos['telefono']."',
+                            per_direccion = '".$datos['direccion']."',
+                            per_email = '".$datos['correo']."'
+                        WHERE per_id = ".$datos['id_persona'];
 
         $this->update($sql_persona);
 
         $sql_usuario = "UPDATE usuarios SET
-                            nombre_usuario = '".$datos['nombre_usuario']."',
-                            correo_electronico = '".$datos['correo']."',
+                            usu_nombre = '".$datos['nombre_usuario']."',
+                            usu_email = '".$datos['correo']."',
                             id_rol = ".$datos['id_rol']."
-                        WHERE id_usuario = ".$datos['id_usuario'];
+                        WHERE usu_id = ".$datos['id_usuario'];
 
         return $this->update($sql_usuario);
     }

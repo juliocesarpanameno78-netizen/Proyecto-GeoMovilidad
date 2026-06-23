@@ -5,7 +5,7 @@ class LoginModel extends MasterModel {
 
     public function login($correo, $contrasena) {
 
-        $sql = "SELECT u.usu_id, u.usu_nombre, u.usu_email, u.id_rol
+        $sql = "SELECT u.usu_id AS id_usuario, u.usu_nombre AS nombre_usuario, u.usu_email AS correo_electronico, u.id_rol
                 FROM usuarios u
                 WHERE u.usu_email = $1
                 AND u.usu_contrasena = $2
