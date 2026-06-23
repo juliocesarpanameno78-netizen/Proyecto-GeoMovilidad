@@ -2,6 +2,6 @@
 
 include_once '../model/MasterModel.php';
 
-class PqrfsModel extends MasterModel{
+class ReporductorModel extends MasterModel{
     
 }

@@ -6,45 +6,46 @@
             </div>
         </div>
 
-        <form method="post" action="<?php echo getUrl("Via","Via","postCreate")?>">
+        <form method="post" action="<?php echo getUrl('Via','Via','postCreate')?>" enctype="multipart/form-data">
             <div class="row mt-5">
                 <div class="col-md-4 mb-4">
-                    <label for="nombre">Nombre completo:</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control p-2" placeholder="nombre">
+                    <label for="nombre">Reportador:</label>
+                    <input type="text" id="nombre" class="form-control p-2"
+                        value="<?php echo htmlspecialchars($_SESSION['nombre_usuario'])?>" disabled>
                 </div>
+
                 <div class="col-md-4 mb-4">
-                    <label for="direccion">Dirección:</label>
-                    <input type="text" name="direccion" id="dirección" class="form-control p-2" placeholder="Ejemplo: Carrera 1 #0-0">
-                </div>
-                <div class="col-md-4 mb-4">
-                    <label for="tipovia">Tipo de Vía</label><br>
+                    <label for="tipovia">Tipo de vía</label>
                     <select name="tipovia" id="tipovia" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona el tipo de vía</option>
-                        <?php 
-                            foreach($tipvias as $via){
-                        ?>
-                        <option value="<?php echo $via['tvia_id'];?>">
+                        <?php foreach($tipvias as $via): ?>
+                        <option value="<?php echo $via['tvia_id']?>">
                             <?php echo $via['tvia_nombre']?>
                         </option>
-                        <?php
-                            }
-                        ?>
+                        <?php endforeach; ?>
                     </select>
                 </div>
+
                 <div class="col-md-4 mb-4">
-                    <label for="descripcion">¿Por que solicitas?:</label>
-                    <input type="text" name="descripcion" id="descripcion" class="form-control p-2" placeholder="Haz una descripcion detalla del mal estado de la via">
+                    <label for="tipodanio">Tipo de daño</label>
+                    <select name="tipodanio" id="tipodanio" class="form-control p-2">
+                        <option value="" disabled selected hidden>Selecciona el tipo de daño</option>
+                        <?php foreach($tiposdanio as $danio): ?>
+                        <option value="<?php echo $danio['cdan_id']?>">
+                            <?php echo $danio['cdan_nombre']?>
+                        </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <label for="barrio">Barrio:</label>
-                    <input type="text" name="barrio" id="barrio" class="form-control p-2" placeholder="Ejemplo: villa sur">
+
+                <div class="col-md-8 mb-4">
+                    <label for="descripcion">Descripción detallada del mal estado</label>
+                    <textarea name="descripcion" id="descripcion" class="form-control p-2" rows="3"
+                        placeholder="Describe detalladamente el mal estado de la vía"></textarea>
                 </div>
+
                 <div class="col-md-4 mb-4">
-                    <label for="comuna">Comuna:</label>
-                    <input type="text" name="comuna" id="comuna" class="form-control p-2" placeholder="ejemplo: Comuna 0">
-                </div>
-                <div class="col-md-4 mb-4">
-                    <label for="imagenes">Insetar imagen de la vía:</label>
+                    <label for="imagenes">Imagen de la vía</label>
                     <input type="file" name="imagenes" id="imagenes" class="form-control p-2" accept="image/*">
                 </div>
             </div>
@@ -55,3 +56,13 @@
         </form>
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    <?php if(isset($_GET['status']) && $_GET['status'] == 'exito'): ?>
+    swal({ title: "¡Reporte enviado!", text: "Tu reporte de vía fue registrado con éxito.", icon: "success", button: "Aceptar" });
+    <?php elseif(isset($_GET['status']) && $_GET['status'] == 'error'): ?>
+    swal({ title: "Error al enviar", text: "Hubo un error al registrar tu reporte. Intenta nuevamente.", icon: "error", button: "Aceptar" });
+    <?php endif; ?>
+});
+</script>

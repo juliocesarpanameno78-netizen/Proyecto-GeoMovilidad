@@ -55,7 +55,7 @@ class SenalesController
     public function listar()
     {
         $obj = new SenalesModel();
-        $sql = "SELECT s.sns_descripcion,t.tsen_nombre,t.tsen_orientacion,c.cats_nombre, e.est_nombre
+        $sql = "SELECT s.sns_id, s.sns_descripcion, s.sns_imagen, s.sns_direccion, t.tsen_nombre, t.tsen_orientacion, c.cats_nombre, e.est_nombre
         FROM solicitudes_nueva_senal s
         JOIN tipos_de_senales t ON s.tsen_id = t.tsen_id
         JOIN categoria_senales c ON s.cats_id = c.cats_id

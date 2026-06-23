@@ -7,7 +7,7 @@
         </div>
         
 
-        <form method="post" action="<?php echo getUrl("Reportes","Reportes","postCreate")?>">
+        <form method="post" action="<?php echo getUrl("Reportes","Reportes","postCreate")?>" enctype="multipart/form-data">
             <div class="row mt-5">
                 <div class="col-md-4 mb-4">
                     <label for="nombre">Reportador:</label>
@@ -58,7 +58,8 @@
                         <?php 
                             foreach($tipochoque as $choque){
                         ?>
-                        <option value="<?php echo $choque['tch_id'];?>">
+                        <option value="<?php echo $choque['tch_id'];?>"
+                            data-choqueCon="<?php echo $choque['catch_id']; ?>">
                             <?php echo $choque['tch_nombre']?>
                         </option>
                         <?php
@@ -128,3 +129,57 @@
         </form>
     </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    <?php if(isset($_GET['status']) && $_GET['status'] == 'exito'): ?>
+    swal({
+        title: "¡Solicitud enviada!",
+        text: "Tu solicitud de señal fue registrada con éxito.",
+        icon: "success",
+        button: "Aceptar"
+    });
+    <?php elseif(isset($_GET['status']) && $_GET['status'] == 'error'): ?>
+    swal({
+        title: "Error al enviar",
+        text: "Hubo un error al registrar tu solicitud. Intenta nuevamente.",
+        icon: "error",
+        button: "Aceptar"
+    });
+    <?php endif; ?>
+
+    const selectTipoChoque = document.getElementById('tipochoque');
+    const selectTipoChoquefue = document.getElementById('catechoque');
+    
+
+    // Aqui se guardanlos tipo de choques en la memoria
+    const todasLasOpciones = Array.from(selectTipoChoquefue.options);
+
+    // Cuando se cambia la Categoría de los choques
+    selectTipoChoque.addEventListener('change', function () {
+        const choqueSeleccionado = this.value;
+
+        // Reseteamos el select de tipos, limpiamos los inputs automáticos y habilitamos el select
+        selectTipoChoquefue.innerHTML = '<option value="" disabled selected hidden>Selecciona con que fue el choque</option>';
+        selectTipoChoquefue.value = '';
+        selectTipoChoquefue.disabled = false;
+
+        // Aqui se filtra y se agrega solo los tipos de señales de la categoría seleccionada
+        todasLasOpciones.forEach(opcion => {
+            if (opcion.getAttribute('data-choqueCon') === choqueSeleccionado) {
+                selectTipoChoquefue.appendChild(opcion.cloneNode(true));
+            }
+        });
+    });
+
+    // Cuando se cambia el Tipo de Señal
+    selectTipoChoque.addEventListener('change', function () {
+        const opcionSeleccionada = this.options[this.selectedIndex];
+        
+        // Con esto se trae la información de los atributos data-*
+        const choquefue = opcionSeleccionada.getAttribute('data-choqueCon');
+
+        selectTipoChoquefue.value = choque ? choque : '';
+    });
+});
+</script>
