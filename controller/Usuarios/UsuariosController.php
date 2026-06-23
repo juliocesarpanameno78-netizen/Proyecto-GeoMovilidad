@@ -90,6 +90,12 @@ class UsuariosController
             return;
         }
 
+        if ($telefono != "" && strlen($telefono) != 10) {
+            $_SESSION['error_usuario'] = "El teléfono debe tener exactamente 10 dígitos";
+            redirect(getUrl("Usuarios", "Usuarios", "getUpdate") . "&id_usuario=" . $id_usuario);
+            return;
+        }
+
         $datos = array(
             'id_usuario' => $id_usuario,
             'id_persona' => $id_persona,
@@ -111,45 +117,45 @@ class UsuariosController
 
 
     public function buscarUsuario()
-{
-    $obj = new UsuariosModel();
+    {
+        $obj = new UsuariosModel();
 
-    $cedula = trim($_POST['cedula']);
+        $cedula = trim($_POST['cedula']);
 
-    if ($cedula == "") {
-        $_SESSION['error_usuario'] = "Debe ingresar una cédula";
-        redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
-        return;
+        if ($cedula == "") {
+            $_SESSION['error_usuario'] = "Debe ingresar una cédula";
+            redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
+            return;
+        }
+
+        if (!is_numeric($cedula)) {
+            $_SESSION['error_usuario'] = "La cédula solo puede contener números";
+            redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
+            return;
+        }
+
+        if (strlen($cedula) < 6) {
+            $_SESSION['error_usuario'] = "La cédula debe tener mínimo 6 dígitos";
+            redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
+            return;
+        }
+
+        if (strlen($cedula) > 10) {
+            $_SESSION['error_usuario'] = "La cédula no puede superar los 10 dígitos";
+            redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
+            return;
+        }
+
+        $usuarios = $obj->buscarPorCedula($cedula);
+
+        if (count($usuarios) == 0) {
+            $_SESSION['error_usuario'] = "No se encontró ningún usuario con esa cédula";
+            redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
+            return;
+        }
+
+        include_once '../view/listarUsuarios/listaUsuarios.php';
     }
-
-    if (!is_numeric($cedula)) {
-        $_SESSION['error_usuario'] = "La cédula solo puede contener números";
-        redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
-        return;
-    }
-
-    if (strlen($cedula) < 6) {
-        $_SESSION['error_usuario'] = "La cédula debe tener mínimo 6 dígitos";
-        redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
-        return;
-    }
-
-    if (strlen($cedula) > 10) {
-        $_SESSION['error_usuario'] = "La cédula no puede superar los 10 dígitos";
-        redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
-        return;
-    }
-
-    $usuarios = $obj->buscarPorCedula($cedula);
-
-    if (count($usuarios) == 0) {
-        $_SESSION['error_usuario'] = "No se encontró ningún usuario con esa cédula";
-        redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
-        return;
-    }
-
-    include_once '../view/listarUsuarios/listaUsuarios.php';
-}
 
 }
 
