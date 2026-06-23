@@ -1,7 +1,6 @@
 <?php
-require_once '../../lib/helpers.php';
+require_once dirname(__FILE__) . '/../../lib/helpers.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>

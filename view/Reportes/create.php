@@ -14,8 +14,8 @@
                     <input type="text" id="nombre" class="form-control p-2" value="<?php echo htmlspecialchars($_SESSION['nombre_usuario']) ?>"disabled>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="leccionado">Número de leccionados:</label>
-                    <input type="number" name="leccionado" id="leccionado" class="form-control p-2">
+                    <label for="leccionado">Número de lesionados:</label>
+                    <input type="number" name="leccionado" id="leccionado" class="form-control p-2" min=0>
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="direccion">Dirección:</label>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="cativehiculo">Cantidad de vehículos afectados:</label>
-                    <input type="number" name="cativehiculo" id="cativehiculo" class="form-control p-2" placeholder="">
+                    <input type="number" name="cativehiculo" id="cativehiculo" class="form-control p-2" placeholder="" min=0>
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="barrio">Barrio:</label><br>

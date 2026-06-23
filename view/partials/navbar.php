@@ -89,6 +89,37 @@
             <?php endif; ?>
           </ul>
 
+          <ul class="nav nav-secondary">
+            <?php if (esCiudadano()): ?>
+            <li class="nav-item active">
+              <a data-bs-toggle="collapse" href="#historial" class="collapsed" aria-expanded="false">
+                <i class="fas fa-user-shield"></i>
+                <p>Mi historial</p>
+                <span class="caret"></span>
+              </a>
+              <div class="collapse" id="historial">
+                <ul class="nav nav-collapse">
+                  <li>
+                    <a href="<?php echo getUrl("Senales", "Senales", "listar") ?>">
+                      <span class="sub-item">Historial de solicitudes</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?php echo getUrl("Reportes", "Reportes", "listar") ?>">
+                      <span class="sub-item">Historial de reportes</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?php echo getUrl("Pqrfs", "Pqrfs", "listar") ?>">
+                      <span class="sub-item">Historial de PQRFS</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <?php endif; ?>
+          </ul>
+
 
           <!-- Separación Funcionario -->
 
@@ -202,37 +233,6 @@
             <?php endif; ?>
           </ul>
 
-
-
-          <ul class="nav nav-secondary">
-            <li class="nav-item active">
-              <a data-bs-toggle="collapse" href="#historial" class="collapsed" aria-expanded="false">
-                <i class="fas fa-user-shield"></i>
-                <p>Mi historial</p>
-                <span class="caret"></span>
-              </a>
-              <div class="collapse" id="historial">
-                <ul class="nav nav-collapse">
-                  <li>
-                    <a href="<?php echo getUrl("Senales", "Senales", "listar") ?>">
-                      <span class="sub-item">Historial de solicitudes</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?php echo getUrl("Reportes", "Reportes", "listar") ?>">
-                      <span class="sub-item">Historial de repotes</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?php echo getUrl("Pqrfs", "Pqrfs", "listar") ?>">
-                      <span class="sub-item">Historial de PQRFS</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-
           <!-- comentario épico -->
 
         </div>
@@ -313,7 +313,7 @@
                             <?php echo isset($_SESSION['nombre_usuario']) ? htmlspecialchars($_SESSION['nombre_usuario']) : 'Invitado'; ?>
                           </h4>
                           <p class="text-muted">
-                            <?php echo isset($_SESSION['correo_usuario']) ? htmlspecialchars($_SESSION['correo_usuario']) : 'hello@example.com'; ?>
+                            <?php echo isset($_SESSION['usu_email']) ? htmlspecialchars($_SESSION['usu_email']) : 'hello@example.com'; ?>
                           </p>
                           <a href="../view/Perfil/perfil.php" class="btn btn-xs btn-secondary btn-sm">Ver Perfil</a>
                         </div>

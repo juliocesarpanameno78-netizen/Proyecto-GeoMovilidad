@@ -9,7 +9,7 @@ class LoginController {
         if (isset($_SESSION['id_usuario'])) {
             redirect('../web/index.php');
         }
-        include_once '../view/Login.php';
+        include_once '../view/Login/Login.php';;
     }
 
     public function postLogin() {
@@ -22,8 +22,8 @@ class LoginController {
         $usuario = $obj->login($correo, $contrasena);
 
         if ($usuario) {
-            $_SESSION['id_usuario']    = $usuario['usu_id'];
-            $_SESSION['nombre_usuario'] = $usuario['usu_nombre'];
+            $_SESSION['id_usuario']    = $usuario['id_usuario'];
+            $_SESSION['nombre_usuario'] = $usuario['nombre_usuario'];
             $_SESSION['id_rol']        = $usuario['id_rol'];
 
             redirect('/Geomovilidad/web/index.php');
