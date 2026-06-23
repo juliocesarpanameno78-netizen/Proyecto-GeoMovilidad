@@ -71,12 +71,12 @@
 
                         echo "<tr>";
                         echo "<td>" . $r['id_auditoria'] . "</td>";
-                        echo "<td>" . htmlspecialchars($r['nombre_tabla']) . "</td>";
-                        echo "<td><span class='badge bg-" . $badge . "'>" . htmlspecialchars($r['operacion']) . "</span></td>";
+                        echo "<td>" . ($r['nombre_tabla']) . "</td>";
+                        echo "<td><span class='badge bg-" . $badge . "'>" . ($r['operacion']) . "</span></td>";
                         echo "<td>" . $r['id_registro_afectado'] . "</td>";
-                        echo "<td style='max-width:200px; overflow:hidden; text-overflow:ellipsis;'>" . htmlspecialchars($r['valor_anterior']) . "</td>";
-                        echo "<td style='max-width:200px; overflow:hidden; text-overflow:ellipsis;'>" . htmlspecialchars($r['valor_nuevo']) . "</td>";
-                        echo "<td>" . htmlspecialchars($r['usuario_db']) . "</td>";
+                        echo "<td style='max-width:200px; overflow:hidden; text-overflow:ellipsis;'>" . ($r['valor_anterior']) . "</td>";
+                        echo "<td style='max-width:200px; overflow:hidden; text-overflow:ellipsis;'>" . ($r['valor_nuevo']) . "</td>";
+                        echo "<td>" . ($r['usuario_db']) . "</td>";
                         echo "<td>" . $r['fecha_registro'] . "</td>";
                         echo "</tr>";
                     }
