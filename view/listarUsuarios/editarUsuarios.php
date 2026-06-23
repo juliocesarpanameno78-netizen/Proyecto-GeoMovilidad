@@ -64,8 +64,8 @@
 
                 <div class="col-md-4 mb-4">
                     <label>Correo Electrónico:</label>
-                    <input type="text" name="correo_electronico" class="form-control p-2"
-                        value="<?php echo $usuario['correo_electronico']; ?>">
+                    <input type="email" name="correo_electronico" class="form-control p-2"
+                        value="<?php echo $usuario['correo_electronico']; ?>" required>
                 </div>
 
                 <div class="col-md-4 mb-4">
