@@ -80,7 +80,7 @@ $tipos_documento = $obj->getTiposDocumento();
                 <div class="row mb-3">
                     <div class="col">
                         <label class="form-label">Teléfono</label>
-                        <input type="text" name="telefono" class="form-control" required>
+                        <input type="number" name="telefono" class="form-control" required max="9999999999">
                     </div>
                     <div class="col">
                         <label class="form-label">Dirección</label>
