@@ -91,7 +91,12 @@ class ReportesController
 
     public function listar()
     {
+        requiereRol(array(1, 2, 3));
+
         $obj = new ReportesModel();
+        $id_rol = $_SESSION['id_rol'];
+        $id_usuario = $_SESSION['id_usuario'];
+
         $sql = "SELECT s.sra_id, s.sra_fecha, s.sra_cantidad_lesionados, s.sra_cantidad_vehiculo,
                        s.sra_decripcion, s.sra_direccion, s.sra_imagen,
                        b.bar_nombre, c.cau_descripcion, t.tch_nombre,
@@ -103,11 +108,21 @@ class ReportesController
                 JOIN tipos_de_choque t     ON s.tch_id  = t.tch_id
                 JOIN usuarios u            ON s.usu_id  = u.usu_id
                 JOIN vehiculos v           ON s.veh_id  = v.veh_id
-                JOIN tipos_de_vehiculos tv ON v.tveh_id = tv.tveh_id
-                ORDER BY s.sra_id DESC";
+                JOIN tipos_de_vehiculos tv ON v.tveh_id = tv.tveh_id";
+
+        if ($id_rol == 2) {
+            $sql .= " WHERE s.usu_id = " . $id_usuario;
+        }
+
+        $sql .= " ORDER BY s.sra_id DESC";
         $reportes = $obj->select($sql);
 
         include_once '../view/Reportes/listar.php';
+    }
+
+    public function getListar()
+    {
+        $this->listar();
     }
 }
 ?>

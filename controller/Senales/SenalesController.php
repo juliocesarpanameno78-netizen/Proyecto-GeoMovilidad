@@ -54,15 +54,49 @@ class SenalesController
 
     public function listar()
     {
+        requiereRol(array(1, 2, 3));
+
         $obj = new SenalesModel();
-        $sql = "SELECT s.sns_id, s.sns_descripcion, s.sns_imagen, s.sns_direccion, t.tsen_nombre, t.tsen_orientacion, c.cats_nombre, e.est_nombre
-        FROM solicitudes_nueva_senal s
-        JOIN tipos_de_senales t ON s.tsen_id = t.tsen_id
-        JOIN categoria_senales c ON s.cats_id = c.cats_id
-        JOIN estadoatencion e on s.est_id = e.est_id";
+        $id_rol = $_SESSION['id_rol'];
+        $id_usuario = $_SESSION['id_usuario'];
+
+        $sql = "SELECT s.sns_id, s.sns_descripcion, s.sns_imagen, s.sns_direccion,
+                       t.tsen_nombre, t.tsen_orientacion, c.cats_nombre,
+                       e.est_nombre, e.est_id, u.usu_nombre
+                FROM solicitudes_nueva_senal s
+                JOIN tipos_de_senales t ON s.tsen_id = t.tsen_id
+                JOIN categoria_senales c ON s.cats_id = c.cats_id
+                JOIN estadoatencion e on s.est_id = e.est_id
+                JOIN usuarios u ON s.usu_id = u.usu_id";
+
+        if ($id_rol == 2) {
+            $sql .= " WHERE s.usu_id = " . $id_usuario;
+        }
+
+        $sql .= " ORDER BY s.sns_id DESC";
+
         $senales = $obj->select($sql);
 
         include_once '../view/Senales/listar.php';
+    }
+
+    public function getListar()
+    {
+        $this->listar();
+    }
+
+    public function postUpdateEstado()
+    {
+        requiereRol(array(1, 3));
+
+        $obj = new SenalesModel();
+        $sns_id = $_POST['sns_id'];
+        $est_id = $_POST['est_id'];
+
+        $sql = "UPDATE solicitudes_nueva_senal SET est_id = $1 WHERE sns_id = $2";
+        pg_query_params($obj->getConnection(), $sql, array($est_id, $sns_id));
+
+        redirect(getUrl("Senales", "Senales", "getListar"));
     }
 }
 

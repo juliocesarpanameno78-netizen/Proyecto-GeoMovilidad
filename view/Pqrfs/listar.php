@@ -15,6 +15,9 @@
                         <th>Tipo</th>
                         <th>Descripción</th>
                         <th>Estado</th>
+                        <?php if (esAdministrador() || esFuncionario()): ?>
+                        <th>Acción</th>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,10 +30,24 @@
                         <td>
                             <?php
                                 $estado = $pqr['pqr_estado_solicitud'];
-                                $badge = $estado == 'Pendiente' ? 'warning' : ($estado == 'Resuelto' ? 'success' : 'info');
+                                $badge = $estado == 'Pendiente' ? 'warning' : ($estado == 'Resuelto' ? 'success' : ($estado == 'Rechazado' ? 'danger' : 'info'));
                             ?>
                             <span class="badge badge-<?php echo $badge?>"><?php echo $estado?></span>
                         </td>
+                        <?php if (esAdministrador() || esFuncionario()): ?>
+                        <td>
+                            <form action="<?php echo getUrl('Pqrfs', 'Pqrfs', 'postAtender'); ?>" method="post" class="d-flex gap-1">
+                                <input type="hidden" name="pqr_id" value="<?php echo $pqr['pqr_id']?>">
+                                <select name="pqr_estado_solicitud" class="form-control form-control-sm">
+                                    <option value="Pendiente" <?php echo $estado == 'Pendiente' ? 'selected' : ''; ?>>Pendiente</option>
+                                    <option value="En proceso" <?php echo $estado == 'En proceso' ? 'selected' : ''; ?>>En proceso</option>
+                                    <option value="Resuelto" <?php echo $estado == 'Resuelto' ? 'selected' : ''; ?>>Resuelto</option>
+                                    <option value="Rechazado" <?php echo $estado == 'Rechazado' ? 'selected' : ''; ?>>Rechazado</option>
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-primary">Actualizar</button>
+                            </form>
+                        </td>
+                        <?php endif; ?>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

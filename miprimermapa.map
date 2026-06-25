@@ -27,7 +27,13 @@ MAP
         STATUS ON
         TYPE LINE
         DATA "MallaVialC.shp"
+        LABELITEM "nombre"
         CLASS
+            NAME "LABEL"
+            STYLE
+                COLOR 0 0 0
+                OUTLINECOLOR 90 40 35
+            END
             STYLE
                 COLOR 75 86 148
                 OUTLINECOLOR 80 80 80
@@ -51,7 +57,7 @@ MAP
         TYPE LINE
         STATUS ON
         DATA "Barrios.shp"
-        LABElITEM "BARRIO"
+        LABELITEM "BARRIO"
         CLASS
             NAME "LABEL"
             STYLE

@@ -37,6 +37,8 @@ class PqrfsController
     }
 
     public function listar(){
+        requiereRol(array(1, 2, 3));
+
         $obj = new PqrfsModel();
         $usuario = $_SESSION['id_usuario'];
         $id_rol = $_SESSION['id_rol'];
@@ -66,6 +68,20 @@ class PqrfsController
 
     public function getListar(){
         $this->listar();
+    }
+
+    public function postAtender()
+    {
+        requiereRol(array(1, 3));
+
+        $obj = new PqrfsModel();
+        $pqr_id = $_POST['pqr_id'];
+        $estado = $_POST['pqr_estado_solicitud'];
+
+        $sql = "UPDATE pqrsf SET pqr_estado_solicitud = $1 WHERE pqr_id = $2";
+        pg_query_params($obj->getConnection(), $sql, array($estado, $pqr_id));
+
+        redirect(getUrl("Pqrfs", "Pqrfs", "getListar"));
     }
 }
 ?>

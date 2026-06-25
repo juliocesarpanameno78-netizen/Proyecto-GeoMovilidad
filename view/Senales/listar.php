@@ -18,6 +18,9 @@
                         <th>Dirección</th>
                         <th>Descripción</th>
                         <th>Imagen</th>
+                        <?php if (esAdministrador() || esFuncionario()): ?>
+                        <th>Acción</th>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +33,7 @@
                         <td>
                             <?php
                                 $est = $sena['est_nombre'];
-                                $badge = $est == 'Pendiente' ? 'warning' : 'success';
+                                $badge = $est == 'Pendiente' ? 'warning' : ($est == 'Resuelto' ? 'success' : ($est == 'Rechazado' ? 'danger' : 'info'));
                             ?>
                             <span class="badge badge-<?php echo $badge?>"><?php echo $est?></span>
                         </td>
@@ -43,6 +46,20 @@
                             <span class="text-muted">Sin imagen</span>
                             <?php endif; ?>
                         </td>
+                        <?php if (esAdministrador() || esFuncionario()): ?>
+                        <td>
+                            <form action="<?php echo getUrl('Senales', 'Senales', 'postUpdateEstado'); ?>" method="post" class="d-flex gap-1">
+                                <input type="hidden" name="sns_id" value="<?php echo $sena['sns_id']?>">
+                                <select name="est_id" class="form-control form-control-sm">
+                                    <option value="1" <?php echo $sena['est_id'] == 1 ? 'selected' : ''; ?>>Pendiente</option>
+                                    <option value="2" <?php echo $sena['est_id'] == 2 ? 'selected' : ''; ?>>En proceso</option>
+                                    <option value="3" <?php echo $sena['est_id'] == 3 ? 'selected' : ''; ?>>Resuelto</option>
+                                    <option value="4" <?php echo $sena['est_id'] == 4 ? 'selected' : ''; ?>>Rechazado</option>
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-primary">Actualizar</button>
+                            </form>
+                        </td>
+                        <?php endif; ?>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -52,6 +69,7 @@
 </div>
 
 <script>
+    
 document.addEventListener("DOMContentLoaded", function () {
     if (typeof $.fn.DataTable !== 'undefined') {
         $('#tablaSenales').DataTable({ language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' } });

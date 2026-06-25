@@ -16,6 +16,9 @@
                         <th>Descripción</th>
                         <th>Estado</th>
                         <th>Imagen</th>
+                        <?php if (esAdministrador() || esFuncionario()): ?>
+                        <th>Acción</th>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,7 +29,8 @@
                         <td><?php echo $via['cdan_nombre']?></td>
                         <td><?php echo $via['svme_descripcion_detallada']?></td>
                         <td>
-                            <span class="badge badge-<?php echo $via['est_nombre'] == 'Pendiente' ? 'warning' : 'success'?>">
+                            <?php $b = $via['est_nombre'] == 'Pendiente' ? 'warning' : ($via['est_nombre'] == 'Resuelto' ? 'success' : ($via['est_nombre'] == 'Rechazado' ? 'danger' : 'info')); ?>
+                            <span class="badge badge-<?php echo $b?>">
                                 <?php echo $via['est_nombre']?>
                             </span>
                         </td>
@@ -37,6 +41,20 @@
                             <span class="text-muted">Sin imagen</span>
                             <?php endif; ?>
                         </td>
+                        <?php if (esAdministrador() || esFuncionario()): ?>
+                        <td>
+                            <form action="<?php echo getUrl('Via', 'Via', 'postUpdateEstado'); ?>" method="post" class="d-flex gap-1">
+                                <input type="hidden" name="svme_id" value="<?php echo $via['svme_id']?>">
+                                <select name="est_id" class="form-control form-control-sm">
+                                    <option value="1" <?php echo $via['est_id'] == 1 ? 'selected' : ''; ?>>Pendiente</option>
+                                    <option value="2" <?php echo $via['est_id'] == 2 ? 'selected' : ''; ?>>En proceso</option>
+                                    <option value="3" <?php echo $via['est_id'] == 3 ? 'selected' : ''; ?>>Resuelto</option>
+                                    <option value="4" <?php echo $via['est_id'] == 4 ? 'selected' : ''; ?>>Rechazado</option>
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-primary">Actualizar</button>
+                            </form>
+                        </td>
+                        <?php endif; ?>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

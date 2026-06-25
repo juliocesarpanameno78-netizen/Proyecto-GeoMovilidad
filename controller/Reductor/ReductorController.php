@@ -51,8 +51,49 @@ class ReductorController
 
     public function listar()
     {
+        requiereRol(array(1, 2, 3));
+
         $obj = new ReductorModel();
-        $sql = "";
+        $id_rol = $_SESSION['id_rol'];
+        $id_usuario = $_SESSION['id_usuario'];
+
+        $sql = "SELECT r.snr_id, r.snr_descripcion, r.snr_imagen,
+                       cr.catr_nombre, tr.tred_nombre, e.est_nombre, e.est_id,
+                       u.usu_nombre
+                FROM solicitudes_nuevo_reductor r
+                JOIN categorias_reductores cr ON r.catr_id = cr.catr_id
+                JOIN tipos_de_reductores tr   ON r.tred_id = tr.tred_id
+                JOIN estadoatencion e         ON r.est_id  = e.est_id
+                JOIN usuarios u               ON r.usu_id  = u.usu_id";
+
+        if ($id_rol == 2) {
+            $sql .= " WHERE r.usu_id = " . $id_usuario;
+        }
+
+        $sql .= " ORDER BY r.snr_id DESC";
+
+        $reductores = $obj->select($sql);
+
+        include_once '../view/Reductor/listar.php';
+    }
+
+    public function getListar()
+    {
+        $this->listar();
+    }
+
+    public function postUpdateEstado()
+    {
+        requiereRol(array(1, 3));
+
+        $obj = new ReductorModel();
+        $snr_id = $_POST['snr_id'];
+        $est_id = $_POST['est_id'];
+
+        $sql = "UPDATE solicitudes_nuevo_reductor SET est_id = $1 WHERE snr_id = $2";
+        pg_query_params($obj->getConnection(), $sql, array($est_id, $snr_id));
+
+        redirect(getUrl("Reductor", "Reductor", "getListar"));
     }
 
 }

@@ -59,18 +59,48 @@ class ViaController
 
     public function listar()
     {
+        requiereRol(array(1, 2, 3));
+
         $obj = new ViaModel();
+        $id_rol = $_SESSION['id_rol'];
+        $id_usuario = $_SESSION['id_usuario'];
+
         $sql = "SELECT v.svme_id, v.svme_descripcion_detallada, v.svme_imagen,
-                       c.cdan_nombre, e.est_nombre,
+                       c.cdan_nombre, e.est_nombre, e.est_id,
                        u.usu_nombre
                 FROM solicitudes_via_mal_estado v
                 JOIN categoriastipodanio c ON v.cdan_id = c.cdan_id
                 JOIN estadoatencion e      ON v.est_id  = e.est_id
-                JOIN usuarios u            ON v.usu_id  = u.usu_id
-                ORDER BY v.svme_id DESC";
+                JOIN usuarios u            ON v.usu_id  = u.usu_id";
+
+        if ($id_rol == 2) {
+            $sql .= " WHERE v.usu_id = " . $id_usuario;
+        }
+
+        $sql .= " ORDER BY v.svme_id DESC";
+
         $vias = $obj->select($sql);
 
         include_once '../view/Via/listar.php';
+    }
+
+    public function getListar()
+    {
+        $this->listar();
+    }
+
+    public function postUpdateEstado()
+    {
+        requiereRol(array(1, 3));
+
+        $obj = new ViaModel();
+        $svme_id = $_POST['svme_id'];
+        $est_id = $_POST['est_id'];
+
+        $sql = "UPDATE solicitudes_via_mal_estado SET est_id = $1 WHERE svme_id = $2";
+        pg_query_params($obj->getConnection(), $sql, array($est_id, $svme_id));
+
+        redirect(getUrl("Via", "Via", "getListar"));
     }
 }
 ?>
