@@ -20,23 +20,18 @@ $tipos_documento = $obj->getTiposDocumento();
 <div class="d-flex justify-content-center align-items-center min-vh-100 py-4">
     <div class="card" style="width: 500px;">
         <div class="card-header text-center fw-bold">
-            <img src="../view/assets/img/geomovilidad.ico" alt="Logo Geomovilidad" style="width: 150px; height:auto;">
-            Crear Cuenta
+            <img src="../../view/assets/img/geomovilidad.png" alt="Logo Geomovilidad" style="width: 150px; height:auto;"><br>
+            <h3>Crear cuenta</h3>
         </div>
         <div class="card-body">
 
-            <?php if (isset($_GET['error'])): ?>
-                <?php if ($_GET['error'] == 'passwords'): ?>
-                    <div class="alert alert-danger">Las contraseñas no coinciden.</div>
-                <?php elseif ($_GET['error'] == 'correo'): ?>
-                    <div class="alert alert-danger">El correo ya está registrado.</div>
-                <?php elseif ($_GET['error'] == 'identificacion'): ?>
-                    <div class="alert alert-danger">El número de identificación ya está registrado.</div>
-                <?php else: ?>
-                    <div class="alert alert-danger">Ocurrió un error. Intenta de nuevo.</div>
-                <?php endif; ?>
-            <?php endif; ?>
-
+            
+            <?php if (isset($_SESSION["error_correo"])): ?>
+            <div class="alerta-error">
+                <i class="fas fa-circle-exclamation"></i>
+                <?php echo htmlspecialchars($_SESSION['error_correo']); unset($_SESSION['error_correo']); ?>
+            </div>
+        <?php endif; ?>
             <form action="/Geomovilidad/web/index.php?modulo=Registro&controlador=Registro&function=postRegistro" method="POST">
                 
                 <h6 class="text-muted mb-3">Datos personales</h6>
@@ -68,7 +63,7 @@ $tipos_documento = $obj->getTiposDocumento();
                     </div>
                     <div class="col">
                         <label class="form-label">Número de identificación</label>
-                        <input type="text" name="numero_identificacion" class="form-control" required>
+                        <input type="number" name="numero_identificacion" class="form-control" required min:>
                     </div>
                 </div>
 

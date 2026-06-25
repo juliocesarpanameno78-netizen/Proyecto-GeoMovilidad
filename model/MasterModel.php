@@ -1,6 +1,6 @@
 <?php
 
-require_once '../lib/conf/connection.php';
+require_once dirname(__FILE__) .'../../lib/conf/connection.php';
 
 class MasterModel extends Connection {
 
