@@ -29,39 +29,33 @@ class UsuariosModel extends MasterModel
     }
 
     public function obtenerUsuario($id_usuario)
-    {
+{
 
-        $sql = "SELECT
-                    u.usu_id              AS id_usuario,
-                    u.per_id              AS id_persona,
-                    u.id_rol,
-                    u.usu_nombre          AS nombre_usuario,
-                    u.usu_email           AS correo_electronico,
+    $sql = "SELECT
+            u.usu_id AS id_usuario,
+            u.id_rol,
+            u.usu_nombre AS nombre_usuario,
+            u.usu_email AS correo_electronico,
+            u.tdoc_id AS id_tipo_documento,
+            u.per_identificacion AS numero_identificacion,
+            u.per_nombre AS nombre,
+            u.per_apellido AS apellido,
+            u.per_telefono AS telefono,
+            u.per_direccion AS direccion,
+            td.tdoc_nombre AS nombre_tipos_doc
+        FROM usuarios u
+        INNER JOIN tipos_de_documento td
+            ON td.tdoc_id = u.tdoc_id
+        WHERE u.usu_id = $id_usuario";
 
-                    u.tdoc_id             AS id_tipo_documento,
-                    u.per_identificacion  AS numero_identificacion,
-                    u.per_nombre          AS nombre,
-                    u.per_apellido        AS apellido,
-                    u.per_telefono        AS telefono,
-                    u.per_direccion       AS direccion,
+    $resultado = $this->select($sql);
 
-                    td.tdoc_nombre        AS nombre_tipos_doc
-
-                FROM usuarios u
-
-                INNER JOIN tipos_de_documento td
-                    ON td.tdoc_id = u.tdoc_id
-
-                WHERE u.usu_id = $id_usuario";
-
-        $resultado = $this->select($sql);
-
-        if (count($resultado) > 0) {
-            return $resultado[0];
-        }
-
-        return null;
+    if (count($resultado) > 0) {
+        return $resultado[0];
     }
+
+    return null;
+}
 
     public function listarRoles()
     {
@@ -73,17 +67,16 @@ class UsuariosModel extends MasterModel
         return $this->select($sql);
     }
 
-    public function existeCorreo($correo, $id_persona)
-    {
+    public function existeCorreo($correo, $id_usuario)
+{
 
-        $sql = "SELECT *
-                FROM usuarios
-                WHERE UPPER(usu_email)=UPPER('$correo')
-                AND per_id <> $id_persona";
+    $sql = "SELECT *
+            FROM usuarios
+            WHERE UPPER(usu_email)=UPPER('$correo')
+            AND usu_id <> $id_usuario";
 
-        return $this->select($sql);
-    }
-
+    return $this->select($sql);
+}
     public function existeUsuario($nombre_usuario, $id_usuario)
     {
 

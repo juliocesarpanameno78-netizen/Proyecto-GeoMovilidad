@@ -9,7 +9,7 @@ class LoginController {
         if (isset($_SESSION['id_usuario'])) {
             redirect('../web/index.php');
         }
-        include_once '../view/Login/Login.php';;
+        include_once '../view/Login/Login.php';
     }
 
     public function postLogin() {

@@ -33,6 +33,7 @@ class UsuariosController
 
     public function postUpdate()
     {       
+       
          requierePermiso("Gestion de Usuarios", "Editar");
         $obj = new UsuariosModel();
 
@@ -45,6 +46,8 @@ class UsuariosController
         $correo = trim($_POST['correo_electronico']);
         $nombre_usuario = trim($_POST['nombre_usuario']);
         $id_rol = $_POST['id_rol'];
+
+        
 
         if ($nombre == "") {
             $_SESSION['error_usuario'] = "Debe ingresar un nombre";
