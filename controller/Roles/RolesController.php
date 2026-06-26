@@ -64,7 +64,7 @@
                 }
             }
 
-            $_SESSION['success_roles'] = "Rol registrado correctamente";
+            $_SESSION['mensaje_roles'] = "Rol registrado correctamente";
 
             redirect(getUrl("Roles","Roles","getRoles"));
         }
@@ -151,7 +151,8 @@
                 }
             }
 
-            $_SESSION['success_roles'] = "Rol actualizado correctamente";
+            $_SESSION['mensaje_roles'] = "Los permisos del rol {$rol_nombre} han sido actualizados correctamente.";
+            
 
             redirect(getUrl("Roles","Roles","getRoles"));
         }

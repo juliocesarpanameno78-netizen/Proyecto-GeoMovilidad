@@ -32,7 +32,6 @@ class UsuariosController
         $obj = new UsuariosModel();
 
         $id_usuario = $_POST['id_usuario'];
-        $id_persona = $_POST['id_persona'];
 
         $nombre = trim($_POST['nombre']);
         $apellido = trim($_POST['apellido']);
@@ -60,7 +59,7 @@ class UsuariosController
             return;
         }
 
-        $correo_existente = $obj->existeCorreo($correo, $id_persona);
+        $correo_existente = $obj->existeCorreo($correo, $id_usuario);
 
         if (count($correo_existente) > 0) {
             $_SESSION['error_usuario'] = "El correo ya se encuentra registrado";
@@ -98,7 +97,6 @@ class UsuariosController
 
         $datos = array(
             'id_usuario' => $id_usuario,
-            'id_persona' => $id_persona,
             'nombre' => $nombre,
             'apellido' => $apellido,
             'telefono' => $telefono,

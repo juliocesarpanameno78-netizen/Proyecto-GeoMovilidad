@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="page-inner">
 
-        
+
         <div class="row mt-5">
             <div class="col-md-12">
                 <h3 class="m-3 display-3">Registro Roles</h3>
@@ -11,11 +11,13 @@
         <?php
         if (isset($_SESSION['error_roles'])) {
             ?>
-            <div class="alert alert-danger mt-3">
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                 <?php
                 echo $_SESSION['error_roles'];
                 unset($_SESSION['error_roles']);
                 ?>
+
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
             <?php
         }

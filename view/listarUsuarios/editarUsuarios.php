@@ -23,7 +23,6 @@
         <form action="<?php echo getUrl('Usuarios', 'Usuarios', 'postUpdate'); ?>" method="post">
 
             <input type="hidden" name="id_usuario" value="<?php echo $usuario['id_usuario']; ?>">
-            <input type="hidden" name="id_persona" value="<?php echo $usuario['id_persona']; ?>">
 
             <div class="row mt-5">
 

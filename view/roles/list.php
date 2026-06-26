@@ -13,6 +13,36 @@
             </div>
         </div>
 
+        <?php
+        if (isset($_SESSION['mensaje_roles'])) {
+            ?>
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                <?php
+                echo $_SESSION['mensaje_roles'];
+                unset($_SESSION['mensaje_roles']);
+                ?>
+
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            <?php
+        }
+        ?>
+
+        <?php
+        if (isset($_SESSION['error_roles'])) {
+            ?>
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                <?php
+                echo $_SESSION['error_roles'];
+                unset($_SESSION['error_roles']);
+                ?>
+
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            <?php
+        }
+        ?>
+
         <div class="mt-5">
             <table class="table table-striped table-hover">
                 <thead>
