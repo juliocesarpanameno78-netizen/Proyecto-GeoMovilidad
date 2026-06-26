@@ -6,11 +6,15 @@ class PqrfsController
 {
     public function getCreate()
     {
+
+        requierePermiso("PQRSF", "Registrar");
         include_once '../view/Pqrfs/create.php';
     }
 
     public function postCreate()
     {
+
+        requierePermiso("PQRSF", "Registrar");
         $obj = new PqrfsModel();
         $usuario = $_SESSION['id_usuario'];
         $tipo = $_POST['tipo'];
@@ -37,7 +41,7 @@ class PqrfsController
     }
 
     public function listar(){
-        requiereRol(array(1, 2, 3));
+        requierePermiso("PQRSF", "Listar");
 
         $obj = new PqrfsModel();
         $usuario = $_SESSION['id_usuario'];
@@ -72,7 +76,7 @@ class PqrfsController
 
     public function postAtender()
     {
-        requiereRol(array(1, 3));
+        requierePermiso("PQRSF", "Editar");
 
         $obj = new PqrfsModel();
         $pqr_id = $_POST['pqr_id'];

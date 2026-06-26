@@ -6,6 +6,7 @@ class ReportesController
 {
     public function getCreate()
     {
+        requierePermiso("Reportes", "Registrar");
         $obj = new ReportesModel();
 
         $sql = "SELECT * FROM causasaccidentes";
@@ -28,6 +29,7 @@ class ReportesController
 
     public function postCreate()
     {
+        requierePermiso("Reportes", "Registrar");
         $obj          = new ReportesModel();
         $usuario      = $_SESSION['id_usuario'];
         $leccionado   = $_POST['leccionado'];
@@ -91,7 +93,7 @@ class ReportesController
 
     public function listar()
     {
-        requiereRol(array(1, 2, 3));
+        requierePermiso("Reportes", "Listar");
 
         $obj = new ReportesModel();
         $id_rol = $_SESSION['id_rol'];

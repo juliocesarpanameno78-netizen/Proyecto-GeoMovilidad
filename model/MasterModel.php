@@ -5,12 +5,19 @@ require_once dirname(__FILE__) .'../../lib/conf/connection.php';
 class MasterModel extends Connection {
 
     public function select($sql) {
-    $result = pg_query($this->getConnection(), $sql);
-    $rows = array();
-    while ($row = pg_fetch_assoc($result)) {
-        $rows[] = $row;
-    }
-    return $rows;
+        $result = pg_query($this->getConnection(), $sql);
+
+        if (!$result) {
+            die(pg_last_error($this->getConnection()) . "<br><br>" . $sql);
+        }
+
+        $rows = array();
+
+        while ($row = pg_fetch_assoc($result)) {
+            $rows[] = $row;
+        }
+
+        return $rows;
     }
 
     public function insert($sql) {

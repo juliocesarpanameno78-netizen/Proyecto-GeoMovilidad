@@ -6,7 +6,7 @@ class ReportesGlobalesController {
 
     public function getListar() {
 
-        requiereRol(array(1)); // Solo Administrador
+        requierePermiso("Reportes Globales", "Listar");
 
         $obj = new ReportesGlobalesModel();
 

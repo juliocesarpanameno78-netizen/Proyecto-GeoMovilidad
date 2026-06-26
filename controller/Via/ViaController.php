@@ -6,6 +6,7 @@ class ViaController
 {
     public function getCreate()
     {
+        requierePermiso("Gestion de Solicitudes", "Registrar");
         $obj = new ViaModel();
         $sql = "SELECT * FROM tipos_de_vias";
         $tipvias = $obj->select($sql);
@@ -18,6 +19,8 @@ class ViaController
 
     public function postCreate()
     {
+        requierePermiso("Gestion de Solicitudes", "Registrar");
+        
         $obj     = new ViaModel();
         $usuario     = $_SESSION['id_usuario'];
         $tipovia     = $_POST['tipovia'];
@@ -59,7 +62,7 @@ class ViaController
 
     public function listar()
     {
-        requiereRol(array(1, 2, 3));
+       requierePermiso("Gestion de Solicitudes", "Listar");
 
         $obj = new ViaModel();
         $id_rol = $_SESSION['id_rol'];
@@ -91,7 +94,7 @@ class ViaController
 
     public function postUpdateEstado()
     {
-        requiereRol(array(1, 3));
+        requierePermiso("Gestion de Solicitudes", "Editar");
 
         $obj = new ViaModel();
         $svme_id = $_POST['svme_id'];

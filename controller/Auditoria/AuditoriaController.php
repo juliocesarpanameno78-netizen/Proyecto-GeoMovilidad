@@ -6,7 +6,7 @@ class AuditoriaController {
 
     public function getListar() {
 
-        requiereRol(array(1)); // Solo Administrador
+       requierePermiso("Auditoria", "Listar");
 
         $obj = new AuditoriaModel();
 

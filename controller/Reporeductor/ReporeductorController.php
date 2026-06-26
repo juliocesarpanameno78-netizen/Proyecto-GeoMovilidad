@@ -6,6 +6,8 @@ class ReporeductorController
 {
     public function getCreate()
     {
+
+        requierePermiso("Gestion de Solicitudes", "Registrar");
         $obj = new ReporductorModel();
 
         $sql = "SELECT * FROM categorias_reductores";
@@ -22,6 +24,8 @@ class ReporeductorController
 
     public function postCreate()
     {
+
+        requierePermiso("Gestion de Solicitudes", "Registrar");
         $obj = new ReporductorModel();
         $usuario       = $_SESSION['id_usuario'];
         $categoriareduc = $_POST['categoriareduc'];
@@ -64,15 +68,20 @@ class ReporeductorController
     }
 
     public function listar()
-    {
-        $obj = new ReporductorModel();
-        $sql = "SELECT s.srme_id, s.srme_tipo_danio, s.srme_descripcion, s.srme_imagen,c.catr_nombre, t.tred_nombre, t.tred_orientacion
-                FROM solicitudes_reductor_mal_estado s
-                JOIN categorias_reductores c ON s.catr_id = c.catr_id
-                JOIN tipos_de_reductores t   ON s.tred_id = t.tred_id
-                ORDER BY s.srme_id DESC";
-        $reporeductores = $obj->select($sql);
+{
+    requierePermiso("Gestion de Solicitudes", "Listar");
 
-        include_once '../view/Reporeductor/listar.php';
-    }
+    $obj = new ReporductorModel();
+
+    $sql = "SELECT s.srme_id, s.srme_tipo_danio, s.srme_descripcion, s.srme_imagen,
+                   c.catr_nombre, t.tred_nombre, t.tred_orientacion
+            FROM solicitudes_reductor_mal_estado s
+            JOIN categorias_reductores c ON s.catr_id = c.catr_id
+            JOIN tipos_de_reductores t ON s.tred_id = t.tred_id
+            ORDER BY s.srme_id DESC";
+
+    $reporeductores = $obj->select($sql);
+
+    include_once '../view/Reporeductor/listar.php';
+}
 }

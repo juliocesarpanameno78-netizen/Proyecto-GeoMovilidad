@@ -6,6 +6,7 @@ class SenalesController
 {
     public function getCreate()
     {
+        requierePermiso("Gestion de Solicitudes", "Registrar");
         $obj = new SenalesModel();
         $sql = "SELECT * FROM tipos_de_senales";
         $tiposenales = $obj->select($sql);
@@ -17,6 +18,8 @@ class SenalesController
 
 
     public function postCreate(){
+
+        requierePermiso("Gestion de Solicitudes", "Registrar");
         $obj = new SenalesModel();
         $direccion = $_POST['direccion'];
         $tiposenal = $_POST['tiposenal'];
@@ -54,7 +57,7 @@ class SenalesController
 
     public function listar()
     {
-        requiereRol(array(1, 2, 3));
+        requierePermiso("Gestion de Solicitudes", "Listar");
 
         $obj = new SenalesModel();
         $id_rol = $_SESSION['id_rol'];
@@ -87,7 +90,7 @@ class SenalesController
 
     public function postUpdateEstado()
     {
-        requiereRol(array(1, 3));
+        requierePermiso("Gestion de Solicitudes", "Editar");
 
         $obj = new SenalesModel();
         $sns_id = $_POST['sns_id'];

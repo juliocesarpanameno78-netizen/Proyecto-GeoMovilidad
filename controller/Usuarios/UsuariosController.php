@@ -5,30 +5,35 @@ include_once '../model/Usuarios/UsuariosModel.php';
 class UsuariosController
 {
 
-    public function getUsuarios()
-    {
-        $obj = new UsuariosModel();
+   public function getUsuarios()
+{
+    requierePermiso("Gestion de Usuarios", "Listar");
 
-        $usuarios = $obj->listarUsuarios();
+    $obj = new UsuariosModel();
 
-        include_once '../view/listarUsuarios/listaUsuarios.php';
-    }
+    $usuarios = $obj->listarUsuarios();
 
-    public function getUpdate()
-    {
-        $obj = new UsuariosModel();
+    include_once '../view/listarUsuarios/listaUsuarios.php';
+}
 
-        $id_usuario = $_GET['id_usuario'];
+   public function getUpdate()
+{
+    requierePermiso("Gestion de Usuarios", "Editar");
 
-        $usuario = $obj->obtenerUsuario($id_usuario);
+    $obj = new UsuariosModel();
 
-        $roles = $obj->listarRoles();
+    $id_usuario = $_GET['id_usuario'];
 
-        include_once '../view/listarUsuarios/editarUsuarios.php';
-    }
+    $usuario = $obj->obtenerUsuario($id_usuario);
+
+    $roles = $obj->listarRoles();
+
+    include_once '../view/listarUsuarios/editarUsuarios.php';
+}
 
     public function postUpdate()
-    {
+    {       
+         requierePermiso("Gestion de Usuarios", "Editar");
         $obj = new UsuariosModel();
 
         $id_usuario = $_POST['id_usuario'];
@@ -116,6 +121,8 @@ class UsuariosController
 
     public function buscarUsuario()
     {
+
+        requierePermiso("Gestion de Usuarios", "Listar");
         $obj = new UsuariosModel();
 
         $cedula = trim($_POST['cedula']);

@@ -1,11 +1,15 @@
 <?php
 
-    include_once '../model/Demarcaciones/DemarcacionesModel.php';
+include_once '../model/Demarcaciones/DemarcacionesModel.php';
 
-    class DemarcacionesController{
-        public function getCreate(){
-            include_once '../view/Demarcaciones/create.php';
-        }
-    
+class DemarcacionesController
+{
+    public function getCreate()
+    {
+        requierePermiso("Gestion de Solicitudes", "Registrar");
+
+        include_once '../view/Demarcaciones/create.php';
     }
+
+}
 ?>

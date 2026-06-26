@@ -2,11 +2,12 @@
 
 include_once '../model/Solicitudes/SolicitudesModel.php';
 
-class SolicitudesController {
+class SolicitudesController
+{
 
-    public function getListar() {
-
-        requiereRol(array(1, 3)); // Administrador y Funcionario
+    public function getListar()
+    {
+        requierePermiso("Gestion de Solicitudes", "Listar");
 
         $obj = new SolicitudesModel();
 

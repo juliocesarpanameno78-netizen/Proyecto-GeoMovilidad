@@ -6,6 +6,7 @@ class ReductorController
 {
     public function getCreate()
     {
+        requierePermiso("Gestion de Solicitudes", "Registrar");
         $obj = new ReductorModel();
         $sql = "SELECT * FROM tipos_de_reductores";
         $tiposreductor = $obj->select($sql);
@@ -17,6 +18,7 @@ class ReductorController
 
     public function postCreate()
     {
+        requierePermiso("Gestion de Solicitudes", "Registrar");
         $obj = new ReductorModel();
         $usuario = $_SESSION['id_usuario'];
         $categoriareductor = $_POST['categoriareductor'];
@@ -39,20 +41,25 @@ class ReductorController
         $sql = "INSERT INTO solicitudes_nuevo_reductor (snr_id, catr_id, tred_id, snr_descripcion, est_id, snr_imagen, usu_id) VALUES ($1, $2, $3, $4, $5, $6, $7)";
 
         $ejecutar = pg_query_params($obj->getConnection(), $sql, array(
-            $snr_id, $categoriareductor, $tiporeductor,  $motivo, $estadosoli, $ruta, $usuario 
+            $snr_id,
+            $categoriareductor,
+            $tiporeductor,
+            $motivo,
+            $estadosoli,
+            $ruta,
+            $usuario
         ));
 
         if ($ejecutar) {
-            redirect(getUrl("Senales", "Senales", "getCreate") . "&status=exito");
+            redirect(getUrl("Reductor", "Reductor", "getCreate") . "&status=exito");
         } else {
-            redirect(getUrl("Senales", "Senales", "getCreate") . "&status=error");
+            redirect(getUrl("Reductor", "Reductor", "getCreate") . "&status=error");
         }
     }
 
     public function listar()
     {
-        requiereRol(array(1, 2, 3));
-
+        requierePermiso("Gestion de Solicitudes", "Listar");
         $obj = new ReductorModel();
         $id_rol = $_SESSION['id_rol'];
         $id_usuario = $_SESSION['id_usuario'];
@@ -84,7 +91,7 @@ class ReductorController
 
     public function postUpdateEstado()
     {
-        requiereRol(array(1, 3));
+        requierePermiso("Gestion de Solicitudes", "Editar");
 
         $obj = new ReductorModel();
         $snr_id = $_POST['snr_id'];
