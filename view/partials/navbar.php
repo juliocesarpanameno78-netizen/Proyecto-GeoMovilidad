@@ -341,16 +341,21 @@
                 </ul>
               </li>
 
-              <li class="nav-item topbar-user dropdown hidden-caret">
-                <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
+             <li class="nav-item topbar-user dropdown hidden-caret">
+              <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
+
                   <div class="avatar-sm">
-                    <img src="../view/assets/img/usuario.png" alt="..." class="avatar-img rounded-circle">
+                      <img src="../view/assets/img/usuario.png" alt="..." class="avatar-img rounded-circle">
                   </div>
-                  <span class="profile-username">
-                    <span class="op-7">Bienvenido,</span> <span
-                      class="fw-bold"><?php echo isset($_SESSION['nombre_usuario']) ? htmlspecialchars($_SESSION['nombre_usuario']) : 'Invitad@'; ?></span>
-                  </span>
-                </a>
+
+                  <div class="ms-2 d-none d-lg-block">
+                      <small class="text-muted">Bienvenido,</small><br>
+                      <strong>
+                          <?= isset($_SESSION['nombre_completo']) ? htmlspecialchars($_SESSION['nombre_completo']) : 'Invitado'; ?>
+                      </strong>
+                  </div>
+
+              </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
                   <div class="dropdown-user-scroll scrollbar-outer">
                     <li>
@@ -358,13 +363,23 @@
                         <div class="avatar-lg"><img src="../view/assets/img/usuario.png" alt="image profile"
                             class="avatar-img rounded"></div>
                         <div class="u-text">
-                          <h4>
-                            <?php echo isset($_SESSION['nombre_usuario']) ? htmlspecialchars($_SESSION['nombre_usuario']) : 'Invitado'; ?>
-                          </h4>
-                          <p class="text-muted">
-                            <?php echo isset($_SESSION['usu_email']) ? htmlspecialchars($_SESSION['usu_email']) : 'hello@example.com'; ?>
-                          </p>
-                          <a href="../view/Perfil/perfil.php" class="btn btn-xs btn-secondary btn-sm">Ver Perfil</a>
+                            <h4>
+                                <?= htmlspecialchars($_SESSION['nombre_completo']); ?>
+                            </h4>
+
+                            <p class="text-muted mb-1">
+                                <i class="fas fa-envelope me-1"></i>
+                                <?= htmlspecialchars($_SESSION['usu_email']); ?>
+                            </p>
+
+                            <p class="text-muted mb-2">
+                                <i class="fas fa-user-tag me-1"></i>
+                                <?= htmlspecialchars($_SESSION['nombre_rol']); ?>
+                            </p>
+
+                            <a href="../view/Perfil/perfil.php" class="btn btn-xs btn-secondary btn-sm">
+                                Ver Perfil
+                            </a>
                         </div>
                       </div>
                     </li>

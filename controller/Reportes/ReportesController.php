@@ -30,9 +30,10 @@ class ReportesController
     public function postCreate()
     {
         requierePermiso("Reportes", "Registrar");
+        
         $obj          = new ReportesModel();
         $usuario      = $_SESSION['id_usuario'];
-        $leccionado   = $_POST['leccionado'];
+        $lesionados   = $_POST['leccionado'];           // Corregido nombre lógico
         $direccion    = $_POST['direccion'];
         $fecha        = date('Y-m-d');
         $causas       = $_POST['causas'];
@@ -50,18 +51,27 @@ class ReportesController
             $imagen  = $_FILES['imagen']['name'];
             $archivo = $_FILES['imagen']['tmp_name'];
             $ruta    = "../view/assets/img/" . $imagen;
+            
             if (!move_uploaded_file($archivo, $ruta)) {
                 $ruta = null;
             }
         }
 
+        // Insertar vehículo
         $veh_id = $obj->autoincrement("vehiculos", "veh_id");
         $sql = "INSERT INTO vehiculos (veh_id, tveh_id, usu_id, veh_placa, veh_modelo, veh_color)
                 VALUES ($1, $2, $3, $4, $5, $6)";
+        
         pg_query_params($obj->getConnection(), $sql, array(
-            $veh_id, $tipovehiculo, $usuario, $placa, $marca, $color
+            $veh_id, 
+            $tipovehiculo, 
+            $usuario, 
+            $placa, 
+            $marca, 
+            $color
         ));
 
+        // Insertar solicitud de reporte
         $sra_id = $obj->autoincrement("solicitudes_reporte_accidentes", "sra_id");
         $sql = "INSERT INTO solicitudes_reporte_accidentes
                     (sra_id, sra_fecha, sra_cantidad_lesionados, veh_id, tch_id,
@@ -72,7 +82,7 @@ class ReportesController
         $ejecutar = pg_query_params($obj->getConnection(), $sql, array(
             $sra_id,
             $fecha,
-            $leccionado,
+            $lesionados,
             $veh_id,
             $tipochoque,
             $usuario,
@@ -96,7 +106,7 @@ class ReportesController
         requierePermiso("Reportes", "Listar");
 
         $obj = new ReportesModel();
-        $id_rol = $_SESSION['id_rol'];
+        $id_rol     = $_SESSION['id_rol'];
         $id_usuario = $_SESSION['id_usuario'];
 
         $sql = "SELECT s.sra_id, s.sra_fecha, s.sra_cantidad_lesionados, s.sra_cantidad_vehiculo,
