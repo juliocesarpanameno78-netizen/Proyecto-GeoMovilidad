@@ -29,11 +29,12 @@ class UsuariosModel extends MasterModel
     }
 
     public function obtenerUsuario($id_usuario)
-{
+    {
 
-    $sql = "SELECT
+        $sql = "SELECT
             u.usu_id AS id_usuario,
             u.id_rol,
+            r.nombre_rol,
             u.usu_nombre AS nombre_usuario,
             u.usu_email AS correo_electronico,
             u.tdoc_id AS id_tipo_documento,
@@ -46,16 +47,18 @@ class UsuariosModel extends MasterModel
         FROM usuarios u
         INNER JOIN tipos_de_documento td
             ON td.tdoc_id = u.tdoc_id
+        INNER JOIN roles r
+            ON r.id_rol = u.id_rol
         WHERE u.usu_id = $id_usuario";
 
-    $resultado = $this->select($sql);
+        $resultado = $this->select($sql);
 
-    if (count($resultado) > 0) {
-        return $resultado[0];
+        if (count($resultado) > 0) {
+            return $resultado[0];
+        }
+
+        return null;
     }
-
-    return null;
-}
 
     public function listarRoles()
     {
@@ -68,15 +71,15 @@ class UsuariosModel extends MasterModel
     }
 
     public function existeCorreo($correo, $id_usuario)
-{
+    {
 
-    $sql = "SELECT *
+        $sql = "SELECT *
             FROM usuarios
             WHERE UPPER(usu_email)=UPPER('$correo')
             AND usu_id <> $id_usuario";
 
-    return $this->select($sql);
-}
+        return $this->select($sql);
+    }
     public function existeUsuario($nombre_usuario, $id_usuario)
     {
 
@@ -113,6 +116,20 @@ class UsuariosModel extends MasterModel
 
         return $this->update($sql_usuario);
     }
+    public function actualizarPerfil($datos)
+    {
+
+        $sql = "UPDATE usuarios SET
+                per_nombre = '" . $datos['nombre'] . "',
+                per_apellido = '" . $datos['apellido'] . "',
+                per_telefono = '" . $datos['telefono'] . "',
+                per_direccion = '" . $datos['direccion'] . "',
+                usu_email = '" . $datos['correo'] . "',
+                usu_nombre = '" . $datos['nombre_usuario'] . "'
+            WHERE usu_id = " . $datos['id_usuario'];
+
+        return $this->update($sql);
+    }
 
     public function buscarPorCedula($cedula)
     {
@@ -137,6 +154,34 @@ class UsuariosModel extends MasterModel
 
         return $this->select($sql);
     }
+
+
+
+    public function actualizarClave($id_usuario, $clave)
+    {
+
+        $sql = "UPDATE usuarios
+            SET usu_contrasena = '$clave'
+            WHERE usu_id = $id_usuario";
+
+        return $this->update($sql);
+    }
+
+    public function obtenerClave($id_usuario)
+{
+
+    $sql = "SELECT usu_contrasena
+            FROM usuarios
+            WHERE usu_id = $id_usuario";
+
+    $resultado = $this->select($sql);
+
+    if (count($resultado) > 0) {
+        return $resultado[0]['usu_contrasena'];
+    }
+
+    return null;
+}
 
 }
 ?>
