@@ -10,6 +10,8 @@ header('Content-Type: text/html; charset=utf-8');
     <title>Geomovilidad</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="../view/assets/img/geomovilidad.ico" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <!-- Fonts and icons -->
     <script src="../view/assets/js/plugin/webfont/webfont.min.js"></script>

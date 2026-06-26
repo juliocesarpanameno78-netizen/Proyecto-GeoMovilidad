@@ -1,5 +1,5 @@
-
 <?php
+session_start();
 require_once dirname(__FILE__) . '/../../model/Registro/RegistroModel.php';
 $obj = new RegistroModel();
 $tipos_documento = $obj->getTiposDocumento();
@@ -26,12 +26,40 @@ $tipos_documento = $obj->getTiposDocumento();
         <div class="card-body">
 
             
-            <?php if (isset($_SESSION["error_correo"])): ?>
-            <div class="alerta-error">
-                <i class="fas fa-circle-exclamation"></i>
-                <?php echo htmlspecialchars($_SESSION['error_correo']); unset($_SESSION['error_correo']); ?>
-            </div>
-        <?php endif; ?>
+
+            <?php
+            if (isset($_GET['error'])) {
+
+                switch ($_GET['error']) {
+
+                    case 'correo':
+                        echo '<div class="alert alert-danger" role="alert">
+                                El correo electrónico ya está registrado.
+                            </div>';
+                        break;
+
+                    case 'identificacion':
+                        echo '<div class="alert alert-danger" role="alert">
+                                La identificación ya está registrada.
+                            </div>';
+                        break;
+
+                    case 'passwords':
+                        echo '<div class="alert alert-danger" role="alert">
+                                Las contraseñas no coinciden.
+                            </div>';
+                        break;
+
+                    case 'general':
+                        echo '<div class="alert alert-danger" role="alert">
+                                Ocurrió un error al registrar el usuario.
+                            </div>';
+                        break;
+                }
+            }
+            ?>
+
+
             <form action="/Geomovilidad/web/index.php?modulo=Registro&controlador=Registro&function=postRegistro" method="POST">
                 
                 <h6 class="text-muted mb-3">Datos personales</h6>
@@ -103,7 +131,9 @@ $tipos_documento = $obj->getTiposDocumento();
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100">Registrarse</button>
-                <a href="../view/Login/Login.php" class="btn btn-link w-100 mt-2">¿Ya tienes cuenta? Inicia sesión</a>
+                <a href="/Geomovilidad/view/Login/Login.php" class="btn btn-link w-100 mt-2">
+                    ¿Ya tienes cuenta? Inicia sesión
+                </a>
 
             
 
@@ -114,4 +144,3 @@ $tipos_documento = $obj->getTiposDocumento();
 
 </body>
 </html>
-

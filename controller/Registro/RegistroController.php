@@ -21,9 +21,7 @@ class RegistroController {
 
         
         if ($obj->existeCorreo($_POST['correo_electronico'])) {
-            $_SESSION["error_correo"] = "correo duplicado";
-            redirect('/Geomovilidad/view/Registro/Registro.php');
-
+            redirect('/Geomovilidad/view/Registro/Registro.php?error=correo');
             return;
         }
 

@@ -14,6 +14,8 @@
 <script src="../view/assets/js/kaiadmin.min.js"></script>
 <script src="../view/assets/js/setting-demo.js"></script>
 <script src="../view/assets/js/demo.js"></script><!-- End wrapper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </script>
 		</div> <!-- fin .main-panel -->
