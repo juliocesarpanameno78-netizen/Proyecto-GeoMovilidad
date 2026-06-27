@@ -2,11 +2,12 @@
 
 include_once '../model/Auditoria/AuditoriaModel.php';
 
-class AuditoriaController {
-
-    public function getListar() {
-
-       requierePermiso("Auditoria", "Listar");
+class AuditoriaController
+{
+    public function getListar()
+    {
+        // Verifica si lleva la 'e' o es requirePermiso
+        requierePermiso("Auditoria", "Listar");
 
         $obj = new AuditoriaModel();
 
@@ -16,8 +17,7 @@ class AuditoriaController {
         $registros = $obj->listarRegistros($filtro_tabla, $filtro_operacion);
         $tablas = $obj->listarTablasDistintas();
 
-        include_once '../view/Auditoria/listar.php';
+        include_once '../view/Auditoria/Listar.php';
     }
-
 }
 ?>
