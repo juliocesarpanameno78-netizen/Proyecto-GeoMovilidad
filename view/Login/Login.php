@@ -34,7 +34,7 @@ require_once dirname(__FILE__) . '/../../lib/helpers.php';
                     <input type="password" name="contrasena" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Ingresar</button>
-                <p>¿No tiene una cuenta? <a href="/Geomovilidad/web/index.php?modulo=Registro&controlador=Registro&function=getCreate">Regístrese</a></p>
+                <p>¿No tiene una cuenta? <a href="/Geomovilidad/view/Registro/Registro.php">Regístrese</a></p>
 
                 
             </form>
