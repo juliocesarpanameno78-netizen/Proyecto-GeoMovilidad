@@ -31,7 +31,7 @@
                 <div class="col-md-4 mb-4">
                     <label for="rol_nombre">Nombre:</label>
                     <input type="text" name="rol_nombre" id="rol_nombre" class="form-control p-2"
-                        placeholder="Ingrese el rol" required>
+                        placeholder="Ingrese el rol" minlength="3" maxlength="50" required>
                 </div>
 
             </div>
