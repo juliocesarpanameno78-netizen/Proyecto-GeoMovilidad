@@ -30,7 +30,7 @@
             <!-- Separación Ciudadano -->
 
 
-           <?php if (tienePermiso("Gestion de Solicitudes", "Registrar")): ?>
+            <?php if (tienePermiso("Gestion de Solicitudes", "Registrar")): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#solicitud" class="collapsed" aria-expanded="false">
                   <i class="fas fa-home"></i>
@@ -72,7 +72,7 @@
           </ul>
 
           <ul class="nav nav-secondary">
-           <?php if (tienePermiso("PQRSF", "Registrar")): ?>
+            <?php if (tienePermiso("PQRSF", "Registrar")): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#pqrsf" class="collapsed" aria-expanded="false">
                   <i class="fas fa-home"></i>
@@ -90,11 +90,11 @@
           </ul>
 
           <ul class="nav nav-secondary">
-           <?php if (
-    tienePermiso("Solicitud de Señal", "Listar") ||
-    tienePermiso("Reportes", "Listar") ||
-    tienePermiso("PQRSF", "Listar")
-): ?>
+            <?php if (
+              tienePermiso("Mis Solicitudes", "Listar") ||
+              tienePermiso("Mis Reportes", "Listar") ||
+              tienePermiso("Mis PQRSF", "Listar")
+            ): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#historial" class="collapsed" aria-expanded="false">
                   <i class="fas fa-user-shield"></i>
@@ -154,7 +154,7 @@
 
 
             <?php if (
-              tienePermiso("Reportes", "Listar") 
+              tienePermiso("Reportes", "Listar")
             ): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#reportesFuncionario" class="collapsed" aria-expanded="false">
@@ -380,11 +380,11 @@
                             <?= htmlspecialchars($_SESSION['nombre_rol']); ?>
                           </p>
 
-                          <a href="<?php echo getUrl("Perfil", "Perfil", "getPerfil"); ?>"
-                            class="btn btn-light">
+                          <a href="<?php echo getUrl("Perfil", "Perfil", "getPerfil"); ?>" class="btn btn-light">
                             Configuración de la cuenta
                           </a>
-                          <a class="dropdown-item" href="<?php echo getUrl('Login', 'Login', 'logout'); ?>">Cerrar Sesión</a>
+                          <a class="dropdown-item" href="<?php echo getUrl('Login', 'Login', 'logout'); ?>">Cerrar
+                            Sesión</a>
                         </div>
                       </div>
                   </div>

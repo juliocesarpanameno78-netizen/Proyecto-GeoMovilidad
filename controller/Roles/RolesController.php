@@ -14,7 +14,10 @@ class RolesController
         $sql = "SELECT * FROM modulos";
         $modulos = $obj->select($sql);
 
-        $sql = "SELECT * FROM acciones";
+        $sql = "SELECT *
+        FROM acciones
+        WHERE UPPER(acc_nombre) <> 'ANULAR'
+        ORDER BY acc_id";
         $acciones = $obj->select($sql);
 
         include_once '../view/roles/create.php';
@@ -68,10 +71,8 @@ class RolesController
             $permisos = array();
         }
 
-
         foreach ($permisos as $mod_id => $acciones) {
             foreach ($acciones as $acc_id => $val) {
-
 
                 $per_id = $obj->autoincrement("permisos", "per_id");
 
@@ -111,7 +112,10 @@ class RolesController
         $sql = "SELECT * FROM modulos";
         $modulos = $obj->select($sql);
 
-        $sql = "SELECT * FROM acciones";
+        $sql = "SELECT *
+        FROM acciones
+        WHERE UPPER(acc_nombre) <> 'ANULAR'
+        ORDER BY acc_id";
         $acciones = $obj->select($sql);
 
         $sql = "SELECT * FROM permisos WHERE rol_id = $rol_id";
@@ -133,6 +137,12 @@ class RolesController
 
         $rol_id = $_POST['rol_id'];
         $rol_nombre = trim($_POST['rol_nombre']);
+
+        if (strlen($rol_nombre) < 3) {
+            $_SESSION['error_roles'] = "El nombre del rol debe tener mínimo 3 caracteres.";
+            redirect(getUrl("Roles", "Roles", "getUpdate") . "&rol_id=" . $rol_id);
+            return;
+        }
 
         if ($rol_nombre == "") {
             $_SESSION['error_roles'] = "Debe ingresar un nombre para el rol";

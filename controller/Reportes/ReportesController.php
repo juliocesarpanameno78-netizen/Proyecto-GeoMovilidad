@@ -1,5 +1,4 @@
 <?php
-
 include_once '../model/Reportes/ReportesModel.php';
 
 class ReportesController
@@ -30,28 +29,28 @@ class ReportesController
     public function postCreate()
     {
         requierePermiso("Reportes", "Registrar");
-        
-        $obj          = new ReportesModel();
-        $usuario      = $_SESSION['id_usuario'];
-        $lesionados   = $_POST['leccionado'];           // Corregido nombre lógico
-        $direccion    = $_POST['direccion'];
-        $fecha        = date('Y-m-d');
-        $causas       = $_POST['causas'];
-        $tipochoque   = $_POST['tipochoque'];
+
+        $obj = new ReportesModel();
+        $usuario = $_SESSION['id_usuario'];
+        $lesionados = $_POST['leccionado'];           // Corregido nombre lógico
+        $direccion = $_POST['direccion'];
+        $fecha = date('Y-m-d');
+        $causas = $_POST['causas'];
+        $tipochoque = $_POST['tipochoque'];
         $cativehiculo = $_POST['cativehiculo'];
-        $barrio       = $_POST['barrio'];
-        $descripcion  = $_POST['descripcion'];
+        $barrio = $_POST['barrio'];
+        $descripcion = $_POST['descripcion'];
         $tipovehiculo = $_POST['tipovehiculo'];
-        $marca        = $_POST['marca'];
-        $color        = $_POST['color'];
-        $placa        = $_POST['placa'];
+        $marca = $_POST['marca'];
+        $color = $_POST['color'];
+        $placa = $_POST['placa'];
 
         $ruta = null;
         if (!empty($_FILES['imagen']['name'])) {
-            $imagen  = $_FILES['imagen']['name'];
+            $imagen = $_FILES['imagen']['name'];
             $archivo = $_FILES['imagen']['tmp_name'];
-            $ruta    = "../view/assets/img/" . $imagen;
-            
+            $ruta = "../view/assets/img/" . $imagen;
+
             if (!move_uploaded_file($archivo, $ruta)) {
                 $ruta = null;
             }
@@ -61,13 +60,13 @@ class ReportesController
         $veh_id = $obj->autoincrement("vehiculos", "veh_id");
         $sql = "INSERT INTO vehiculos (veh_id, tveh_id, usu_id, veh_placa, veh_modelo, veh_color)
                 VALUES ($1, $2, $3, $4, $5, $6)";
-        
+
         pg_query_params($obj->getConnection(), $sql, array(
-            $veh_id, 
-            $tipovehiculo, 
-            $usuario, 
-            $placa, 
-            $marca, 
+            $veh_id,
+            $tipovehiculo,
+            $usuario,
+            $placa,
+            $marca,
             $color
         ));
 
@@ -103,10 +102,13 @@ class ReportesController
 
     public function listar()
     {
-        requierePermiso("Reportes", "Listar");
+        requiereAlgunPermiso(array(
+            array("Reportes", "Listar"),
+            array("Mis Reportes", "Listar")
+        ));
 
         $obj = new ReportesModel();
-        $id_rol     = $_SESSION['id_rol'];
+        $id_rol = $_SESSION['id_rol'];
         $id_usuario = $_SESSION['id_usuario'];
 
         $sql = "SELECT s.sra_id, s.sra_fecha, s.sra_cantidad_lesionados, s.sra_cantidad_vehiculo,

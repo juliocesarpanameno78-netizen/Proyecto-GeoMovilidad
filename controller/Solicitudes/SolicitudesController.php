@@ -7,8 +7,10 @@ class SolicitudesController
 
     public function getListar()
     {
-        requierePermiso("Gestion de Solicitudes", "Listar");
-
+        requiereAlgunPermiso(array(
+            array("Gestion de Solicitudes", "Listar"),
+            array("Mis Solicitudes", "Listar")
+        ));
         $obj = new SolicitudesModel();
 
         $filtro_tipo = isset($_GET['tipo_solicitud']) ? trim($_GET['tipo_solicitud']) : "";
