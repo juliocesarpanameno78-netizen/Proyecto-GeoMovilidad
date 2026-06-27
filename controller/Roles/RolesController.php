@@ -30,6 +30,12 @@ class RolesController
 
         $rol_nombre = trim($_POST['rol_nombre']);
 
+        if (strlen($rol_nombre) < 3) {
+            $_SESSION['error_roles'] = "El nombre del rol debe tener mínimo 3 caracteres.";
+            redirect(getUrl("Roles", "Roles", "getCreate"));
+            return;
+        }
+
         if ($rol_nombre == "") {
             $_SESSION['error_roles'] = "Debe ingresar un nombre para el rol";
             redirect(getUrl("Roles", "Roles", "getCreate"));
@@ -45,6 +51,12 @@ class RolesController
             return;
         }
 
+        if (!isset($_POST['permisos']) || count($_POST['permisos']) == 0) {
+            $_SESSION['error_roles'] = "Debe seleccionar al menos un permiso para el rol.";
+            redirect(getUrl("Roles", "Roles", "getCreate"));
+            return;
+        }
+
         $rol_id = $obj->autoincrement("roles", "id_rol");
 
         $sql = "INSERT INTO roles VALUES ('$rol_id', '$rol_nombre')";
@@ -56,12 +68,10 @@ class RolesController
             $permisos = array();
         }
 
-        $permisosFormateados = array();
 
         foreach ($permisos as $mod_id => $acciones) {
             foreach ($acciones as $acc_id => $val) {
 
-                $permisosFormateados[$mod_id][] = $acc_id;
 
                 $per_id = $obj->autoincrement("permisos", "per_id");
 
@@ -77,7 +87,7 @@ class RolesController
 
     public function getRoles()
     {
-            requierePermiso("Gestion de Roles", "Listar");
+        requierePermiso("Gestion de Roles", "Listar");
 
         $obj = new MasterModel();
 
