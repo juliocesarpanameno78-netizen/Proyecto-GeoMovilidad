@@ -13,6 +13,7 @@ class LoginModel extends MasterModel {
             u.per_nombre || ' ' || u.per_apellido AS nombre_completo,
             u.usu_email AS correo_electronico,
             u.id_rol,
+            u.id_estado,
             r.nombre_rol
         FROM usuarios u
         INNER JOIN roles r

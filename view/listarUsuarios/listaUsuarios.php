@@ -76,7 +76,8 @@
                         <th>Teléfono</th>
                         <th>Correo</th>
                         <th>Rol</th>
-                        <th>Editar</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
 
@@ -101,12 +102,27 @@
 
                         echo "<td>" . $usuario['nombre_rol'] . "</td>";
 
-                        echo "<td>
+                        // Badge de estado
+                        if ($usuario['id_estado'] == 1) {
+                            echo "<td><span class='badge bg-success'>Habilitado</span></td>";
+                        } else {
+                            echo "<td><span class='badge bg-danger'>Inhabilitado</span></td>";
+                        }
+
+                        // Botón Editar + botón Habilitar/Inhabilitar
+                        $btn_estado = $usuario['id_estado'] == 1
+                            ? "<a href='" . getUrl("Usuarios", "Usuarios", "cambiarEstado") . "&id_usuario=" . $usuario['id_usuario'] . "&id_estado=2'
+                                onclick=\"return confirm('¿Seguro que deseas inhabilitar este usuario?')\"
+                                class='btn btn-danger btn-sm'>Inhabilitar</a>"
+                            : "<a href='" . getUrl("Usuarios", "Usuarios", "cambiarEstado") . "&id_usuario=" . $usuario['id_usuario'] . "&id_estado=1'
+                                onclick=\"return confirm('¿Seguro que deseas habilitar este usuario?')\"
+                                class='btn btn-success btn-sm'>Habilitar</a>";
+
+                        echo "<td class='d-flex gap-2'>
                                 <a href='" . getUrl("Usuarios", "Usuarios", "getUpdate") . "&id_usuario=" . $usuario['id_usuario'] . "'>
-                                    <button class='btn btn-warning'>
-                                        Editar
-                                    </button>
+                                    <button class='btn btn-warning btn-sm'>Editar</button>
                                 </a>
+                                $btn_estado
                               </td>";
 
                         echo "</tr>";
