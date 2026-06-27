@@ -30,7 +30,7 @@
             <!-- Separación Ciudadano -->
 
 
-            <?php if (esCiudadano()): ?>
+           <?php if (tienePermiso("Gestion de Solicitudes", "Registrar")): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#solicitud" class="collapsed" aria-expanded="false">
                   <i class="fas fa-home"></i>
@@ -54,7 +54,7 @@
           </ul>
 
           <ul class="nav nav-secondary">
-            <?php if (esCiudadano()): ?>
+            <?php if (tienePermiso("Reportes", "Registrar")): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#reporte" class="collapsed" aria-expanded="false">
                   <i class="fas fa-home"></i>
@@ -72,7 +72,7 @@
           </ul>
 
           <ul class="nav nav-secondary">
-            <?php if (esCiudadano()): ?>
+           <?php if (tienePermiso("PQRSF", "Registrar")): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#pqrsf" class="collapsed" aria-expanded="false">
                   <i class="fas fa-home"></i>
@@ -90,7 +90,11 @@
           </ul>
 
           <ul class="nav nav-secondary">
-            <?php if (esCiudadano()): ?>
+           <?php if (
+    tienePermiso("Solicitud de Señal", "Listar") ||
+    tienePermiso("Reportes", "Listar") ||
+    tienePermiso("PQRSF", "Listar")
+): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#historial" class="collapsed" aria-expanded="false">
                   <i class="fas fa-user-shield"></i>
@@ -150,8 +154,7 @@
 
 
             <?php if (
-              tienePermiso("Reportes", "Listar") &&
-              !tienePermiso("Reportes", "Registrar")
+              tienePermiso("Reportes", "Listar") 
             ): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#reportesFuncionario" class="collapsed" aria-expanded="false">
