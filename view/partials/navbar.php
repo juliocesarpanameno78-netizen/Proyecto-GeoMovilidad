@@ -65,6 +65,8 @@
                   <ul class="nav nav-collapse">
                     <li><a href="<?php echo getUrl("Reportes", "Reportes", "getCreate") ?>"><span class="sub-item">Hacer
                           un reporte</span></a></li>
+                    <li><a href="<?php echo getUrl("Reporeductor", "Reporeductor", "getCreate") ?>"><span class="sub-item">reportar
+                          reductor en mal estado</span></a></li>
                   </ul>
                 </div>
               </li>

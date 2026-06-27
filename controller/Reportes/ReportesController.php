@@ -110,7 +110,7 @@ class ReportesController
         $id_usuario = $_SESSION['id_usuario'];
 
         $sql = "SELECT s.sra_id, s.sra_fecha, s.sra_cantidad_lesionados, s.sra_cantidad_vehiculo,
-                       s.sra_decripcion, s.sra_direccion, s.sra_imagen,
+                       s.sra_descripcion, s.sra_direccion, s.sra_imagen,
                        b.bar_nombre, c.cau_descripcion, t.tch_nombre,
                        u.usu_nombre,
                        v.veh_placa, v.veh_modelo, v.veh_color, tv.tveh_nombre
