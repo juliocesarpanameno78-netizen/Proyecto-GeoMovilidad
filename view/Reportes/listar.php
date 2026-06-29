@@ -39,7 +39,7 @@
                         <td><?php echo $rep['sra_cantidad_vehiculo']?></td>
                         <td><?php echo $rep['tveh_nombre'].' - '.$rep['veh_modelo'].' ('.$rep['veh_color'].')'?></td>
                         <td><?php echo $rep['veh_placa']?></td>
-                        <td><?php echo $rep['sra_decripcion']?></td>
+                        <td><?php echo $rep['sra_descripcion']?></td>
                         <td>
                             <?php if($rep['sra_imagen']): ?>
                             <img src="<?php echo $rep['sra_imagen']?>" alt="imagen" style="width:60px;height:60px;object-fit:cover;border-radius:4px;">

@@ -165,6 +165,38 @@ class UsuariosController
         include_once '../view/listarUsuarios/listaUsuarios.php';
     }
 
-}
+    public function cambiarEstado()
+    {
+        requierePermiso("Gestion de Usuarios", "Editar");
 
-?>
+        $obj = new UsuariosModel();
+
+        $id_usuario = $_GET['id_usuario'];
+        $id_estado  = $_GET['id_estado'];
+
+        // Evitar que el administrador se inhabilite a sí mismo
+        if ($id_usuario == $_SESSION['id_usuario']) {
+            $_SESSION['error_usuario'] = "No puedes cambiar tu propio estado.";
+            redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
+            return;
+        }
+
+        // Solo valores permitidos: 1 (habilitado) o 2 (inhabilitado)
+        if (!in_array($id_estado, array('1', '2'))) {
+            $_SESSION['error_usuario'] = "Estado no válido.";
+            redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
+            return;
+        }
+
+        $obj->cambiarEstado($id_usuario, $id_estado);
+
+        if ($id_estado == 1) {
+            $_SESSION['success_usuario'] = "Usuario habilitado correctamente.";
+        } else {
+            $_SESSION['success_usuario'] = "Usuario inhabilitado correctamente.";
+        }
+
+        redirect(getUrl("Usuarios", "Usuarios", "getUsuarios"));
+    }
+
+}

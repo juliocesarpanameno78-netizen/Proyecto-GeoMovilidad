@@ -17,6 +17,7 @@ class UsuariosModel extends MasterModel
                     u.per_telefono        AS telefono,
                     u.usu_nombre          AS nombre_usuario,
                     u.usu_email           AS correo_electronico,
+                    u.id_estado,
                     r.nombre_rol
                 FROM usuarios u
                 INNER JOIN roles r
@@ -143,6 +144,7 @@ class UsuariosModel extends MasterModel
                 u.per_telefono        AS telefono,
                 u.usu_nombre          AS nombre_usuario,
                 u.usu_email           AS correo_electronico,
+                u.id_estado,
                 r.nombre_rol
             FROM usuarios u
             INNER JOIN roles r
@@ -182,6 +184,12 @@ class UsuariosModel extends MasterModel
 
     return null;
 }
+
+    public function cambiarEstado($id_usuario, $id_estado)
+    {
+        $sql = "UPDATE usuarios SET id_estado = $id_estado WHERE usu_id = $id_usuario";
+        return $this->update($sql);
+    }
 
 }
 ?>

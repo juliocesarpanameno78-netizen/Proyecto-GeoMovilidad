@@ -22,6 +22,10 @@ class LoginController {
         $usuario = $obj->login($correo, $contrasena);
 
         if ($usuario) {
+            if ($usuario['id_estado'] == 2) {
+                redirect('/Geomovilidad/view/Login/Login.php?error=inhabilitado');
+                return;
+            }
             $_SESSION['id_usuario'] = $usuario['id_usuario'];
             $_SESSION['nombre_usuario'] = $usuario['nombre_usuario'];
             $_SESSION['nombre_completo'] = $usuario['nombre_completo'];

@@ -30,7 +30,7 @@
             <!-- Separación Ciudadano -->
 
 
-            <?php if (esCiudadano()): ?>
+            <?php if (tienePermiso("Gestion de Solicitudes", "Registrar")): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#solicitud" class="collapsed" aria-expanded="false">
                   <i class="fas fa-home"></i>
@@ -54,7 +54,7 @@
           </ul>
 
           <ul class="nav nav-secondary">
-            <?php if (esCiudadano()): ?>
+            <?php if (tienePermiso("Reportes", "Registrar")): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#reporte" class="collapsed" aria-expanded="false">
                   <i class="fas fa-home"></i>
@@ -65,6 +65,8 @@
                   <ul class="nav nav-collapse">
                     <li><a href="<?php echo getUrl("Reportes", "Reportes", "getCreate") ?>"><span class="sub-item">Hacer
                           un reporte</span></a></li>
+                    <li><a href="<?php echo getUrl("Reporeductor", "Reporeductor", "getCreate") ?>"><span class="sub-item">reportar
+                          reductor en mal estado</span></a></li>
                   </ul>
                 </div>
               </li>
@@ -72,7 +74,7 @@
           </ul>
 
           <ul class="nav nav-secondary">
-            <?php if (esCiudadano()): ?>
+            <?php if (tienePermiso("PQRSF", "Registrar")): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#pqrsf" class="collapsed" aria-expanded="false">
                   <i class="fas fa-home"></i>
@@ -90,7 +92,11 @@
           </ul>
 
           <ul class="nav nav-secondary">
-            <?php if (esCiudadano()): ?>
+            <?php if (
+              tienePermiso("Mis Solicitudes", "Listar") ||
+              tienePermiso("Mis Reportes", "Listar") ||
+              tienePermiso("Mis PQRSF", "Listar")
+            ): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#historial" class="collapsed" aria-expanded="false">
                   <i class="fas fa-user-shield"></i>
@@ -150,8 +156,7 @@
 
 
             <?php if (
-              tienePermiso("Reportes", "Listar") &&
-              !tienePermiso("Reportes", "Registrar")
+              tienePermiso("Reportes", "Listar")
             ): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#reportesFuncionario" class="collapsed" aria-expanded="false">
@@ -377,11 +382,11 @@
                             <?= htmlspecialchars($_SESSION['nombre_rol']); ?>
                           </p>
 
-                          <a href="<?php echo getUrl("Perfil", "Perfil", "getPerfil"); ?>"
-                            class="btn btn-light">
+                          <a href="<?php echo getUrl("Perfil", "Perfil", "getPerfil"); ?>" class="btn btn-light">
                             Configuración de la cuenta
                           </a>
-                          <a class="dropdown-item" href="<?php echo getUrl('Login', 'Login', 'logout'); ?>">Cerrar Sesión</a>
+                          <a class="dropdown-item" href="<?php echo getUrl('Login', 'Login', 'logout'); ?>">Cerrar
+                            Sesión</a>
                         </div>
                       </div>
                   </div>

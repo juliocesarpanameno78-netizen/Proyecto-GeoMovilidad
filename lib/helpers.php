@@ -160,4 +160,23 @@ function requierePermiso($modulo, $accion)
     }
 }
 
+function requiereAlgunPermiso($permisos = array())
+{
+    if (!isset($_SESSION['id_usuario'])) {
+        redirect(getUrl("Login", "Login", "getLogin"));
+        return;
+    }
+
+    foreach ($permisos as $permiso) {
+
+        if (tienePermiso($permiso[0], $permiso[1])) {
+            return;
+        }
+
+    }
+
+    $_SESSION['error_permisos'] = "No tiene permisos para acceder a esta opción.";
+    redirect("index.php");
+}
+
 ?>

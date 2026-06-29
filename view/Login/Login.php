@@ -20,9 +20,15 @@ require_once dirname(__FILE__) . '/../../lib/helpers.php';
         </div>
         <div class="card-body">
 
-            <?php if (isset($_GET['error'])): ?>
-                <div class="alert alert-danger">Correo o contraseña incorrectos.</div>
-            <?php endif; ?>
+            <?php
+            if (isset($_GET['error'])) {
+                if ($_GET['error'] == 'inhabilitado') {
+                    echo '<div class="alert alert-warning"><strong>Acceso denegado.</strong> Usted ha sido inhabilitado por un administrador.</div>';
+                } else {
+                    echo '<div class="alert alert-danger">Correo o contraseña incorrectos.</div>';
+                }
+            }
+            ?>
 
             <form action="/Geomovilidad/web/index.php?modulo=Login&controlador=Login&function=postLogin" method="POST">
                 <div class="mb-3">
@@ -44,4 +50,3 @@ require_once dirname(__FILE__) . '/../../lib/helpers.php';
 
 </body>
 </html>
-
