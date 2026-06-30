@@ -21,10 +21,27 @@ class ReductorController
         requierePermiso("Gestion de Solicitudes", "Registrar");
         $obj = new ReductorModel();
         $usuario = $_SESSION['id_usuario'];
-        $categoriareductor = $_POST['categoriareductor'];
-        $tiporeductor = $_POST['tiporeductor'];
+        $categoriareductor = isset($_POST['categoriareductor']) ? trim($_POST['categoriareductor']) : '';
+        $tiporeductor = isset($_POST['tiporeductor']) ? trim($_POST['tiporeductor']) : '';
         $estadosoli = $_POST['estadoreductor'];
-        $motivo = $_POST['motivo'];
+        $motivo = isset($_POST['motivo']) ? trim($_POST['motivo']) : '';
+
+        // Validación de campos obligatorios: si algo falta, no se inserta nada
+        // y se redirige mostrando el mensaje correspondiente.
+        if ($categoriareductor === '') {
+            redirect(getUrl("Reductor", "Reductor", "getCreate") . "&status=vacio&campo=categoria");
+            return;
+        }
+
+        if ($tiporeductor === '') {
+            redirect(getUrl("Reductor", "Reductor", "getCreate") . "&status=vacio&campo=tipo");
+            return;
+        }
+
+        if ($motivo === '') {
+            redirect(getUrl("Reductor", "Reductor", "getCreate") . "&status=vacio&campo=motivo");
+            return;
+        }
 
         $ruta = null;
         if (!empty($_FILES['imagen']['name'])) {

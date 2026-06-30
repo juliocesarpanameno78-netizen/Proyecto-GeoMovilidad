@@ -43,9 +43,33 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     <?php if(isset($_GET['status']) && $_GET['status'] == 'exito'): ?>
-    swal({ title: "¡PQRSF enviada!", text: "Tu solicitud fue registrada con éxito.", icon: "success", button: "Aceptar" });
+    swal({ 
+        title: "¡PQRSF enviada!",
+        text: "Tu solicitud fue registrada con éxito.",
+        icon: "success", 
+        button: "Aceptar" 
+    });
     <?php elseif(isset($_GET['status']) && $_GET['status'] == 'error'): ?>
-    swal({ title: "Error al enviar", text: "Hubo un error al registrar tu solicitud. Intenta nuevamente.", icon: "error", button: "Aceptar" });
+    swal({ 
+        title: "Error al enviar", 
+        text: "Hubo un error al registrar tu solicitud. Intenta nuevamente.", 
+        icon: "error", 
+        button: "Aceptar" 
+    });
+    <?php elseif(isset($_GET['status']) && $_GET['status'] == 'vacio'):
+    $campo = isset($_GET['campo']) ? $_GET['campo'] : '';
+    $mensajes = array(
+        'tipo' => 'Debes seleccionar el tipo de solicitud de pqrfs.',
+        'descripcion' => 'Debes debes describir el motivo de la solicitud.'
+    );
+    $mensaje = isset($mensajes[$campo]) ? $mensajes[$campo] : 'Debes completar todos los campos obligatorios.'
+    ?>
+    swal({
+        title: "Campo requerido",
+        text: "<?php echo addslashes($mensaje); ?>",
+        icon: "warning",
+        button: "Aceptar"
+    });
     <?php endif; ?>
 });
 </script>

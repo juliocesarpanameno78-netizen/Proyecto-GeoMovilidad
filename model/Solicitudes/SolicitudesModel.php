@@ -12,6 +12,7 @@ class SolicitudesModel extends MasterModel {
 
     $sql = "SELECT s.sns_id AS id, 'Señal' AS tipo_solicitud,
                    t.tsen_nombre AS detalle, s.sns_descripcion AS descripcion,
+                   t.tsen_orientacion AS orientacion,
                    e.est_nombre, e.est_id, u.usu_nombre
             FROM solicitudes_nueva_senal s
             JOIN tipos_de_senales t ON s.tsen_id = t.tsen_id
@@ -32,6 +33,7 @@ class SolicitudesModel extends MasterModel {
 
     $sql = "SELECT r.snr_id AS id, 'Reductor' AS tipo_solicitud,
                    tr.tred_nombre AS detalle, r.snr_descripcion AS descripcion,
+                   tr.tred_orientacion AS orientacion,
                    e.est_nombre, e.est_id, u.usu_nombre
             FROM solicitudes_nuevo_reductor r
             JOIN tipos_de_reductores tr ON r.tred_id = tr.tred_id

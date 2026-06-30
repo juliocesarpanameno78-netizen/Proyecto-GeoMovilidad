@@ -89,6 +89,21 @@ document.addEventListener("DOMContentLoaded", function () {
         icon: "error",
         button: "Aceptar"
     });
+    <?php elseif(isset($_GET['status']) && $_GET['status'] == 'vacio'):
+        $campo = isset($_GET['campo']) ? $_GET['campo'] : '';
+        $mensajes = array(
+            'categoria' => 'Debes seleccionar una categoría de reductor.',
+            'tipo'      => 'Debes seleccionar un tipo de reductor.',
+            'motivo'    => 'Debes escribir el motivo de la solicitud.'
+        );
+        $mensaje = isset($mensajes[$campo]) ? $mensajes[$campo] : 'Debes completar todos los campos obligatorios.';
+    ?>
+    swal({
+        title: "Campo requerido",
+        text: "<?php echo addslashes($mensaje); ?>",
+        icon: "warning",
+        button: "Aceptar"
+    });
     <?php endif; ?>
 
     const selectCategoria = document.getElementById('categoriareductor');

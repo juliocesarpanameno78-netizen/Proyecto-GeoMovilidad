@@ -6,6 +6,16 @@
             </div>
         </div>
 
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="btn-group" role="group" aria-label="Filtrar por orientación">
+                    <button type="button" class="btn btn-outline-primary filtro-orientacion active" data-orientacion="todas">Todas</button>
+                    <button type="button" class="btn btn-outline-primary filtro-orientacion" data-orientacion="vertical">Vertical</button>
+                    <button type="button" class="btn btn-outline-primary filtro-orientacion" data-orientacion="horizontal">Horizontal</button>
+                </div>
+            </div>
+        </div>
+
         <div class="mt-5">
             <table class="table table-striped table-hover" id="tablaSenales">
                 <thead>
@@ -25,7 +35,7 @@
                 </thead>
                 <tbody>
                     <?php foreach($senales as $sena): ?>
-                    <tr>
+                    <tr data-orientacion="<?php echo strtolower(trim($sena['tsen_orientacion'])); ?>">
                         <td><?php echo $sena['sns_id']?></td>
                         <td><?php echo $sena['tsen_nombre']?></td>
                         <td><?php echo $sena['tsen_orientacion']?></td>
@@ -69,10 +79,38 @@
 </div>
 
 <script>
-    
+
 document.addEventListener("DOMContentLoaded", function () {
+    let tabla = null;
+
     if (typeof $.fn.DataTable !== 'undefined') {
-        $('#tablaSenales').DataTable({ language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' } });
+        tabla = $('#tablaSenales').DataTable({ language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' } });
     }
+
+    const botones = document.querySelectorAll('.filtro-orientacion');
+
+    botones.forEach(function (boton) {
+        boton.addEventListener('click', function () {
+            botones.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            const orientacion = this.getAttribute('data-orientacion');
+
+            if (tabla) {
+                // Si DataTables está disponible, filtramos usando su API de búsqueda por columna (Orientación = columna índice 2)
+                if (orientacion === 'todas') {
+                    tabla.column(2).search('').draw();
+                } else {
+                    tabla.column(2).search(orientacion, true, false).draw();
+                }
+            } else {
+                // Filtro manual si DataTables no está cargado
+                document.querySelectorAll('#tablaSenales tbody tr').forEach(function (fila) {
+                    const filaOrientacion = fila.getAttribute('data-orientacion');
+                    fila.style.display = (orientacion === 'todas' || filaOrientacion === orientacion) ? '' : 'none';
+                });
+            }
+        });
+    });
 });
 </script>

@@ -45,8 +45,6 @@
                           class="sub-item">Solicitud de Reductor</span></a></li>
                     <li><a href="<?php echo getUrl("Via", "Via", "getCreate") ?>"><span class="sub-item">Solicitud de
                           Vía</span></a></li>
-                    <li><a href="<?php echo getUrl("Demarcaciones", "Demarcaciones", "getCreate") ?>"><span
-                          class="sub-item">Solicitud de Demarcación</span></a></li>
                   </ul>
                 </div>
               </li>
@@ -63,10 +61,9 @@
                 </a>
                 <div class="collapse" id="reporte">
                   <ul class="nav nav-collapse">
-                    <li><a href="<?php echo getUrl("Reportes", "Reportes", "getCreate") ?>"><span class="sub-item">Hacer
-                          un reporte</span></a></li>
-                    <li><a href="<?php echo getUrl("Reporeductor", "Reporeductor", "getCreate") ?>"><span class="sub-item">reportar
-                          reductor en mal estado</span></a></li>
+                    <li><a href="<?php echo getUrl("Reportes", "Reportes", "getCreate") ?>"><span class="sub-item">Reportar un accidente</span></a></li>
+                    <li><a href="<?php echo getUrl("Reporeductor", "Reporeductor", "getCreate") ?>"><span class="sub-item">Reportar
+                    reductor en mal estado</span></a></li>
                   </ul>
                 </div>
               </li>

@@ -20,6 +20,15 @@ class PqrfsController
         $tipo = $_POST['tipo'];
         $descripcion = $_POST['descripcion'];
 
+        if ($tipo === '') {
+            redirect(getUrl("Pqrfs", "Pqrfs", "getCreate") . "&status=vacio&campo=tipo");
+            return;
+        }
+        if ($descripcion === '') {
+            redirect(getUrl("Pqrfs", "Pqrfs", "getCreate") . "&status=vacio&campo=descripcion");
+            return;
+        }
+
         $pqr_id = $obj->autoincrement("pqrsf", "pqr_id");
 
         $sql = "INSERT INTO pqrsf (pqr_id, usu_id, pqr_tipo, pqr_estado_solicitud, pqr_descripcion)

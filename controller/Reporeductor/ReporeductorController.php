@@ -28,12 +28,43 @@ class ReporeductorController
         requierePermiso("Gestion de Solicitudes", "Registrar");
         $obj = new ReporductorModel();
         $usuario       = $_SESSION['id_usuario'];
-        $categoriareduc = $_POST['categoriareduc'];
-        $tiporeductor  = $_POST['tiporeductor'];
-        $barrio        = $_POST['barrio'];
-        $direccion     = $_POST['direccion'];
-        $descripcion   = $_POST['descripcion'];
-        $tipodanio     = $_POST['tipodanio'];
+        $categoriareduc = isset($_POST['categoriareduc']) ? trim($_POST['categoriareduc']) : '';
+        $tiporeductor  = isset($_POST['tiporeductor']) ? trim($_POST['tiporeductor']) : '';
+        $barrio        = isset($_POST['barrio']) ? trim($_POST['barrio']) : '';
+        $direccion     = isset($_POST['direccion']) ? trim($_POST['direccion']) : '';
+        $descripcion   = isset($_POST['descripcion']) ? trim($_POST['descripcion']) : '';
+        $tipodanio     = isset($_POST['tipodanio']) ? trim($_POST['tipodanio']) : '';
+
+        
+        if ($categoriareduc === '') {
+            redirect(getUrl("Reporeductor", "Reporeductor", "getCreate") . "&status=vacio&campo=categoria");
+            return;
+        }
+
+        if ($tiporeductor === '') {
+            redirect(getUrl("Reporeductor", "Reporeductor", "getCreate") . "&status=vacio&campo=tipo");
+            return;
+        }
+
+        if ($barrio === '') {
+            redirect(getUrl("Reporeductor", "Reporeductor", "getCreate") . "&status=vacio&campo=barrio");
+            return;
+        }
+
+        if ($direccion === '') {
+            redirect(getUrl("Reporeductor", "Reporeductor", "getCreate") . "&status=vacio&campo=direccion");
+            return;
+        }
+
+        if ($tipodanio === '') {
+            redirect(getUrl("Reporeductor", "Reporeductor", "getCreate") . "&status=vacio&campo=tipodanio");
+            return;
+        }
+
+        if ($descripcion === '') {
+            redirect(getUrl("Reporeductor", "Reporeductor", "getCreate") . "&status=vacio&campo=descripcion");
+            return;
+        }
 
         $ruta = null;
         if (!empty($_FILES['imagen']['name'])) {

@@ -21,12 +21,34 @@ class SenalesController
 
         requierePermiso("Gestion de Solicitudes", "Registrar");
         $obj = new SenalesModel();
-        $direccion = $_POST['direccion'];
-        $tiposenal = $_POST['tiposenal'];
+        $direccion = isset($_POST['direccion']) ? trim($_POST['direccion']) : '';
+        $tiposenal = isset($_POST['tiposenal']) ? trim($_POST['tiposenal']) : '';
         $usuario = $_SESSION['id_usuario'];
         $estadosenal = $_POST['estadosenal'];
-        $categoriasenal = $_POST['categoriasenal'];
-        $motivo = $_POST['motivo'];
+        $categoriasenal = isset($_POST['categoriasenal']) ? trim($_POST['categoriasenal']) : '';
+        $motivo = isset($_POST['motivo']) ? trim($_POST['motivo']) : '';
+
+        // Validación de campos obligatorios: si algo falta, no se inserta nada
+        // y se redirige mostrando el mensaje correspondiente.
+        if ($direccion === '') {
+            redirect(getUrl("Senales", "Senales", "getCreate") . "&status=vacio&campo=direccion");
+            return;
+        }
+
+        if ($categoriasenal === '') {
+            redirect(getUrl("Senales", "Senales", "getCreate") . "&status=vacio&campo=categoria");
+            return;
+        }
+
+        if ($tiposenal === '') {
+            redirect(getUrl("Senales", "Senales", "getCreate") . "&status=vacio&campo=tipo");
+            return;
+        }
+
+        if ($motivo === '') {
+            redirect(getUrl("Senales", "Senales", "getCreate") . "&status=vacio&campo=motivo");
+            return;
+        }
 
         $ruta = null;
         if (!empty($_FILES['imagen']['name'])) {

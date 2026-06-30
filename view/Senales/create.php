@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                     <label for="motivo">¿Por que solicitas esta señal?</label>
-                    <textarea name="motivo" id="motivo"  class="form-control p-2" required></textarea>
+                    <textarea name="motivo" id="motivo"  class="form-control p-2"></textarea>
                 </div>
 
                 <input type="hidden" name="estadosenal" id="estadosenal" value="1">
@@ -88,6 +88,22 @@ document.addEventListener("DOMContentLoaded", function () {
         title: "Error al enviar",
         text: "Hubo un error al registrar tu solicitud. Intenta nuevamente.",
         icon: "error",
+        button: "Aceptar"
+    });
+    <?php elseif(isset($_GET['status']) && $_GET['status'] == 'vacio'):
+        $campo = isset($_GET['campo']) ? $_GET['campo'] : '';
+        $mensajes = array(
+            'direccion' => 'Debes escribir la dirección.',
+            'categoria' => 'Debes seleccionar una categoría de señal.',
+            'tipo'      => 'Debes seleccionar un tipo de señal.',
+            'motivo'    => 'Debes escribir el motivo de la solicitud.'
+        );
+        $mensaje = isset($mensajes[$campo]) ? $mensajes[$campo] : 'Debes completar todos los campos obligatorios.';
+    ?>
+    swal({
+        title: "Campo requerido",
+        text: "<?php echo addslashes($mensaje); ?>",
+        icon: "warning",
         button: "Aceptar"
     });
     <?php endif; ?>

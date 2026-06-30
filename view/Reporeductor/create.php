@@ -101,6 +101,19 @@ document.addEventListener("DOMContentLoaded", function () {
     swal({ title: "¡Reporte enviado!", text: "Tu reporte fue registrado con éxito.", icon: "success", button: "Aceptar" });
     <?php elseif(isset($_GET['status']) && $_GET['status'] == 'error'): ?>
     swal({ title: "Error al enviar", text: "Hubo un error al registrar tu reporte. Intenta nuevamente.", icon: "error", button: "Aceptar" });
+    <?php elseif(isset($_GET['status']) && $_GET['status'] == 'vacio'):
+        $campo = isset($_GET['campo']) ? $_GET['campo'] : '';
+        $mensajes = array(
+            'categoria'   => 'Debes seleccionar la categoría del reductor.',
+            'tipo'        => 'Debes seleccionar el tipo de reductor.',
+            'barrio'      => 'Debes seleccionar el barrio.',
+            'direccion'   => 'Debes ingresar la dirección.',
+            'tipodanio'   => 'Debes describir el tipo de daño.',
+            'descripcion' => 'Debes escribir la descripción del problema.'
+        );
+        $mensaje = isset($mensajes[$campo]) ? $mensajes[$campo] : 'Debes completar todos los campos obligatorios.';
+    ?>
+    swal({ title: "Campo requerido", text: "<?php echo addslashes($mensaje); ?>", icon: "warning", button: "Aceptar" });
     <?php endif; ?>
 
     const selectCategoria  = document.getElementById('categoriareduc');
