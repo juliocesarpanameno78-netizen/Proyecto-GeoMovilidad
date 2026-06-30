@@ -1,5 +1,21 @@
 <div class="container-fluid">
     <div class="page-inner">
+        <?php
+        $coord_x = '';
+        $coord_y = '';
+
+        if (isset($_GET['coords'])) {
+            $partes = explode(',', $_GET['coords']);
+            if (count($partes) === 2) {
+                $coord_x = trim($partes[0]);
+                $coord_y = trim($partes[1]);
+            }
+        }
+
+        $url_retorno = getUrl('Via', 'Via', 'getCreate');
+        $url_mapa = getUrl('Mapa', 'Mapa', 'getSelectLocation') . '&return=' . urlencode($url_retorno) . '&param=coords';
+        ?>
+
         <div class="row mt-5">
             <div class="col-md-5">
                 <h3 class="m-3 display-3 text-nowrap">Reporte de vía en mal estado</h3>
@@ -11,7 +27,7 @@
                 <div class="col-md-4 mb-4">
                     <label for="nombre">Reportador:</label>
                     <input type="text" id="nombre" class="form-control p-2"
-                        value="<?php echo htmlspecialchars($_SESSION['nombre_usuario'])?>" disabled>
+                        value="<?php echo $_SESSION['nombre_usuario']?>" disabled>
                 </div>
 
                 <div class="col-md-4 mb-4">
@@ -47,6 +63,18 @@
                 <div class="col-md-4 mb-4">
                     <label for="imagenes">Imagen de la vía</label>
                     <input type="file" name="imagenes" id="imagenes" class="form-control p-2" accept="image/*">
+                </div>
+
+                <div class="col-md-8 mb-4">
+                    <label>Ubicación seleccionada</label>
+                    <input type="text" class="form-control p-2" readonly
+                        value="<?php echo ($coord_x !== '' && $coord_y !== '') ? ($coord_x . ', ' . $coord_y) : 'Sin coordenadas'; ?>">
+                    <input type="hidden" name="coord_x" value="<?php echo $coord_x; ?>">
+                    <input type="hidden" name="coord_y" value="<?php echo $coord_y; ?>">
+                </div>
+
+                <div class="col-md-4 mb-4 d-flex align-items-end">
+                    <a href="<?php echo $url_mapa; ?>" class="btn btn-outline-primary w-100">Seleccionar ubicación en mapa</a>
                 </div>
             </div>
 

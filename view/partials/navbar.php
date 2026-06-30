@@ -351,7 +351,7 @@
                   <div class="ms-2 d-none d-lg-block">
                     <small class="text-muted">Bienvenido,</small><br>
                     <strong>
-                      <?= isset($_SESSION['nombre_completo']) ? htmlspecialchars($_SESSION['nombre_completo']) : 'Invitado'; ?>
+                      <?= isset($_SESSION['nombre_completo']) ? ($_SESSION['nombre_completo']) : 'Invitado'; ?>
                     </strong>
                   </div>
 
@@ -364,21 +364,21 @@
                             class="avatar-img rounded"></div>
                         <div class="u-text">
                           <h4>
-                            <?= htmlspecialchars($_SESSION['nombre_completo']); ?>
+                            <?= $_SESSION['nombre_completo']; ?>
                           </h4>
 
                           <p class="text-muted mb-1">
                             <i class="fas fa-envelope me-1"></i>
-                            <?= htmlspecialchars($_SESSION['usu_email']); ?>
+                            <?= $_SESSION['usu_email']; ?>
                           </p>
 
                           <p class="text-muted mb-2">
                             <i class="fas fa-user-tag me-1"></i>
-                            <?= htmlspecialchars($_SESSION['nombre_rol']); ?>
+                            <?= $_SESSION['nombre_rol']; ?>
                           </p>
 
                           <a href="<?php echo getUrl("Perfil", "Perfil", "getPerfil"); ?>" class="btn btn-light">
-                            Configuración de la cuenta
+                            Ver Perfil
                           </a>
                           <a class="dropdown-item" href="<?php echo getUrl('Login', 'Login', 'logout'); ?>">Cerrar
                             Sesión</a>

@@ -11,7 +11,7 @@
                 <div class="col-md-4 mb-4">
                     <label for="nombre">Solicitante:</label>
                     <input type="text" id="nombre" class="form-control p-2"
-                        value="<?php echo htmlspecialchars($_SESSION['nombre_usuario'])?>" disabled>
+                        value="<?php echo $_SESSION['nombre_usuario']?>" disabled>
                 </div>
 
                 <div class="col-md-4 mb-4">

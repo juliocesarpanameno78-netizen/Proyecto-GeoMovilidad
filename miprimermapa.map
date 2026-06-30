@@ -23,24 +23,6 @@ MAP
         END
     END
     LAYER
-        NAME "vias"
-        STATUS ON
-        TYPE LINE
-        DATA "MallaVialC.shp"
-        LABELITEM "nombre"
-        CLASS
-            NAME "LABEL"
-            STYLE
-                COLOR 0 0 0
-                OUTLINECOLOR 90 40 35
-            END
-            STYLE
-                COLOR 75 86 148
-                OUTLINECOLOR 80 80 80
-            END
-        END
-    END
-    LAYER
         NAME "comunas"
         STATUS ON
         TYPE LINE
@@ -53,21 +35,47 @@ MAP
         END
     END
     LAYER
-        NAME "barrios"
-        TYPE LINE
+        NAME "vias"
         STATUS ON
+        TYPE LINE
+        DATA "MallaVialC.shp"
+        LABELITEM "nombre"
+        CLASS
+            NAME "LABEL"
+            STYLE
+                COLOR 75 86 148
+                WIDTH 2
+            END
+            LABEL
+                TYPE BITMAP
+                SIZE SMALL
+                COLOR 0 0 0
+                MINDISTANCE 100
+                PARTIALS FALSE
+            END
+        END
+    END
+    LAYER
+        NAME "barrios"
+        TYPE POLYGON
+        STATUS ON
+        TRANSPARENCY 45
         DATA "Barrios.shp"
         LABELITEM "BARRIO"
         CLASS
             NAME "LABEL"
             STYLE
-                COLOR 0 0 0
+                COLOR 140 192 235
                 OUTLINECOLOR 90 40 35
             END
-            LABEL   
-                SIZE MEDIUM
+            LABEL
+                TYPE BITMAP
+                SIZE LARGE
                 COLOR 255 255 255
+                MINDISTANCE 150
+                PARTIALS FALSE
             END
         END
     END
+
 END

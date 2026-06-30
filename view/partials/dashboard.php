@@ -19,6 +19,8 @@ if (isset($_SESSION['error_permisos'])) {
     </div>
     <?php
 }
+
+$mostrarCapaReportesCiudadanos = esAdministrador() || esFuncionario();
 ?>
 
 
@@ -60,6 +62,13 @@ if (isset($_SESSION['error_permisos'])) {
                                             value="vias">
                                         <strong>Vias</strong>
                                     </p>
+                                    <?php if ($mostrarCapaReportesCiudadanos): ?>
+                                    <p class="mb-0 mt-2">
+                                        <input checked onclick="chgLayers()" type="checkbox" name="Layer[4]"
+                                            value="reportes_ciudadanos">
+                                        <strong>Reportes ciudadanos</strong>
+                                    </p>
+                                    <?php endif; ?>
                                 </form>
                             </div>
                             <div id="Layer1"
@@ -88,6 +97,7 @@ if (isset($_SESSION['error_permisos'])) {
     var mapStatus = document.getElementById("mapStatus");
     var myMap1 = null;
     var myMap2 = null;
+    var capaReportesCiudadanos = <?php echo $mostrarCapaReportesCiudadanos ? "' reportes_ciudadanos'" : "''"; ?>;
 
 
     if (typeof msMap !== "undefined") {
@@ -95,7 +105,7 @@ if (isset($_SESSION['error_permisos'])) {
         myMap1.setCgi("/cgi-bin/mapserv.exe");
         myMap1.setMapFile("C:/ms4w/Apache/htdocs/Geomovilidad/miprimermapa.map");
         myMap1.setFullExtent(1053867, 1068491, 860190, 879441);
-        myMap1.setLayers("barrios cali_area comunas vias");
+        myMap1.setLayers("barrios cali_area comunas vias" + capaReportesCiudadanos);
 
         myMap2 = new msMap(document.getElementById("dc_main2"));
         myMap2.setActionNone();
@@ -116,9 +126,12 @@ if (isset($_SESSION['error_permisos'])) {
         if (!myMap1 || !myMap2) return;
         var list = "";
         var objForm = document.forms["select_layers"];
-        for (var i = 0; i < 4; i++) {
-            var elemento = objForm.elements["Layer[" + i + "]"];
-            if (elemento && elemento.checked) {
+        if (!objForm) return;
+
+        for (var i = 0; i < objForm.elements.length; i++) {
+            var elemento = objForm.elements[i];
+
+            if (elemento && elemento.type === 'checkbox' && elemento.checked) {
                 list += elemento.value + " ";
             }
         }

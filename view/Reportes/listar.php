@@ -15,6 +15,7 @@
                         <th>Reportado por</th>
                         <th>Barrio</th>
                         <th>Dirección</th>
+                        <th>Coordenadas</th>
                         <th>Causa</th>
                         <th>Tipo choque</th>
                         <th>Lesionados</th>
@@ -33,6 +34,7 @@
                         <td><?php echo $rep['usu_nombre']?></td>
                         <td><?php echo $rep['bar_nombre']?></td>
                         <td><?php echo $rep['sra_direccion']?></td>
+                        <td><?php echo $rep['sra_coordenadas_texto'] ? $rep['sra_coordenadas_texto'] : 'Sin coordenadas'; ?></td>
                         <td><?php echo $rep['cau_descripcion']?></td>
                         <td><?php echo $rep['tch_nombre']?></td>
                         <td><?php echo $rep['sra_cantidad_lesionados']?></td>

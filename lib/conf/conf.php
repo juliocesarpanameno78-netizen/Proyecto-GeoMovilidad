@@ -3,5 +3,5 @@ $server = "localhost";
 $user = "postgres";
 $password = "3642";
 $database = "Geomovilidad";
-$port = 5432;
+$port = 5433;
 ?>

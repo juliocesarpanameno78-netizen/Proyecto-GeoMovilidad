@@ -1,7 +1,7 @@
 <?php
 
 
-include_once '../MasterModel.php';
+include_once dirname(__FILE__) . '/../MasterModel.php';
 
 class AuditoriaModel extends MasterModel {
 

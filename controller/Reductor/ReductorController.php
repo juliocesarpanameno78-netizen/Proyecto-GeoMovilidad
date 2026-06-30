@@ -42,6 +42,9 @@ class ReductorController
             redirect(getUrl("Reductor", "Reductor", "getCreate") . "&status=vacio&campo=motivo");
             return;
         }
+        $motivo = $_POST['motivo'];
+        $coord_x = isset($_POST['coord_x']) && $_POST['coord_x'] !== '' ? $_POST['coord_x'] : null;
+        $coord_y = isset($_POST['coord_y']) && $_POST['coord_y'] !== '' ? $_POST['coord_y'] : null;
 
         $ruta = null;
         if (!empty($_FILES['imagen']['name'])) {
@@ -55,7 +58,7 @@ class ReductorController
         }
         $snr_id = $obj->autoincrement("solicitudes_nuevo_reductor", "snr_id");
 
-        $sql = "INSERT INTO solicitudes_nuevo_reductor (snr_id, catr_id, tred_id, snr_descripcion, est_id, snr_imagen, usu_id) VALUES ($1, $2, $3, $4, $5, $6, $7)";
+        $sql = "INSERT INTO solicitudes_nuevo_reductor (snr_id, catr_id, tred_id, snr_descripcion, est_id, snr_imagen, usu_id, snr_coord_x, snr_coord_y) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)";
 
         $ejecutar = pg_query_params($obj->getConnection(), $sql, array(
             $snr_id,
@@ -64,7 +67,9 @@ class ReductorController
             $motivo,
             $estadosoli,
             $ruta,
-            $usuario
+            $usuario,
+            $coord_x,
+            $coord_y
         ));
 
         if ($ejecutar) {
@@ -82,6 +87,7 @@ class ReductorController
         $id_usuario = $_SESSION['id_usuario'];
 
         $sql = "SELECT r.snr_id, r.snr_descripcion, r.snr_imagen,
+                   r.snr_coord_x, r.snr_coord_y,
                        cr.catr_nombre, tr.tred_nombre, e.est_nombre, e.est_id,
                        u.usu_nombre
                 FROM solicitudes_nuevo_reductor r

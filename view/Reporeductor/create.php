@@ -11,7 +11,7 @@
                 <div class="col-md-4 mb-4">
                     <label for="nombre">Reportador:</label>
                     <input type="text" id="nombre" class="form-control p-2"
-                        value="<?php echo htmlspecialchars($_SESSION['nombre_usuario'])?>" disabled>
+                        value="<?php echo $_SESSION['nombre_usuario']?>" disabled>
                 </div>
 
                 <div class="col-md-4 mb-4">
@@ -33,7 +33,7 @@
                         <?php foreach($tiposreductor as $reduc): ?>
                         <option value="<?php echo $reduc['tred_id']?>"
                             data-categoria="<?php echo $reduc['catr_id']?>"
-                            data-descripcion="<?php echo htmlspecialchars($reduc['tred_descripcion'])?>"
+                            data-descripcion="<?php echo $reduc['tred_descripcion']?>"
                             data-orientacion="<?php echo $reduc['tred_orientacion']?>">
                             <?php echo $reduc['tred_nombre']?>
                         </option>

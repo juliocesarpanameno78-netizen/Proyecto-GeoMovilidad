@@ -26,6 +26,7 @@
                         <th>Categoría</th>
                         <th>Estado</th>
                         <th>Dirección</th>
+                        <th>Coordenadas</th>
                         <th>Descripción</th>
                         <th>Imagen</th>
                         <?php if (esAdministrador() || esFuncionario()): ?>
@@ -48,6 +49,7 @@
                             <span class="badge badge-<?php echo $badge?>"><?php echo $est?></span>
                         </td>
                         <td><?php echo $sena['sns_direccion']?></td>
+                        <td><?php echo ($sena['sns_coord_x'] !== null && $sena['sns_coord_y'] !== null) ? ($sena['sns_coord_x'] . ', ' . $sena['sns_coord_y']) : 'Sin coordenadas'; ?></td>
                         <td><?php echo $sena['sns_descripcion']?></td>
                         <td>
                             <?php if($sena['sns_imagen']): ?>

@@ -19,8 +19,8 @@
                     <option value="">-- Todas --</option>
                     <?php foreach ($tablas as $tabla):
                         $sel = ($filtro_tabla == $tabla['nombre_tabla']) ? 'selected' : '';
-                        echo "<option value='" . htmlspecialchars($tabla['nombre_tabla']) . "' $sel>"
-                           . htmlspecialchars($tabla['nombre_tabla']) . "</option>";
+                                echo "<option value='" . $tabla['nombre_tabla'] . "' $sel>"
+                                    . $tabla['nombre_tabla'] . "</option>";
                     endforeach; ?>
                 </select>
             </div>
@@ -89,7 +89,7 @@
                             <td><?php echo $r['id_auditoria']; ?></td>
                             <td>
                                 <span style="font-size:0.82rem; font-weight:600;">
-                                    <?php echo htmlspecialchars($tabla_label); ?>
+                                    <?php echo $tabla_label; ?>
                                 </span>
                             </td>
                             <td>
@@ -116,7 +116,7 @@
                                         if (isset($val) && $val !== ''): ?>
                                             <div>
                                                 <span style="color:#6c757d; font-weight:600; margin-right:4px;"><?php echo $label; ?>:</span>
-                                                <?php echo htmlspecialchars($val); ?>
+                                                <?php echo $val; ?>
                                             </div>
                                     <?php endif; endforeach; ?>
 
@@ -137,7 +137,7 @@
                                         if (isset($val) && $val !== ''): ?>
                                             <div>
                                                 <span style="color:#6c757d; font-weight:600; margin-right:4px;"><?php echo $label; ?>:</span>
-                                                <?php echo htmlspecialchars($val); ?>
+                                                <?php echo $val; ?>
                                             </div>
                                     <?php endif; endforeach; ?>
 
@@ -153,7 +153,7 @@
                                         if (isset($val) && $val !== ''): ?>
                                             <div>
                                                 <span style="color:#6c757d; font-weight:600; margin-right:4px;"><?php echo $label; ?>:</span>
-                                                <?php echo htmlspecialchars($val); ?>
+                                                <?php echo $val; ?>
                                             </div>
                                     <?php endif; endforeach; ?>
 
@@ -161,7 +161,7 @@
 
                             </td>
 
-                            <td style="font-size:0.82rem;"><?php echo htmlspecialchars($r['usuario_db']); ?></td>
+                            <td style="font-size:0.82rem;"><?php echo $r['usuario_db']; ?></td>
                             <td style="font-size:0.8rem; white-space:nowrap;"><?php echo $r['fecha_registro']; ?></td>
                         </tr>
                         <?php endforeach; ?>

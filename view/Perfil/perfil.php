@@ -53,12 +53,12 @@ include_once dirname(__FILE__) . '/../partials/navbar.php';
 
                     <h4 class="mt-3">
                         <?php
-                        echo htmlspecialchars($usuario['nombre'] . " " . $usuario['apellido']);
+                        echo $usuario['nombre'] . " " . $usuario['apellido'];
                         ?>
                     </h4>
 
                     <span class="badge bg-secondary">
-                        <?php echo htmlspecialchars($usuario['nombre_rol']); ?>
+                        <?php echo $usuario['nombre_rol']; ?>
                     </span>
 
                 </div>
@@ -76,7 +76,7 @@ include_once dirname(__FILE__) . '/../partials/navbar.php';
                             <label>Nombre</label>
 
                             <input type="text" class="form-control" name="nombre"
-                                value="<?php echo htmlspecialchars($usuario['nombre']); ?>">
+                                value="<?php echo $usuario['nombre']; ?>">
 
                         </div>
 
@@ -85,7 +85,7 @@ include_once dirname(__FILE__) . '/../partials/navbar.php';
                             <label>Apellido</label>
 
                             <input type="text" class="form-control" name="apellido"
-                                value="<?php echo htmlspecialchars($usuario['apellido']); ?>">
+                                value="<?php echo $usuario['apellido']; ?>">
 
                         </div>
 
@@ -94,7 +94,7 @@ include_once dirname(__FILE__) . '/../partials/navbar.php';
                             <label>Correo</label>
 
                             <input type="email" class="form-control" name="correo_electronico"
-                                value="<?php echo htmlspecialchars($usuario['correo_electronico']); ?>">
+                                value="<?php echo $usuario['correo_electronico']; ?>">
 
                         </div>
 
@@ -103,7 +103,7 @@ include_once dirname(__FILE__) . '/../partials/navbar.php';
                             <label>Nombre de usuario</label>
 
                             <input type="text" class="form-control" name="nombre_usuario"
-                                value="<?php echo htmlspecialchars($usuario['nombre_usuario']); ?>">
+                                value="<?php echo $usuario['nombre_usuario']; ?>">
 
                         </div>
 
@@ -112,7 +112,7 @@ include_once dirname(__FILE__) . '/../partials/navbar.php';
                             <label>Teléfono</label>
 
                             <input type="text" maxlength="10" class="form-control" name="telefono"
-                                value="<?php echo htmlspecialchars($usuario['telefono']); ?>">
+                                value="<?php echo $usuario['telefono']; ?>">
 
                         </div>
 
@@ -121,7 +121,7 @@ include_once dirname(__FILE__) . '/../partials/navbar.php';
                             <label>Dirección</label>
 
                             <input type="text" class="form-control" name="direccion"
-                                value="<?php echo htmlspecialchars($usuario['direccion']); ?>">
+                                value="<?php echo $usuario['direccion']; ?>">
 
                         </div>
                         <div class="col-md-4 mb-3">
@@ -129,7 +129,7 @@ include_once dirname(__FILE__) . '/../partials/navbar.php';
                             <label>Rol</label>
 
                             <input type="text" class="form-control"
-                                value="<?php echo htmlspecialchars($usuario['nombre_rol']); ?>" disabled>
+                                value="<?php echo $usuario['nombre_rol']; ?>" disabled>
 
                         </div>
 
@@ -138,7 +138,7 @@ include_once dirname(__FILE__) . '/../partials/navbar.php';
                             <label>Tipo de documento</label>
 
                             <input type="text" class="form-control"
-                                value="<?php echo htmlspecialchars($usuario['nombre_tipos_doc']); ?>" disabled>
+                                value="<?php echo $usuario['nombre_tipos_doc']; ?>" disabled>
 
                         </div>
 
@@ -147,7 +147,7 @@ include_once dirname(__FILE__) . '/../partials/navbar.php';
                             <label>Número de documento</label>
 
                             <input type="text" class="form-control"
-                                value="<?php echo htmlspecialchars($usuario['numero_identificacion']); ?>" disabled>
+                                value="<?php echo $usuario['numero_identificacion']; ?>" disabled>
 
                         </div>
 
