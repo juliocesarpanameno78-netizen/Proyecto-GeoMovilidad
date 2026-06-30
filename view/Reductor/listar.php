@@ -15,6 +15,7 @@
                         <th>Categoría</th>
                         <th>Tipo de reductor</th>
                         <th>Descripción</th>
+                        <th>Coordenadas</th>
                         <th>Estado</th>
                         <th>Imagen</th>
                         <?php if (esAdministrador() || esFuncionario()): ?>
@@ -30,6 +31,7 @@
                         <td><?php echo $r['catr_nombre']?></td>
                         <td><?php echo $r['tred_nombre']?></td>
                         <td><?php echo $r['snr_descripcion']?></td>
+                        <td><?php echo ($r['snr_coord_x'] !== null && $r['snr_coord_y'] !== null) ? ($r['snr_coord_x'] . ', ' . $r['snr_coord_y']) : 'Sin coordenadas'; ?></td>
                         <td>
                             <?php $badge = $r['est_nombre'] == 'Pendiente' ? 'warning' : ($r['est_nombre'] == 'Resuelto' ? 'success' : ($r['est_nombre'] == 'Rechazado' ? 'danger' : 'info')); ?>
                             <span class="badge badge-<?php echo $badge?>"><?php echo $r['est_nombre']?></span>

@@ -14,6 +14,7 @@
                         <th>Reportado por</th>
                         <th>Tipo de daño</th>
                         <th>Descripción</th>
+                        <th>Coordenadas</th>
                         <th>Estado</th>
                         <th>Imagen</th>
                         <?php if (esAdministrador() || esFuncionario()): ?>
@@ -28,6 +29,7 @@
                         <td><?php echo $via['usu_nombre']?></td>
                         <td><?php echo $via['cdan_nombre']?></td>
                         <td><?php echo $via['svme_descripcion_detallada']?></td>
+                        <td><?php echo ($via['svme_coord_x'] !== null && $via['svme_coord_y'] !== null) ? ($via['svme_coord_x'] . ', ' . $via['svme_coord_y']) : 'Sin coordenadas'; ?></td>
                         <td>
                             <?php $b = $via['est_nombre'] == 'Pendiente' ? 'warning' : ($via['est_nombre'] == 'Resuelto' ? 'success' : ($via['est_nombre'] == 'Rechazado' ? 'danger' : 'info')); ?>
                             <span class="badge badge-<?php echo $b?>">

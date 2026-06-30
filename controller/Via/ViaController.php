@@ -26,6 +26,8 @@ class ViaController
         $tipovia     = $_POST['tipovia'];
         $descripcion = $_POST['descripcion'];
         $cdan_id     = $_POST['tipodanio'];
+        $coord_x     = isset($_POST['coord_x']) && $_POST['coord_x'] !== '' ? $_POST['coord_x'] : null;
+        $coord_y     = isset($_POST['coord_y']) && $_POST['coord_y'] !== '' ? $_POST['coord_y'] : null;
 
         $ruta = null;
         if (!empty($_FILES['imagenes']['name'])) {
@@ -41,8 +43,8 @@ class ViaController
         $svme_id = $obj->autoincrement("solicitudes_via_mal_estado", "svme_id");
 
         $sql = "INSERT INTO solicitudes_via_mal_estado
-                    (svme_id, cdan_id, est_id, svme_descripcion_detallada, svme_imagen, usu_id)
-                VALUES ($1, $2, $3, $4, $5, $6)";
+                    (svme_id, cdan_id, est_id, svme_descripcion_detallada, svme_imagen, usu_id, svme_coord_x, svme_coord_y)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
 
         $ejecutar = pg_query_params($obj->getConnection(), $sql, array(
             $svme_id,
@@ -50,7 +52,9 @@ class ViaController
             1,           // estado pendiente
             $descripcion,
             $ruta,
-            $usuario
+            $usuario,
+            $coord_x,
+            $coord_y
         ));
 
         if ($ejecutar) {
@@ -69,6 +73,7 @@ class ViaController
         $id_usuario = $_SESSION['id_usuario'];
 
         $sql = "SELECT v.svme_id, v.svme_descripcion_detallada, v.svme_imagen,
+                   v.svme_coord_x, v.svme_coord_y,
                        c.cdan_nombre, e.est_nombre, e.est_id,
                        u.usu_nombre
                 FROM solicitudes_via_mal_estado v

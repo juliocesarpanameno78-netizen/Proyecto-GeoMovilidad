@@ -1,6 +1,46 @@
 
 <div class="container-fluid">
     <div class="page-inner">
+        <?php if (isset($_SESSION['error_reporte'])): ?>
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <?php echo $_SESSION['error_reporte']; unset($_SESSION['error_reporte']); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <?php endif; ?>
+
+        <?php
+        $estadoFormulario = array();
+        if (isset($_GET['state']) && $_GET['state'] !== '') {
+            parse_str($_GET['state'], $estadoFormulario);
+        }
+
+        $lesionado = isset($estadoFormulario['leccionado']) ? trim($estadoFormulario['leccionado']) : '';
+        $direccion = isset($estadoFormulario['direccion']) ? trim($estadoFormulario['direccion']) : '';
+        $causaSeleccionada = isset($estadoFormulario['causas']) ? trim($estadoFormulario['causas']) : '';
+        $tipoChoqueSeleccionado = isset($estadoFormulario['tipochoque']) ? trim($estadoFormulario['tipochoque']) : '';
+        $cateChoqueSeleccionado = isset($estadoFormulario['catechoque']) ? trim($estadoFormulario['catechoque']) : '';
+        $cativehiculo = isset($estadoFormulario['cativehiculo']) ? trim($estadoFormulario['cativehiculo']) : '';
+        $barrioSeleccionado = isset($estadoFormulario['barrio']) ? trim($estadoFormulario['barrio']) : '';
+        $tipovehiculoSeleccionado = isset($estadoFormulario['tipovehiculo']) ? trim($estadoFormulario['tipovehiculo']) : '';
+        $marca = isset($estadoFormulario['marca']) ? trim($estadoFormulario['marca']) : '';
+        $placa = isset($estadoFormulario['placa']) ? trim($estadoFormulario['placa']) : '';
+        $color = isset($estadoFormulario['color']) ? trim($estadoFormulario['color']) : '';
+        $descripcion = isset($estadoFormulario['descripcion']) ? trim($estadoFormulario['descripcion']) : '';
+        $coord_x = '';
+        $coord_y = '';
+
+        if (isset($_GET['coords'])) {
+            $partes = explode(',', $_GET['coords']);
+            if (count($partes) === 2) {
+                $coord_x = trim($partes[0]);
+                $coord_y = trim($partes[1]);
+            }
+        }
+
+        $url_retorno = getUrl('Reportes', 'Reportes', 'getCreate');
+        $url_mapa = getUrl('Mapa', 'Mapa', 'getSelectLocation') . '&return=' . urlencode($url_retorno) . '&param=coords';
+        ?>
+
         <div class="row mt-5">
             <div class="col-md-5">
                 <h3 class="m-3 display-3 text-nowrap">Reporte de accidentes</h3>
@@ -12,15 +52,15 @@
             <div class="row mt-5">
                 <div class="col-md-4 mb-4">
                     <label for="nombre">Reportador:</label>
-                    <input type="text" id="nombre" class="form-control p-2" value="<?php echo htmlspecialchars($_SESSION['nombre_usuario']) ?>"disabled>
+                    <input type="text" id="nombre" class="form-control p-2" value="<?php echo ($_SESSION['nombre_usuario']) ?>"disabled>
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="leccionado">Número de lesionados:</label>
-                    <input type="number" name="leccionado" id="leccionado" class="form-control p-2" min=0>
+                    <input type="number" name="leccionado" id="leccionado" class="form-control p-2" min=0 value="<?php echo $lesionado; ?>">
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="direccion">Dirección:</label>
-                    <input type="text" name="direccion" id="dirección" class="form-control p-2" placeholder="Ejemplo: Carrera 1 #0-0">
+                    <input type="text" name="direccion" id="dirección" class="form-control p-2" placeholder="Ejemplo: Carrera 1 #0-0" value="<?php echo $direccion; ?>">
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="causas">Causas del accidente</label><br>
@@ -29,7 +69,7 @@
                         <?php 
                             foreach($causas as $cau){
                         ?>
-                        <option value="<?php echo $cau['cau_id'];?>">
+                        <option value="<?php echo $cau['cau_id'];?>" <?php echo ($causaSeleccionada == $cau['cau_id']) ? 'selected' : ''; ?>>
                             <?php echo $cau['cau_descripcion']?>
                         </option>
                         <?php
@@ -44,7 +84,7 @@
                         <?php 
                             foreach($catechoque as $cho){
                         ?>
-                        <option value="<?php echo $cho['catch_id'];?>">
+                        <option value="<?php echo $cho['catch_id'];?>" <?php echo ($tipoChoqueSeleccionado == $cho['catch_id']) ? 'selected' : ''; ?>>
                             <?php echo $cho['catch_nombre']?>
                         </option>
                         <?php
@@ -60,6 +100,7 @@
                             foreach($tipochoque as $choque){
                         ?>
                         <option value="<?php echo $choque['tch_id'];?>"
+                            <?php echo ($cateChoqueSeleccionado == $choque['tch_id']) ? 'selected' : ''; ?>
                             data-choqueCon="<?php echo $choque['catch_id']; ?>">
                             <?php echo $choque['tch_nombre']?>
                         </option>
@@ -70,7 +111,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="cativehiculo">Cantidad de vehículos afectados:</label>
-                    <input type="number" name="cativehiculo" id="cativehiculo" class="form-control p-2" placeholder="" min=0>
+                    <input type="number" name="cativehiculo" id="cativehiculo" class="form-control p-2" placeholder="" min=0 value="<?php echo $cativehiculo; ?>">
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="barrio">Barrio:</label><br>
@@ -79,7 +120,7 @@
                         <?php 
                             foreach($barrio as $bar){
                         ?>
-                        <option value="<?php echo $bar['bar_id'];?>">
+                        <option value="<?php echo $bar['bar_id'];?>" <?php echo ($barrioSeleccionado == $bar['bar_id']) ? 'selected' : ''; ?>>
                             <?php echo $bar['bar_nombre']?>
                         </option>
                         <?php
@@ -98,7 +139,7 @@
                         <?php 
                             foreach($tipovehi as $vehi){
                         ?>
-                        <option value="<?php echo $vehi['tveh_id'];?>">
+                        <option value="<?php echo $vehi['tveh_id'];?>" <?php echo ($tipovehiculoSeleccionado == $vehi['tveh_id']) ? 'selected' : ''; ?>>
                             <?php echo $vehi['tveh_nombre']?>
                         </option>
                         <?php
@@ -108,19 +149,31 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="marca">Marca y modelo del vehículo:</label>
-                    <input type="text" name="marca" id="marca" class="form-control p-2" placeholder="">
+                    <input type="text" name="marca" id="marca" class="form-control p-2" placeholder="" value="<?php echo $marca; ?>">
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="placa">Placa del vehículo:</label>
-                    <input type="text" name="placa" id="placa" class="form-control p-2" placeholder="">
+                    <input type="text" name="placa" id="placa" class="form-control p-2" placeholder="" value="<?php echo $placa; ?>">
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="color">Color del vehículo:</label>
-                    <input type="text" name="color" id="color" class="form-control p-2" placeholder="">
+                    <input type="text" name="color" id="color" class="form-control p-2" placeholder="" value="<?php echo $color; ?>">
                 </div>
                 <div class="col-md-4 mb-4">
                     <label for="descripcion">Descripción:</label>
-                    <input type="text" name="descripcion" id="descripcion" class="form-control p-2" placeholder="">
+                    <input type="text" name="descripcion" id="descripcion" class="form-control p-2" placeholder="" value="<?php echo $descripcion; ?>">
+                </div>
+
+                <div class="col-md-8 mb-4">
+                    <label>Ubicación seleccionada</label>
+                    <input type="text" class="form-control p-2" readonly
+                        value="<?php echo ($coord_x !== '' && $coord_y !== '') ? ($coord_x . ', ' . $coord_y) : 'Sin coordenadas'; ?>">
+                    <input type="hidden" name="coord_x" value="<?php echo $coord_x; ?>">
+                    <input type="hidden" name="coord_y" value="<?php echo $coord_y; ?>">
+                </div>
+
+                <div class="col-md-4 mb-4 d-flex align-items-end">
+                    <a href="<?php echo $url_mapa; ?>" id="btnMapaReportes" class="btn btn-outline-primary w-100">Seleccionar ubicación en mapa</a>
                 </div>
             </div>
 
@@ -130,8 +183,14 @@
         </form>
     </div>
 </div>
+
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector('form[action="<?php echo getUrl("Reportes","Reportes","postCreate")?>"]');
+    const botonMapa = document.getElementById('btnMapaReportes');
+    const urlMapaBase = '<?php echo getUrl('Mapa', 'Mapa', 'getSelectLocation'); ?>';
+    const urlRetornoBase = '<?php echo getUrl('Reportes', 'Reportes', 'getCreate'); ?>';
 
     <?php if(isset($_GET['status']) && $_GET['status'] == 'exito'): ?>
     swal({
@@ -173,14 +232,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Cuando se cambia el Tipo de Señal
-    selectTipoChoque.addEventListener('change', function () {
-        const opcionSeleccionada = this.options[this.selectedIndex];
-        
-        // Con esto se trae la información de los atributos data-*
-        const choquefue = opcionSeleccionada.getAttribute('data-choqueCon');
+    if (botonMapa && form) {
+        botonMapa.addEventListener('click', function (event) {
+            event.preventDefault();
 
-        selectTipoChoquefue.value = choque ? choque : '';
-    });
+            const datos = new FormData(form);
+            const parametros = new URLSearchParams();
+
+            ['leccionado', 'direccion', 'causas', 'tipochoque', 'catechoque', 'cativehiculo', 'barrio', 'tipovehiculo', 'marca', 'placa', 'color', 'descripcion'].forEach(function (nombre) {
+                const valor = datos.get(nombre);
+                if (valor !== null && valor !== '') {
+                    parametros.set(nombre, valor);
+                }
+            });
+
+            const separador = urlMapaBase.indexOf('?') === -1 ? '?' : '&';
+            const state = parametros.toString();
+            window.location.href = urlMapaBase + separador + 'return=' + encodeURIComponent(urlRetornoBase) + '&param=coords' + (state ? '&state=' + encodeURIComponent(state) : '');
+        });
+    }
+
 });
 </script>

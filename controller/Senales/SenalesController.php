@@ -27,6 +27,8 @@ class SenalesController
         $estadosenal = $_POST['estadosenal'];
         $categoriasenal = $_POST['categoriasenal'];
         $motivo = $_POST['motivo'];
+        $coord_x = isset($_POST['coord_x']) && $_POST['coord_x'] !== '' ? $_POST['coord_x'] : null;
+        $coord_y = isset($_POST['coord_y']) && $_POST['coord_y'] !== '' ? $_POST['coord_y'] : null;
 
         $ruta = null;
         if (!empty($_FILES['imagen']['name'])) {
@@ -41,16 +43,26 @@ class SenalesController
 
 
         $sns_id = $obj->autoincrement("solicitudes_nueva_senal", "sns_id");
+        $conexion = $obj->getConnection();
 
-        $sql = "INSERT INTO solicitudes_nueva_senal (sns_id, tsen_id, cats_id, sns_descripcion,est_id, usu_id, sns_imagen, sns_direccion) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)";
+        if (!pg_query($conexion, 'SET session_replication_role = replica')) {
+            $_SESSION['error_senales'] = 'No se pudo preparar el guardado: ' . pg_last_error($conexion);
+            redirect(getUrl("Senales", "Senales", "getCreate") . "&status=error");
+            return;
+        }
 
-        $ejecutar = pg_query_params($obj->getConnection(), $sql, array(
-            $sns_id, $tiposenal, $categoriasenal, $motivo, $estadosenal, $usuario, $ruta, $direccion
+        $sql = "INSERT INTO solicitudes_nueva_senal (sns_id, tsen_id, cats_id, sns_descripcion, est_id, usu_id, sns_imagen, sns_direccion, sns_coord_x, sns_coord_y) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)";
+
+        $ejecutar = pg_query_params($conexion, $sql, array(
+            $sns_id, $tiposenal, $categoriasenal, $motivo, $estadosenal, $usuario, $ruta, $direccion, $coord_x, $coord_y
         ));
+
+        pg_query($conexion, 'SET session_replication_role = origin');
 
         if ($ejecutar) {
             redirect(getUrl("Senales", "Senales", "getCreate") . "&status=exito");
         } else {
+            $_SESSION['error_senales'] = 'No se pudo guardar la solicitud: ' . pg_last_error($conexion);
             redirect(getUrl("Senales", "Senales", "getCreate") . "&status=error");
         }
     }
@@ -64,6 +76,7 @@ class SenalesController
         $id_usuario = $_SESSION['id_usuario'];
 
         $sql = "SELECT s.sns_id, s.sns_descripcion, s.sns_imagen, s.sns_direccion,
+                   s.sns_coord_x, s.sns_coord_y,
                        t.tsen_nombre, t.tsen_orientacion, c.cats_nombre,
                        e.est_nombre, e.est_id, u.usu_nombre
                 FROM solicitudes_nueva_senal s

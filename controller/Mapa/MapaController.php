@@ -4,7 +4,7 @@ class MapaController
 {
     public function getSelectLocation()
     {
-        require_once '../lib/ayudantes.php';
+        require_once '../lib/helpers.php';
         require_once '../model/MasterModel.php';
 
         $returnUrl = isset($_GET['return']) ? $_GET['return'] : '';

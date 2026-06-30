@@ -86,7 +86,7 @@
 
                                     foreach ($accidentes_por_barrio as $a) {
                                         echo "<tr>";
-                                        echo "<td>" . htmlspecialchars($a['bar_nombre']) . "</td>";
+                                        echo "<td>" . $a['bar_nombre'] . "</td>";
                                         echo "<td>" . $a['total'] . "</td>";
                                         echo "</tr>";
                                     }
@@ -179,13 +179,13 @@
                                 echo "<tr>";
                                 echo "<td>" . $r['sra_id'] . "</td>";
                                 echo "<td>" . $r['sra_fecha'] . "</td>";
-                                echo "<td>" . htmlspecialchars($r['bar_nombre']) . "</td>";
-                                echo "<td>" . htmlspecialchars($r['cau_descripcion']) . "</td>";
-                                echo "<td>" . htmlspecialchars($r['tch_nombre']) . "</td>";
+                                echo "<td>" . $r['bar_nombre'] . "</td>";
+                                echo "<td>" . $r['cau_descripcion'] . "</td>";
+                                echo "<td>" . $r['tch_nombre'] . "</td>";
                                 echo "<td>" . $r['sra_cantidad_lesionados'] . "</td>";
                                 echo "<td>" . $r['sra_cantidad_vehiculo'] . "</td>";
-                                echo "<td>" . htmlspecialchars($r['sra_direccion']) . "</td>";
-                                echo "<td>" . htmlspecialchars($r['usu_nombre']) . "</td>";
+                                echo "<td>" . $r['sra_direccion'] . "</td>";
+                                echo "<td>" . $r['usu_nombre'] . "</td>";
                                 echo "</tr>";
 
                             }
@@ -218,7 +218,7 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($resumen_solicitudes as $r) {
-                                        echo "<tr><td>" . htmlspecialchars($r['tipo']) . "</td><td>" . $r['total'] . "</td></tr>";
+                                        echo "<tr><td>" . $r['tipo'] . "</td><td>" . $r['total'] . "</td></tr>";
                                     } ?>
                                 </tbody>
                             </table>
@@ -242,7 +242,7 @@
                                     if (count($senales_estado) == 0)
                                         echo "<tr><td colspan='2' class='text-center'>Sin datos</td></tr>";
                                     foreach ($senales_estado as $r) {
-                                        echo "<tr><td>" . htmlspecialchars($r['est_nombre']) . "</td><td>" . $r['total'] . "</td></tr>";
+                                        echo "<tr><td>" . $r['est_nombre'] . "</td><td>" . $r['total'] . "</td></tr>";
                                     } ?>
                                 </tbody>
                             </table>
@@ -266,7 +266,7 @@
                                     if (count($reductores_estado) == 0)
                                         echo "<tr><td colspan='2' class='text-center'>Sin datos</td></tr>";
                                     foreach ($reductores_estado as $r) {
-                                        echo "<tr><td>" . htmlspecialchars($r['est_nombre']) . "</td><td>" . $r['total'] . "</td></tr>";
+                                        echo "<tr><td>" . $r['est_nombre'] . "</td><td>" . $r['total'] . "</td></tr>";
                                     } ?>
                                 </tbody>
                             </table>
@@ -292,7 +292,7 @@
                                     if (count($vias_estado) == 0)
                                         echo "<tr><td colspan='2' class='text-center'>Sin datos</td></tr>";
                                     foreach ($vias_estado as $r) {
-                                        echo "<tr><td>" . htmlspecialchars($r['est_nombre']) . "</td><td>" . $r['total'] . "</td></tr>";
+                                        echo "<tr><td>" . $r['est_nombre'] . "</td><td>" . $r['total'] . "</td></tr>";
                                     } ?>
                                 </tbody>
                             </table>
@@ -323,7 +323,7 @@
                                     if (count($pqrsf_estado) == 0)
                                         echo "<tr><td colspan='2' class='text-center'>Sin datos</td></tr>";
                                     foreach ($pqrsf_estado as $r) {
-                                        echo "<tr><td>" . htmlspecialchars($r['estado']) . "</td><td>" . $r['total'] . "</td></tr>";
+                                        echo "<tr><td>" . $r['estado'] . "</td><td>" . $r['total'] . "</td></tr>";
                                     } ?>
                                 </tbody>
                             </table>
@@ -347,7 +347,7 @@
                                     if (count($pqrsf_tipo) == 0)
                                         echo "<tr><td colspan='2' class='text-center'>Sin datos</td></tr>";
                                     foreach ($pqrsf_tipo as $r) {
-                                        echo "<tr><td>" . htmlspecialchars($r['tipo']) . "</td><td>" . $r['total'] . "</td></tr>";
+                                        echo "<tr><td>" . $r['tipo'] . "</td><td>" . $r['total'] . "</td></tr>";
                                     } ?>
                                 </tbody>
                             </table>
@@ -377,7 +377,7 @@
                                     if (count($usuarios_rol) == 0)
                                         echo "<tr><td colspan='2' class='text-center'>Sin datos</td></tr>";
                                     foreach ($usuarios_rol as $r) {
-                                        echo "<tr><td>" . htmlspecialchars($r['nombre_rol']) . "</td><td>" . $r['total'] . "</td></tr>";
+                                        echo "<tr><td>" . $r['nombre_rol'] . "</td><td>" . $r['total'] . "</td></tr>";
                                     } ?>
                                 </tbody>
                             </table>
