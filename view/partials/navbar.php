@@ -93,9 +93,7 @@
 
           <ul class="nav nav-secondary">
             <?php if (
-              tienePermiso("Mis Solicitudes", "Listar") ||
-              tienePermiso("Mis Reportes", "Listar") ||
-              tienePermiso("Mis PQRSF", "Listar")
+              tienePermiso("Mi Historial", "Listar")
             ): ?>
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#historial" class="collapsed" aria-expanded="false">
