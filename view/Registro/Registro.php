@@ -55,6 +55,24 @@ $tipos_documento = $obj->getTiposDocumento();
                                 Ocurrió un error al registrar el usuario.
                             </div>';
                         break;
+
+                    case 'vacio':
+                        $campo = isset($_GET['campo']) ? $_GET['campo'] : '';
+                        $mensajes = array(
+                            'tipo_documento'        => 'Debes seleccionar el tipo de documento.',
+                            'identificacion'        => 'Debes ingresar el número de identificación.',
+                            'nombre'                => 'Debes ingresar el nombre.',
+                            'apellido'              => 'Debes ingresar el apellido.',
+                            'correo'                => 'Debes ingresar el correo electrónico.',
+                            'telefono'              => 'Debes ingresar el teléfono.',
+                            'direccion'             => 'Debes ingresar la dirección.',
+                            'usuario'               => 'Debes ingresar el nombre de usuario.',
+                            'contrasena'            => 'Debes ingresar la contraseña.',
+                            'confirmar_contrasena'  => 'Debes confirmar la contraseña.'
+                        );
+                        $mensaje = isset($mensajes[$campo]) ? $mensajes[$campo] : 'Debes completar todos los campos obligatorios.';
+                        echo '<div class="alert alert-warning" role="alert">' . htmlspecialchars($mensaje) . '</div>';
+                        break;
                 }
             }
             ?>

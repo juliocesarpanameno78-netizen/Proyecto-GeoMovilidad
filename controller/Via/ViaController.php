@@ -23,9 +23,26 @@ class ViaController
         
         $obj     = new ViaModel();
         $usuario     = $_SESSION['id_usuario'];
-        $tipovia     = $_POST['tipovia'];
-        $descripcion = $_POST['descripcion'];
-        $cdan_id     = $_POST['tipodanio'];
+        $tipovia     = isset($_POST['tipovia']) ? trim($_POST['tipovia']) : '';
+        $descripcion = isset($_POST['descripcion']) ? trim($_POST['descripcion']) : '';
+        $cdan_id     = isset($_POST['tipodanio']) ? trim($_POST['tipodanio']) : '';
+
+        // Validación de campos obligatorios: si algo falta, no se inserta nada
+        // y se redirige mostrando el mensaje correspondiente.
+        if ($tipovia === '') {
+            redirect(getUrl("Via", "Via", "getCreate") . "&status=vacio&campo=tipovia");
+            return;
+        }
+
+        if ($cdan_id === '') {
+            redirect(getUrl("Via", "Via", "getCreate") . "&status=vacio&campo=tipodanio");
+            return;
+        }
+
+        if ($descripcion === '') {
+            redirect(getUrl("Via", "Via", "getCreate") . "&status=vacio&campo=descripcion");
+            return;
+        }
 
         $ruta = null;
         if (!empty($_FILES['imagenes']['name'])) {
