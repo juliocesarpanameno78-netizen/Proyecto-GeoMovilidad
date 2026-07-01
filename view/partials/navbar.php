@@ -134,179 +134,193 @@
                 </div>
               </li>
             <?php endif; ?>
-</ul>
-            <!-- Separación Funcionario -->
+          </ul>
+          <!-- Separación Funcionario -->
 
 
-            <ul class="nav nav-secondary">
+          <ul class="nav nav-secondary">
 
-              <?php if (
-                tienePermiso("Gestion de Solicitudes", "Listar") &&
-                tienePermiso("Gestion de Solicitudes", "Editar")
-              ): ?>
-                <li class="nav-item active">
-                  <a data-bs-toggle="collapse" href="#gestionSolicitudes" class="collapsed" aria-expanded="false">
-                    <i class="fas fa-tasks"></i>
-                    <p>Gestión de Solicitudes</p>
-                    <span class="caret"></span>
-                  </a>
+            <?php if (
+              tienePermiso("Gestion de Solicitudes", "Listar") &&
+              tienePermiso("Gestion de Solicitudes", "Editar")
+            ): ?>
+              <li class="nav-item active">
+                <a data-bs-toggle="collapse" href="#gestionSolicitudes" class="collapsed" aria-expanded="false">
+                  <i class="fas fa-tasks"></i>
+                  <p>Gestión de Solicitudes</p>
+                  <span class="caret"></span>
+                </a>
 
-                  <div class="collapse" id="gestionSolicitudes">
-                    <ul class="nav nav-collapse">
-                      <li>
-                        <a href="<?php echo getUrl("Solicitudes", "Solicitudes", "getListar") ?>">
-                          <span class="sub-item">Listar Solicitudes</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              <?php endif; ?>
-
-
-              <?php if (
-                tienePermiso("Reportes", "Listar")
-              ): ?>
-                <li class="nav-item active">
-                  <a data-bs-toggle="collapse" href="#reportesFuncionario" class="collapsed" aria-expanded="false">
-                    <i class="fas fa-chart-bar"></i>
-                    <p>Reportes</p>
-                    <span class="caret"></span>
-                  </a>
-
-                  <div class="collapse" id="reportesFuncionario">
-                    <ul class="nav nav-collapse">
-                      <li>
-                        <a href="<?php echo getUrl("Reportes", "Reportes", "getListar") ?>">
-                          <span class="sub-item">Listar Reportes</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              <?php endif; ?>
+                <div class="collapse" id="gestionSolicitudes">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="<?php echo getUrl("Solicitudes", "Solicitudes", "getListar") ?>">
+                        <span class="sub-item">Listar Solicitudes</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            <?php endif; ?>
 
 
-              <?php if (
-                tienePermiso("PQRSF", "Listar") &&
-                tienePermiso("PQRSF", "Editar")
-              ): ?>
-                <li class="nav-item active">
-                  <a data-bs-toggle="collapse" href="#atencionPqrsf" class="collapsed" aria-expanded="false">
-                    <i class="fas fa-headset"></i>
-                    <p>Atención PQRSF</p>
-                    <span class="caret"></span>
-                  </a>
+            <?php if (
+              tienePermiso("Reportes", "Listar")
+            ): ?>
+              <li class="nav-item active">
+                <a data-bs-toggle="collapse" href="#reportesFuncionario" class="collapsed" aria-expanded="false">
+                  <i class="fas fa-chart-bar"></i>
+                  <p>Reportes</p>
+                  <span class="caret"></span>
+                </a>
 
-                  <div class="collapse" id="atencionPqrsf">
-                    <ul class="nav nav-collapse">
-                      <li>
-                        <a href="<?php echo getUrl("Pqrfs", "Pqrfs", "getListar") ?>">
-                          <span class="sub-item">Atender PQRSF</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              <?php endif; ?>
-
-            </ul>
-
-            <!-- Separación Administrador -->
-            <ul class="nav nav-secondary">
-
-              <?php if (tienePermiso("Gestion de Roles", "Listar")): ?>
-                <li class="nav-item active">
-                  <a data-bs-toggle="collapse" href="#roles" class="collapsed" aria-expanded="false">
-                    <i class="fas fa-user-shield"></i>
-                    <p>Gestión de Roles</p>
-                    <span class="caret"></span>
-                  </a>
-
-                  <div class="collapse" id="roles">
-                    <ul class="nav nav-collapse">
-                      <li>
-                        <a href="<?php echo getUrl("Roles", "Roles", "getCreate") ?>">
-                          <span class="sub-item">Registrar Rol</span>
-                        </a>
-                      </li>
-
-                      <li>
-                        <a href="<?php echo getUrl("Roles", "Roles", "getRoles") ?>">
-                          <span class="sub-item">Listar Roles</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              <?php endif; ?>
+                <div class="collapse" id="reportesFuncionario">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="<?php echo getUrl("Reportes", "Reportes", "getListar") ?>">
+                        <span class="sub-item">Listar Reportes</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            <?php endif; ?>
 
 
-              <?php if (tienePermiso("Gestion de Usuarios", "Listar")): ?>
-                <li class="nav-item active">
-                  <a data-bs-toggle="collapse" href="#usuarios" class="collapsed" aria-expanded="false">
-                    <i class="fas fa-users"></i>
-                    <p>Gestión de Usuarios</p>
-                    <span class="caret"></span>
-                  </a>
+            <?php if (
+              tienePermiso("PQRSF", "Listar") &&
+              tienePermiso("PQRSF", "Editar")
+            ): ?>
+              <li class="nav-item active">
+                <a data-bs-toggle="collapse" href="#atencionPqrsf" class="collapsed" aria-expanded="false">
+                  <i class="fas fa-headset"></i>
+                  <p>Atención PQRSF</p>
+                  <span class="caret"></span>
+                </a>
 
-                  <div class="collapse" id="usuarios">
-                    <ul class="nav nav-collapse">
-                      <li>
-                        <a href="<?php echo getUrl("Usuarios", "Usuarios", "getUsuarios") ?>">
-                          <span class="sub-item">Listar Usuarios</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              <?php endif; ?>
+                <div class="collapse" id="atencionPqrsf">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="<?php echo getUrl("Pqrfs", "Pqrfs", "getListar") ?>">
+                        <span class="sub-item">Atender PQRSF</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            <?php endif; ?>
+
+          </ul>
+
+          <!-- Separación Administrador -->
+          <ul class="nav nav-secondary">
+
+            <?php if (tienePermiso("Gestion de Roles", "Listar")): ?>
+              <li class="nav-item active">
+                <a data-bs-toggle="collapse" href="#roles" class="collapsed" aria-expanded="false">
+                  <i class="fas fa-user-shield"></i>
+                  <p>Gestión de Roles</p>
+                  <span class="caret"></span>
+                </a>
+
+                <div class="collapse" id="roles">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="<?php echo getUrl("Roles", "Roles", "getCreate") ?>">
+                        <span class="sub-item">Registrar Rol</span>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="<?php echo getUrl("Roles", "Roles", "getRoles") ?>">
+                        <span class="sub-item">Listar Roles</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            <?php endif; ?>
+
+
+            <?php if (tienePermiso("Gestion de Usuarios", "Listar")): ?>
+              <li class="nav-item active">
+                <a data-bs-toggle="collapse" href="#usuarios" class="collapsed" aria-expanded="false">
+                  <i class="fas fa-users"></i>
+                  <p>Gestión de Usuarios</p>
+                  <span class="caret"></span>
+                </a>
+
+                <div class="collapse" id="usuarios">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="<?php echo getUrl("Usuarios", "Usuarios", "getUsuarios") ?>">
+                        <span class="sub-item">Listar Usuarios</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            <?php endif; ?>
 
 
 
-              <?php if (tienePermiso("Auditoria", "Listar")): ?>
-                <li class="nav-item active">
-                  <a data-bs-toggle="collapse" href="#auditoria" class="collapsed" aria-expanded="false">
-                    <i class="fas fa-clipboard-list"></i>
-                    <p>Auditoría</p>
-                    <span class="caret"></span>
-                  </a>
+            <?php if (tienePermiso("Auditoria", "Listar")): ?>
+              <li class="nav-item active">
+                <a data-bs-toggle="collapse" href="#auditoria" class="collapsed" aria-expanded="false">
+                  <i class="fas fa-clipboard-list"></i>
+                  <p>Auditoría</p>
+                  <span class="caret"></span>
+                </a>
 
-                  <div class="collapse" id="auditoria">
-                    <ul class="nav nav-collapse">
-                      <li>
-                        <a href="<?php echo getUrl("Auditoria", "Auditoria", "getListar") ?>">
-                          <span class="sub-item">Ver registros</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              <?php endif; ?>
+                <div class="collapse" id="auditoria">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="<?php echo getUrl("Auditoria", "Auditoria", "getListar") ?>">
+                        <span class="sub-item">Ver registros</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            <?php endif; ?>
 
 
-              <?php if (tienePermiso("Reportes Globales", "Listar")): ?>
-                <li class="nav-item active">
-                  <a data-bs-toggle="collapse" href="#reportesGlobales" class="collapsed" aria-expanded="false">
-                    <i class="fas fa-chart-line"></i>
-                    <p>Reportes Globales</p>
-                    <span class="caret"></span>
-                  </a>
+            <?php if (tienePermiso("Reportes Globales", "Listar")): ?>
+              <li class="nav-item active">
+                <a data-bs-toggle="collapse" href="#reportesGlobales" class="collapsed" aria-expanded="false">
+                  <i class="fas fa-chart-line"></i>
+                  <p>Reportes Globales</p>
+                  <span class="caret"></span>
+                </a>
 
-                  <div class="collapse" id="reportesGlobales">
-                    <ul class="nav nav-collapse">
-                      <li>
-                        <a href="<?php echo getUrl("ReportesGlobales", "ReportesGlobales", "getListar") ?>">
-                          <span class="sub-item">Ver reportes globales</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              <?php endif; ?>
-            </ul>
+                <div class="collapse" id="reportesGlobales">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="<?php echo getUrl("ReportesGlobales", "ReportesGlobales", "getListar") ?>">
+                        <span class="sub-item">Ver reportes globales</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            <?php endif; ?>
+          </ul>
+          <ul class="nav nav-secondary">
 
-            <!-- comentario épico -->
+            <li class="nav-item active">
+
+              <a href="<?php echo getUrl("Acerca", "Acerca", "getAcerca"); ?>">
+
+                <i class="fas fa-info-circle"></i>
+
+                <p>Acerca de</p>
+
+              </a>
+
+            </li>
+
+          </ul>
+          <!-- comentario épico -->
 
         </div>
       </div>
