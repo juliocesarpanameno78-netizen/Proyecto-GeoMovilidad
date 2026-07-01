@@ -34,6 +34,8 @@ class ReporeductorController
         $direccion     = isset($_POST['direccion']) ? trim($_POST['direccion']) : '';
         $descripcion   = isset($_POST['descripcion']) ? trim($_POST['descripcion']) : '';
         $tipodanio     = isset($_POST['tipodanio']) ? trim($_POST['tipodanio']) : '';
+        $coord_x       = isset($_POST['coord_x']) && $_POST['coord_x'] !== '' ? $_POST['coord_x'] : null;
+        $coord_y       = isset($_POST['coord_y']) && $_POST['coord_y'] !== '' ? $_POST['coord_y'] : null;
 
         
         if ($categoriareduc === '') {
@@ -79,8 +81,8 @@ class ReporeductorController
         $srme_id = $obj->autoincrement("solicitudes_reductor_mal_estado", "srme_id");
 
         $sql = "INSERT INTO solicitudes_reductor_mal_estado
-                    (srme_id, catr_id, tred_id, srme_tipo_danio, srme_descripcion, srme_imagen)
-                VALUES ($1, $2, $3, $4, $5, $6)";
+                    (srme_id, catr_id, tred_id, srme_tipo_danio, srme_descripcion, srme_imagen, srme_coord_x, srme_coord_y)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
 
         $ejecutar = pg_query_params($obj->getConnection(), $sql, array(
             $srme_id,
@@ -88,7 +90,9 @@ class ReporeductorController
             $tiporeductor,
             $tipodanio,
             $descripcion,
-            $ruta
+            $ruta,
+            $coord_x,
+            $coord_y
         ));
 
         if ($ejecutar) {
@@ -105,6 +109,7 @@ class ReporeductorController
     $obj = new ReporductorModel();
 
     $sql = "SELECT s.srme_id, s.srme_tipo_danio, s.srme_descripcion, s.srme_imagen,
+                   s.srme_coord_x, s.srme_coord_y,
                    c.catr_nombre, t.tred_nombre, t.tred_orientacion
             FROM solicitudes_reductor_mal_estado s
             JOIN categorias_reductores c ON s.catr_id = c.catr_id

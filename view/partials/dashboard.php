@@ -20,7 +20,7 @@ if (isset($_SESSION['error_permisos'])) {
     <?php
 }
 
-$mostrarCapaReportesCiudadanos = esAdministrador() || esFuncionario();
+$mostrarCapaReportesCiudadanos = true;
 ?>
 
 
@@ -65,7 +65,7 @@ $mostrarCapaReportesCiudadanos = esAdministrador() || esFuncionario();
                                     <?php if ($mostrarCapaReportesCiudadanos): ?>
                                     <p class="mb-0 mt-2">
                                         <input checked onclick="chgLayers()" type="checkbox" name="Layer[4]"
-                                            value="reportes_ciudadanos">
+                                            value="reportes_accidentes vias_mal_estado nueva_senal nuevo_reductor reductor_mal_estado">
                                         <strong>Reportes ciudadanos</strong>
                                     </p>
                                     <?php endif; ?>
@@ -97,7 +97,7 @@ $mostrarCapaReportesCiudadanos = esAdministrador() || esFuncionario();
     var mapStatus = document.getElementById("mapStatus");
     var myMap1 = null;
     var myMap2 = null;
-    var capaReportesCiudadanos = <?php echo $mostrarCapaReportesCiudadanos ? "' reportes_ciudadanos'" : "''"; ?>;
+    var capaReportesCiudadanos = <?php echo $mostrarCapaReportesCiudadanos ? "' reportes_accidentes vias_mal_estado nueva_senal nuevo_reductor reductor_mal_estado'" : "''"; ?>;
 
 
     if (typeof msMap !== "undefined") {
