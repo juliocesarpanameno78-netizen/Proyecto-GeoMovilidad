@@ -21,6 +21,45 @@ if (isset($_SESSION['error_permisos'])) {
 }
 
 $mostrarCapaReportesCiudadanos = true;
+$capasReportesCiudadanos = "reportes_accidentes vias_mal_estado nueva_senal nuevo_reductor reductor_mal_estado";
+
+$mapFileBase = 'C:/ms4w/Apache/htdocs/Geomovilidad/miprimermapa.map';
+$mapFileParaVisor = $mapFileBase;
+
+if (esCiudadano() && isset($_SESSION['id_usuario'])) {
+
+    $capasReportesCiudadanos = "reportes_accidentes vias_mal_estado nueva_senal nuevo_reductor";
+
+    $mapTempDir = 'C:/ms4w/tmp/ms_tmp';
+    if (!is_dir($mapTempDir)) {
+        @mkdir($mapTempDir, 0777, true);
+    }
+
+    $idUsuario = intval($_SESSION['id_usuario']);
+    $mapTempFile = $mapTempDir . '/miprimermapa_usuario_' . $idUsuario . '.map';
+    $contenidoMapa = @file_get_contents($mapFileBase);
+
+    if ($contenidoMapa !== false) {
+        $reemplazos = array(
+            '/FROM solicitudes_reporte_accidentes\s+WHERE sra_coordenadas IS NOT NULL/i' =>
+                'FROM solicitudes_reporte_accidentes WHERE sra_coordenadas IS NOT NULL AND usu_id = ' . $idUsuario,
+            '/FROM solicitudes_via_mal_estado\s+WHERE svme_coord_x IS NOT NULL AND svme_coord_y IS NOT NULL/i' =>
+                'FROM solicitudes_via_mal_estado WHERE svme_coord_x IS NOT NULL AND svme_coord_y IS NOT NULL AND usu_id = ' . $idUsuario,
+            '/FROM solicitudes_nueva_senal\s+WHERE sns_coord_x IS NOT NULL AND sns_coord_y IS NOT NULL/i' =>
+                'FROM solicitudes_nueva_senal WHERE sns_coord_x IS NOT NULL AND sns_coord_y IS NOT NULL AND usu_id = ' . $idUsuario,
+            '/FROM solicitudes_nuevo_reductor\s+WHERE snr_coord_x IS NOT NULL AND snr_coord_y IS NOT NULL/i' =>
+                'FROM solicitudes_nuevo_reductor WHERE snr_coord_x IS NOT NULL AND snr_coord_y IS NOT NULL AND usu_id = ' . $idUsuario
+        );
+
+        foreach ($reemplazos as $patron => $valor) {
+            $contenidoMapa = preg_replace($patron, $valor, $contenidoMapa, 1);
+        }
+
+        if (@file_put_contents($mapTempFile, $contenidoMapa) !== false && is_file($mapTempFile)) {
+            $mapFileParaVisor = $mapTempFile;
+        }
+    }
+}
 ?>
 
 
@@ -65,7 +104,7 @@ $mostrarCapaReportesCiudadanos = true;
                                     <?php if ($mostrarCapaReportesCiudadanos): ?>
                                     <p class="mb-0 mt-2">
                                         <input checked onclick="chgLayers()" type="checkbox" name="Layer[4]"
-                                            value="reportes_accidentes vias_mal_estado nueva_senal nuevo_reductor reductor_mal_estado">
+                                            value="<?php echo $capasReportesCiudadanos; ?>">
                                         <strong>Reportes ciudadanos</strong>
                                     </p>
                                     <?php endif; ?>
@@ -97,20 +136,20 @@ $mostrarCapaReportesCiudadanos = true;
     var mapStatus = document.getElementById("mapStatus");
     var myMap1 = null;
     var myMap2 = null;
-    var capaReportesCiudadanos = <?php echo $mostrarCapaReportesCiudadanos ? "' reportes_accidentes vias_mal_estado nueva_senal nuevo_reductor reductor_mal_estado'" : "''"; ?>;
+    var capaReportesCiudadanos = <?php echo $mostrarCapaReportesCiudadanos ? "' " . $capasReportesCiudadanos . "'" : "''"; ?>;
 
 
     if (typeof msMap !== "undefined") {
         myMap1 = new msMap(document.getElementById("dc_main"), "standardUp");
         myMap1.setCgi("/cgi-bin/mapserv.exe");
-        myMap1.setMapFile("C:/ms4w/Apache/htdocs/Geomovilidad/miprimermapa.map");
+        myMap1.setMapFile("<?php echo addslashes($mapFileParaVisor); ?>");
         myMap1.setFullExtent(1053867, 1068491, 860190, 879441);
         myMap1.setLayers("barrios cali_area comunas vias" + capaReportesCiudadanos);
 
         myMap2 = new msMap(document.getElementById("dc_main2"));
         myMap2.setActionNone();
         myMap2.setFullExtent(1053867, 1068491, 860190, 879441);
-        myMap2.setMapFile("C:/ms4w/Apache/htdocs/Geomovilidad/miprimermapa.map");
+        myMap2.setMapFile("<?php echo addslashes($mapFileParaVisor); ?>");
         myMap2.setLayers("cali_area");
 
         myMap1.setReferenceMap(myMap2);
