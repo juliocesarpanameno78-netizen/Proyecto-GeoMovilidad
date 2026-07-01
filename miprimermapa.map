@@ -5,16 +5,27 @@ MAP
     EXTENT 1053867 860190 1068491 879441
     SHAPEPATH "C:/ms4w/Apache/htdocs/Geomovilidad/shapeCali41/"
 
-    IMAGECOLOR 52 103 57
+    IMAGECOLOR 75 86 148
+
+
+
     WEB
         IMAGEPATH "C:/ms4w/tmp/ms_tmp/"
         IMAGEURL "/ms_tmp/"
     END
+
+    SYMBOL
+        NAME "ubicacion_icono"
+        TYPE PIXMAP
+        IMAGE "C:/ms4w/Apache/htdocs/Geomovilidad/view/assets/img/ubicacionreportes.png"
+    END
+
     LAYER
         NAME "cali_area"
         TYPE POLYGON
         STATUS ON
         DATA "CaliArea.shp"
+
         CLASS
             STYLE
                 COLOR 17 24 68
@@ -22,11 +33,13 @@ MAP
             END
         END
     END
+
     LAYER
         NAME "comunas"
         STATUS ON
         TYPE LINE
         DATA "ComunasC.shp"
+
         CLASS
             STYLE
                 COLOR 234 224 207
@@ -34,11 +47,13 @@ MAP
             END
         END
     END
+
     LAYER
         NAME "vias"
         STATUS ON
         TYPE LINE
         DATA "MallaVialC.shp"
+
         LABELITEM "nombre"
         CLASS
             NAME "LABEL"
@@ -55,12 +70,14 @@ MAP
             END
         END
     END
+
     LAYER
         NAME "barrios"
         TYPE POLYGON
         STATUS ON
         TRANSPARENCY 45
         DATA "Barrios.shp"
+
         LABELITEM "BARRIO"
         CLASS
             NAME "LABEL"
@@ -74,6 +91,126 @@ MAP
                 COLOR 255 255 255
                 MINDISTANCE 150
                 PARTIALS FALSE
+            END
+        END
+    END
+
+    # ==========================================================
+    # CAPAS POSTGIS - Solicitudes
+    # ==========================================================
+
+    # 1) Reportes de accidentes (ya tiene geometría nativa)
+    LAYER
+        NAME "reportes_accidentes"
+        CONNECTIONTYPE postgis
+        STATUS ON
+        CONNECTION "user=postgres password=1234 dbname=Geomovilidad host=localhost port=5433"
+        DATA "geom FROM (
+            SELECT sra_id,
+                   ST_SetSRID(sra_coordenadas, 0) AS geom,
+                   sra_descripcion,
+                   sra_fecha
+            FROM solicitudes_reporte_accidentes
+            WHERE sra_coordenadas IS NOT NULL
+        ) AS sub USING UNIQUE sra_id USING SRID=0"
+        TYPE POINT
+
+        CLASS
+            STYLE
+                SYMBOL "ubicacion_icono"
+                SIZE 26
+            END
+        END
+    END
+
+    # 2) Solicitudes de vía en mal estado (x,y sueltos -> construir el punto)
+    LAYER
+        NAME "vias_mal_estado"
+        CONNECTIONTYPE postgis
+        STATUS ON
+        CONNECTION "user=postgres password=1234 dbname=Geomovilidad host=localhost port=5433"
+        DATA "geom FROM (
+            SELECT svme_id,
+                   ST_SetSRID(ST_MakePoint(svme_coord_x, svme_coord_y), 0) AS geom,
+                   svme_descripcion_detallada
+            FROM solicitudes_via_mal_estado
+            WHERE svme_coord_x IS NOT NULL AND svme_coord_y IS NOT NULL
+        ) AS sub USING UNIQUE svme_id USING SRID=0"
+        TYPE POINT
+
+        CLASS
+            STYLE
+                SYMBOL "ubicacion_icono"
+                SIZE 26
+            END
+        END
+    END
+
+    # 3) Solicitudes de nueva señal
+    LAYER
+        NAME "nueva_senal"
+        CONNECTIONTYPE postgis
+        STATUS ON
+        CONNECTION "user=postgres password=1234 dbname=Geomovilidad host=localhost port=5433"
+        DATA "geom FROM (
+            SELECT sns_id,
+                   ST_SetSRID(ST_MakePoint(sns_coord_x, sns_coord_y), 0) AS geom,
+                   sns_descripcion
+            FROM solicitudes_nueva_senal
+            WHERE sns_coord_x IS NOT NULL AND sns_coord_y IS NOT NULL
+        ) AS sub USING UNIQUE sns_id USING SRID=0"
+        TYPE POINT
+
+        CLASS
+            STYLE
+                SYMBOL "ubicacion_icono"
+                SIZE 26
+            END
+        END
+    END
+
+    # 4) Solicitudes de nuevo reductor
+    LAYER
+        NAME "nuevo_reductor"
+        CONNECTIONTYPE postgis
+        STATUS ON
+        CONNECTION "user=postgres password=1234 dbname=Geomovilidad host=localhost port=5433"
+        DATA "geom FROM (
+            SELECT snr_id,
+                   ST_SetSRID(ST_MakePoint(snr_coord_x, snr_coord_y), 0) AS geom,
+                   snr_descripcion
+            FROM solicitudes_nuevo_reductor
+            WHERE snr_coord_x IS NOT NULL AND snr_coord_y IS NOT NULL
+        ) AS sub USING UNIQUE snr_id USING SRID=0"
+        TYPE POINT
+
+        CLASS
+            STYLE
+                SYMBOL "ubicacion_icono"
+                SIZE 26
+            END
+        END
+    END
+
+    # 5) Reportes de reductor en mal estado
+    LAYER
+        NAME "reductor_mal_estado"
+        CONNECTIONTYPE postgis
+        STATUS ON
+        CONNECTION "user=postgres password=1234 dbname=Geomovilidad host=localhost port=5433"
+        DATA "geom FROM (
+            SELECT srme_id,
+                   ST_SetSRID(ST_MakePoint(srme_coord_x, srme_coord_y), 0) AS geom,
+                   srme_descripcion
+            FROM solicitudes_reductor_mal_estado
+            WHERE srme_coord_x IS NOT NULL AND srme_coord_y IS NOT NULL
+        ) AS sub USING UNIQUE srme_id USING SRID=0"
+        TYPE POINT
+
+        CLASS
+            STYLE
+                SYMBOL "ubicacion_icono"
+                SIZE 26
             END
         END
     END

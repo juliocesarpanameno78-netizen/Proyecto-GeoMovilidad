@@ -1,5 +1,21 @@
 <div class="container-fluid">
     <div class="page-inner">
+        <?php
+        $coord_x = '';
+        $coord_y = '';
+
+        if (isset($_GET['coords'])) {
+            $partes = explode(',', $_GET['coords']);
+            if (count($partes) === 2) {
+                $coord_x = trim($partes[0]);
+                $coord_y = trim($partes[1]);
+            }
+        }
+
+        $url_retorno = getUrl('Reporeductor', 'Reporeductor', 'getCreate');
+        $url_mapa = getUrl('Mapa', 'Mapa', 'getSelectLocation') . '&return=' . urlencode($url_retorno) . '&param=coords';
+        ?>
+
         <div class="row mt-5">
             <div class="col-md-5">
                 <h3 class="m-3 display-3 text-nowrap">Reportar reductor en mal estado</h3>
@@ -84,6 +100,18 @@
                     <label for="descripcion">Descripción del problema</label>
                     <textarea name="descripcion" id="descripcion" class="form-control p-2" rows="3"
                         placeholder="Describe detalladamente el mal estado del reductor"></textarea>
+                </div>
+
+                <div class="col-md-8 mb-4">
+                    <label>Ubicación seleccionada</label>
+                    <input type="text" class="form-control p-2" readonly
+                        value="<?php echo ($coord_x !== '' && $coord_y !== '') ? ($coord_x . ', ' . $coord_y) : 'Sin coordenadas'; ?>">
+                    <input type="hidden" name="coord_x" value="<?php echo $coord_x; ?>">
+                    <input type="hidden" name="coord_y" value="<?php echo $coord_y; ?>">
+                </div>
+
+                <div class="col-md-4 mb-4 d-flex align-items-end">
+                    <a href="<?php echo $url_mapa; ?>" class="btn btn-outline-primary w-100">Seleccionar ubicación en mapa</a>
                 </div>
             </div>
 
