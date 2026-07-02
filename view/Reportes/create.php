@@ -55,15 +55,15 @@
                     <input type="text" id="nombre" class="form-control p-2" value="<?php echo ($_SESSION['nombre_usuario']) ?>"disabled>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="leccionado">Número de lesionados:</label>
+                    <label for="leccionado">Número de lesionados:<span style="color: red;">*</span></label>
                     <input type="number" name="leccionado" id="leccionado" class="form-control p-2" min=0 value="<?php echo $lesionado; ?>">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="direccion">Dirección:</label>
+                    <label for="direccion">Dirección:<span style="color: red;">*</span></label>
                     <input type="text" name="direccion" id="dirección" class="form-control p-2" placeholder="Ejemplo: Carrera 1 #0-0" value="<?php echo $direccion; ?>">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="causas">Causas del accidente</label><br>
+                    <label for="causas">Causas del accidente<span style="color: red;">*</span></label><br>
                     <select name="causas" id="causas" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona la causas</option>
                         <?php 
@@ -78,7 +78,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="tipochoque">Tipo de choque</label><br>
+                    <label for="tipochoque">Tipo de choque<span style="color: red;">*</span></label><br>
                     <select name="tipochoque" id="tipochoque" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona el choque</option>
                         <?php 
@@ -93,7 +93,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="catechoque">¿El choque fue con?</label><br>
+                    <label for="catechoque">¿El choque fue con?<span style="color: red;">*</span></label><br>
                     <select name="catechoque" id="catechoque" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona con que fue el choque</option>
                         <?php 
@@ -110,11 +110,11 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="cativehiculo">Cantidad de vehículos afectados:</label>
+                    <label for="cativehiculo">Cantidad de vehículos afectados:<span style="color: red;">*</span></label>
                     <input type="number" name="cativehiculo" id="cativehiculo" class="form-control p-2" placeholder="" min=0 value="<?php echo $cativehiculo; ?>">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="barrio">Barrio:</label><br>
+                    <label for="barrio">Barrio:<span style="color: red;">*</span></label><br>
                     <select name="barrio" id="barrio" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona el barrio</option>
                         <?php 
@@ -129,11 +129,11 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="imagenes">Insetar imagen del accidente:</label>
+                    <label for="imagenes">Insetar imagen del accidente:<span style="color: red;">*</span></label>
                     <input type="file" name="imagen" id="imagen" class="form-control p-2" accept="image/*">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="tipovehiculo">Tipo de vehículo:</label><br>
+                    <label for="tipovehiculo">Tipo de vehículo:<span style="color: red;">*</span></label><br>
                     <select name="tipovehiculo" id="tipovehiculo" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona el vehículo</option>
                         <?php 
@@ -148,19 +148,19 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="marca">Marca y modelo del vehículo:</label>
+                    <label for="marca">Marca y modelo del vehículo:<span style="color: red;">*</span></label>
                     <input type="text" name="marca" id="marca" class="form-control p-2" placeholder="" value="<?php echo $marca; ?>">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="placa">Placa del vehículo:</label>
+                    <label for="placa">Placa del vehículo:<span style="color: red;">*</span></label>
                     <input type="text" name="placa" id="placa" class="form-control p-2" placeholder="" value="<?php echo $placa; ?>">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="color">Color del vehículo:</label>
+                    <label for="color">Color del vehículo:<span style="color: red;">*</span></label>
                     <input type="text" name="color" id="color" class="form-control p-2" placeholder="" value="<?php echo $color; ?>">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="descripcion">Descripción:</label>
+                    <label for="descripcion">Descripción:<span style="color: red;">*</span></label>
                     <input type="text" name="descripcion" id="descripcion" class="form-control p-2" placeholder="" value="<?php echo $descripcion; ?>">
                 </div>
 
@@ -173,7 +173,7 @@
                 </div>
 
                 <div class="col-md-4 mb-4 d-flex align-items-end">
-                    <a href="<?php echo $url_mapa; ?>" id="btnMapaReportes" class="btn btn-outline-primary w-100">Seleccionar ubicación en mapa</a>
+                    <a href="<?php echo $url_mapa; ?>" id="btnMapaReportes" class="btn btn-outline-primary w-100">Seleccionar ubicación en mapa<span style="color: red;">*</span></a>
                 </div>
             </div>
 

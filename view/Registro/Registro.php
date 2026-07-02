@@ -84,18 +84,18 @@ $tipos_documento = $obj->getTiposDocumento();
 
                 <div class="row mb-3">
                     <div class="col">
-                        <label class="form-label">Nombre</label>
+                        <label class="form-label">Nombre:<span style="color: red;">*</span></label>
                         <input type="text" name="nombre" class="form-control" required>
                     </div>
                     <div class="col">
-                        <label class="form-label">Apellido</label>
+                        <label class="form-label">Apellido:<span style="color: red;">*</span></label>
                         <input type="text" name="apellido" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col">
-                        <label class="form-label">Tipo de documento</label>
+                        <label class="form-label">Tipo de documento:<span style="color: red;">*</span></label>
                         <select name="id_tipo_documento" class="form-select" required>
                             <option value="">Seleccione...</option>
                             <?php if (isset($tipos_documento) && $tipos_documento): ?>
@@ -108,23 +108,23 @@ $tipos_documento = $obj->getTiposDocumento();
                         </select>
                     </div>
                     <div class="col">
-                        <label class="form-label">Número de identificación</label>
-                        <input type="number" name="numero_identificacion" class="form-control" required min:>
+                        <label class="form-label">Número de identificación:<span style="color: red;">*</span></label>
+                        <input type="number" name="numero_identificacion" class="form-control" required min="11">
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Correo electrónico</label>
+                    <label class="form-label">Correo electrónico:<span style="color: red;">*</span></label>
                     <input type="email" name="correo_electronico" class="form-control" required>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col">
-                        <label class="form-label">Teléfono</label>
+                        <label class="form-label">Teléfono:<span style="color: red;">*</span></label>
                         <input type="number" name="telefono" class="form-control" required max="9999999999">
                     </div>
                     <div class="col">
-                        <label class="form-label">Dirección</label>
+                        <label class="form-label">Dirección:<span style="color: red;">*</span></label>
                         <input type="text" name="direccion" class="form-control" required>
                     </div>
                 </div>
@@ -133,17 +133,17 @@ $tipos_documento = $obj->getTiposDocumento();
                 <h6 class="text-muted mb-3">Datos de acceso</h6>
 
                 <div class="mb-3">
-                    <label class="form-label">Nombre de usuario</label>
+                    <label class="form-label">Nombre de usuario:<span style="color: red;">*</span></label>
                     <input type="text" name="nombre_usuario" class="form-control" required>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col">
-                        <label class="form-label">Contraseña</label>
+                        <label class="form-label">Contraseña:<span style="color: red;">*</span></label>
                         <input type="password" name="contrasena" class="form-control" required>
                     </div>
                     <div class="col">
-                        <label class="form-label">Confirmar contraseña</label>
+                        <label class="form-label">Confirmar contraseña:<span style="color: red;">*</span></label>
                         <input type="password" name="confirmar_contrasena" class="form-control" required>
                     </div>
                 </div>

@@ -29,11 +29,11 @@
                     <input type="text" id="nombre" class="form-control p-2" value="<?php echo $_SESSION['nombre_usuario']?>" disabled>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="direccion">Dirección:</label>
+                    <label for="direccion">Dirección:<span style="color: red;">*</span></label>
                     <input type="text" name="direccion" id="dirección" class="form-control p-2" placeholder="Ejemplo: Carrera 1 #0-0">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="categoriareductor">Categoría del reductor</label>
+                    <label for="categoriareductor">Categoría del reductor:<span style="color: red;">*</span></label>
                     <select name="categoriareductor" id="categoriareductor" class="form-control p-2">
                         <option value="" disabled selected hidden>seleciona la categoría</option>
                         <?php 
@@ -48,7 +48,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <label for="tiporeductor">Tipo de Reductor</label><br>
+                    <label for="tiporeductor">Tipo de Reductor:<span style="color: red;">*</span></label><br>
                     <select name="tiporeductor" id="tiporeductor" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona el tipo de reductor</option>
                         <?php 
@@ -74,7 +74,7 @@
                     <input type="text" id="descripcion" class="form-control p-2" readonly>
                 </div>
                 <div class="col-md-8 mb-4">
-                    <label for="motivo">¿Por que solicitas esté reductor?</label>
+                    <label for="motivo">¿Por que solicitas esté reductor?<span style="color: red;">*</span></label>
                     <textarea name="motivo" id="motivo" class="form-control p2"></textarea>
                 </div>
 
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="col-md-4 mb-4 d-flex align-items-end">
-                    <a href="<?php echo $url_mapa; ?>" class="btn btn-outline-primary w-100">Seleccionar ubicación en mapa</a>
+                    <a href="<?php echo $url_mapa; ?>" class="btn btn-outline-primary w-100">Seleccionar ubicación en mapa<span style="color: red;">*</span></a>
                 </div>
                 <input type="hidden" name="estadoreductor" id="estadoreductor" value="1">
             </div>

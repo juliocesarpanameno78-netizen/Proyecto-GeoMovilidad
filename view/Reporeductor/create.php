@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label for="categoriareduc">Categoría del reductor</label>
+                    <label for="categoriareduc">Categoría del reductor:<span style="color: red;">*</span></label>
                     <select name="categoriareduc" id="categoriareduc" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona la categoría</option>
                         <?php foreach($categoriareduc as $cat): ?>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label for="tiporeductor">Tipo de reductor</label>
+                    <label for="tiporeductor">Tipo de reductor:<span style="color: red;">*</span></label>
                     <select name="tiporeductor" id="tiporeductor" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona el tipo de reductor</option>
                         <?php foreach($tiposreductor as $reduc): ?>
@@ -58,17 +58,17 @@
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label for="orientacion">Orientación del reductor</label>
+                    <label for="orientacion">Orientación del reductor:</label>
                     <input type="text" id="orientacion" class="form-control p-2" readonly>
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label for="info_reductor">Información del reductor seleccionado</label>
+                    <label for="info_reductor">Información del reductor seleccionado:</label>
                     <input type="text" id="info_reductor" class="form-control p-2" readonly>
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label for="barrio">Barrio</label>
+                    <label for="barrio">Barrio:<span style="color: red;">*</span></label>
                     <select name="barrio" id="barrio" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona el barrio</option>
                         <?php foreach($barrios as $bar): ?>
@@ -80,24 +80,24 @@
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label for="direccion">Dirección</label>
+                    <label for="direccion">Dirección:<span style="color: red;">*</span></label>
                     <input type="text" name="direccion" id="direccion" class="form-control p-2"
                         placeholder="Ejemplo: Carrera 1 #0-0">
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label for="tipodanio">Tipo de daño</label>
+                    <label for="tipodanio">Tipo de daño:<span style="color: red;">*</span></label>
                     <input type="text" name="tipodanio" id="tipodanio" class="form-control p-2"
                         placeholder="Describe el tipo de daño">
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label for="imagen">Imagen del reductor</label>
+                    <label for="imagen">Imagen del reductor:<span style="color: red;">*</span></label>
                     <input type="file" name="imagen" id="imagen" class="form-control p-2" accept="image/*">
                 </div>
 
                 <div class="col-md-8 mb-4">
-                    <label for="descripcion">Descripción del problema</label>
+                    <label for="descripcion">Descripción del problema:<span style="color: red;">*</span></label>
                     <textarea name="descripcion" id="descripcion" class="form-control p-2" rows="3"
                         placeholder="Describe detalladamente el mal estado del reductor"></textarea>
                 </div>
@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="col-md-4 mb-4 d-flex align-items-end">
-                    <a href="<?php echo $url_mapa; ?>" class="btn btn-outline-primary w-100">Seleccionar ubicación en mapa</a>
+                    <a href="<?php echo $url_mapa; ?>" class="btn btn-outline-primary w-100">Seleccionar ubicación en mapa<span style="color: red;">*</span></a>
                 </div>
             </div>
 

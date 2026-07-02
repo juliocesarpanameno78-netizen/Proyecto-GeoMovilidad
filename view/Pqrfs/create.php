@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label for="tipo">Tipo de solicitud</label>
+                    <label for="tipo">Tipo de solicitud<span style="color: red;">*</span></label>
                     <select name="tipo" id="tipo" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona el tipo</option>
                         <option value="Petición">Petición</option>
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="col-md-12 mb-4">
-                    <label for="descripcion">Descripción</label>
+                    <label for="descripcion">Descripción<span style="color: red;">*</span></label>
                     <textarea name="descripcion" id="descripcion" class="form-control p-2" rows="5"
                         placeholder="Describe detalladamente tu solicitud..."></textarea>
                 </div>

@@ -32,6 +32,7 @@ class LoginController {
             $_SESSION['usu_email'] = $usuario['correo_electronico'];
             $_SESSION['id_rol'] = $usuario['id_rol'];
             $_SESSION['nombre_rol'] = $usuario['nombre_rol'];
+            $_SESSION['login_exitoso'] = true;
             redirect('/Geomovilidad/web/index.php');
         } else {
             redirect('/Geomovilidad/view/Login/Login.php?error=1');

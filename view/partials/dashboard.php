@@ -1,4 +1,22 @@
 <?php
+if (isset($_SESSION['login_exitoso']) && $_SESSION['login_exitoso']) {
+    unset($_SESSION['login_exitoso']);
+    $nombreBienvenida = isset($_SESSION['nombre_completo']) ? $_SESSION['nombre_completo'] : (isset($_SESSION['nombre_usuario']) ? $_SESSION['nombre_usuario'] : '');
+    ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            swal({
+                title: "¡Inicio de sesión exitoso!",
+                text: "Bienvenido<?php echo $nombreBienvenida !== '' ? ', ' . addslashes($nombreBienvenida) : ''; ?> a Geomovilidad.",
+                icon: "success",
+                timer: 2500,
+                buttons: false
+            });
+        });
+    </script>
+    <?php
+}
+
 if (isset($_SESSION['error_permisos'])) {
     ?>
     <div class="container-fluid">

@@ -43,8 +43,7 @@
                           de Señal</span></a></li>
                     <li><a href="<?php echo getUrl("Reductor", "Reductor", "getCreate") ?>"><span
                           class="sub-item">Solicitud de Reductor</span></a></li>
-                    <li><a href="<?php echo getUrl("Via", "Via", "getCreate") ?>"><span class="sub-item">Solicitud de
-                          Vía</span></a></li>
+                    
                   </ul>
                 </div>
               </li>
@@ -66,6 +65,8 @@
                     <li><a href="<?php echo getUrl("Reporeductor", "Reporeductor", "getCreate") ?>"><span
                           class="sub-item">Reportar
                           reductor en mal estado</span></a></li>
+                    <li><a href="<?php echo getUrl("Via", "Via", "getCreate") ?>"><span class="sub-item">Reportar vía
+                          en mal estado</span></a></li>
                   </ul>
                 </div>
               </li>

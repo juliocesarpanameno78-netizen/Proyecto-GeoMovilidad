@@ -10,6 +10,7 @@ require_once dirname(__FILE__) . '/../../lib/helpers.php';
     <link href="Login.css" rel="stylesheet">
 </head>
 <body>
+<script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
 
 <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="card" style="width: 380px;">
@@ -30,13 +31,26 @@ require_once dirname(__FILE__) . '/../../lib/helpers.php';
             }
             ?>
 
+            <?php if (isset($_GET['registro']) && $_GET['registro'] == 'exitoso'): ?>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    swal({
+                        title: "¡Registro exitoso!",
+                        text: "Tu cuenta fue creada correctamente. Ya puedes iniciar sesión.",
+                        icon: "success",
+                        button: "Aceptar"
+                    });
+                });
+            </script>
+            <?php endif; ?>
+
             <form action="/Geomovilidad/web/index.php?modulo=Login&controlador=Login&function=postLogin" method="POST">
                 <div class="mb-3">
-                    <strong><label class="form-label">Correo electrónico</label></strong>
+                    <strong><label class="form-label">Correo electrónico<span style="color: red;"> *</span></label></strong>
                     <input type="email" name="correo" class="form-control" required>
                 </div>
                 <div class="mb-3">
-                    <strong><label class="form-label">Contraseña</label></strong>
+                    <strong><label class="form-label">Contraseña<span style="color: red;"> *</span></label></strong>
                     <input type="password" name="contrasena" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Ingresar</button>

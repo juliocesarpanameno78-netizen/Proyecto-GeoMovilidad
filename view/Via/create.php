@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label for="tipovia">Tipo de vía</label>
+                    <strong><label for="tipovia">Tipo de vía<span style="color: red;">*</span></label></strong>
                     <select name="tipovia" id="tipovia" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona el tipo de vía</option>
                         <?php foreach($tipvias as $via): ?>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label for="tipodanio">Tipo de daño</label>
+                    <label for="tipodanio">Tipo de daño<span style="color: red;">*</span></label>
                     <select name="tipodanio" id="tipodanio" class="form-control p-2">
                         <option value="" disabled selected hidden>Selecciona el tipo de daño</option>
                         <?php foreach($tiposdanio as $danio): ?>
@@ -55,18 +55,18 @@
                 </div>
 
                 <div class="col-md-8 mb-4">
-                    <label for="descripcion">Descripción detallada del mal estado</label>
+                    <label for="descripcion">Descripción detallada del mal estado<span style="color: red;">*</span></label>
                     <textarea name="descripcion" id="descripcion" class="form-control p-2" rows="3"
                         placeholder="Describe detalladamente el mal estado de la vía"></textarea>
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label for="imagenes">Imagen de la vía</label>
+                    <label for="imagenes">Imagen de la vía<span style="color: red;">*</span></label>
                     <input type="file" name="imagenes" id="imagenes" class="form-control p-2" accept="image/*">
                 </div>
 
                 <div class="col-md-8 mb-4">
-                    <label>Ubicación seleccionada</label>
+                    <label>Ubicación seleccionada<span style="color: red;">*</span></label>
                     <input type="text" class="form-control p-2" readonly
                         value="<?php echo ($coord_x !== '' && $coord_y !== '') ? ($coord_x . ', ' . $coord_y) : 'Sin coordenadas'; ?>">
                     <input type="hidden" name="coord_x" value="<?php echo $coord_x; ?>">
