@@ -38,7 +38,7 @@
 
             <div class="mt-5">
                 <table class="table table-striped table-hover">
-                    <thead>
+                    <thead class="table-dark">
                         <tr>
                             <th>Accion/Modulo</th>
 

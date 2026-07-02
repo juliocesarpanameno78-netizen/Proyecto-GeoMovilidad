@@ -40,7 +40,7 @@
 
         <div class="mt-3">
             <table class="table table-striped table-hover" id="tablaSolicitudes">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th>#</th>
                         <th>Tipo</th>
@@ -79,7 +79,7 @@
                         echo "<td>" . ($s['descripcion']) . "</td>";
                         echo "<td>" . ($s['usu_nombre']) . "</td>";
                         echo "<td><span class='badge badge-" . $badge . "'>" . ($s['est_nombre']) . "</span></td>";
-                        echo "<td><a href='" . $url_gestion . "' class='btn btn-sm btn-primary'>Gestionar</a></td>";
+                        echo "<td><a href='" . $url_gestion . "' class='btn btn-sm btn-primary text-white'>Gestionar</a></td>";
                         echo "</tr>";
                     }
                     ?>

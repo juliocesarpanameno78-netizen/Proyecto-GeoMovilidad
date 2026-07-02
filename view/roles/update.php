@@ -53,7 +53,7 @@
 
                         <table class="table table-striped table-hover">
 
-                            <thead>
+                            <thead class="table-dark">
                                 <tr>
                                     <th>ACCION/MODULO</th>
 
