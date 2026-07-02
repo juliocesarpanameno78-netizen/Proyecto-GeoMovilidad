@@ -94,6 +94,10 @@ class ReportesController
             $errores[] = 'Debe ingresar la placa del vehiculo.';
         }
 
+        if($descripcion === ''){
+            $errores[] = 'Debe describir el accidente.';
+        }
+
         if (count($errores) > 0) {
             $_SESSION['error_reporte'] = implode(' ', $errores);
             redirect(getUrl('Reportes', 'Reportes', 'getCreate') . '&status=error');

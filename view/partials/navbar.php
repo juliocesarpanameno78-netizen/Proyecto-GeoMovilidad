@@ -93,8 +93,8 @@
           <ul class="nav nav-secondary">
             <?php if (
               tienePermiso("Mis Solicitudes", "Listar") ||
-              tienePermiso("Mis Reportes", "Listar") ||
-              tienePermiso("Mis PQRSF", "Listar")
+              tienePermiso("Mis Reportes",    "Listar") ||
+              tienePermiso("Mis PQRSF",       "Listar")
             ): ?>
 
               <li class="nav-item active">
