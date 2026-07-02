@@ -2,10 +2,21 @@ MAP
     NAME "primerMapa"
     SIZE 800 500
     STATUS ON
+    IMAGETYPE "png24"
+    TRANSPARENT OFF
     EXTENT 1053867 860190 1068491 879441
     SHAPEPATH "C:/ms4w/Apache/htdocs/Geomovilidad/shapeCali41/"
+    FONTSET "C:/ms4w/Apache/htdocs/Geomovilidad/misc/fonts/fonts.txt"
 
-    IMAGECOLOR 75 86 148
+    IMAGECOLOR 25 118 210
+
+    OUTPUTFORMAT
+        NAME "png24"
+        DRIVER AGG/PNG
+        MIMETYPE "image/png"
+        IMAGEMODE RGBA
+        EXTENSION "png"
+    END
 
 
 
@@ -28,7 +39,7 @@ MAP
 
         CLASS
             STYLE
-                COLOR 17 24 68
+                COLOR 67 160 71
                 OUTLINECOLOR 0 0 0
             END
         END
@@ -42,7 +53,7 @@ MAP
 
         CLASS
             STYLE
-                COLOR 234 224 207
+                COLOR 251 140 0
                 OUTLINECOLOR 100 100 255
             END
         END
@@ -58,12 +69,13 @@ MAP
         CLASS
             NAME "LABEL"
             STYLE
-                COLOR 75 86 148
+                COLOR 142 36 170
                 WIDTH 2
             END
             LABEL
-                TYPE BITMAP
-                SIZE SMALL
+                TYPE TRUETYPE
+                FONT "sans"
+                SIZE 8
                 COLOR 0 0 0
                 MINDISTANCE 100
                 PARTIALS FALSE
@@ -82,22 +94,22 @@ MAP
         CLASS
             NAME "LABEL"
             STYLE
-                COLOR 140 192 235
+                COLOR 166 225 250
                 OUTLINECOLOR 90 40 35
             END
             LABEL
                 TYPE BITMAP
                 SIZE LARGE
-                COLOR 255 255 255
+                COLOR 0 0 0
                 MINDISTANCE 150
                 PARTIALS FALSE
             END
         END
     END
 
-    # ==========================================================
+  
     # CAPAS POSTGIS - Solicitudes
-    # ==========================================================
+
 
     # 1) Reportes de accidentes (ya tiene geometría nativa)
     LAYER
