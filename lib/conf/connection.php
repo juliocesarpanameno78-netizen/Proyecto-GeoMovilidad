@@ -23,12 +23,19 @@ class Connection {
     }
 
     private function connect() {
-        $this->link = pg_connect(
-            "host={$this->server} port={$this->port} dbname={$this->database} user={$this->user} password={$this->password}"
-        );
+        $connString = "host={$this->server} port={$this->port} dbname={$this->database} user={$this->user} password={$this->password} connect_timeout=5";
+        $this->link = @pg_connect($connString);
 
         if (!$this->link) {
-            die("Error de conexión a PostgreSQL");
+            $pgError = pg_last_error();
+            $safeError = $pgError ? $pgError : 'No se pudo obtener el detalle del error';
+
+            die(
+                "Error de conexion a PostgreSQL. " .
+                "Revise credenciales en lib/conf/conf.php " .
+                "(host={$this->server}, port={$this->port}, dbname={$this->database}, user={$this->user}). " .
+                "Detalle: {$safeError}"
+            );
         }
     }
 

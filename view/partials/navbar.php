@@ -61,9 +61,11 @@
                 </a>
                 <div class="collapse" id="reporte">
                   <ul class="nav nav-collapse">
-                    <li><a href="<?php echo getUrl("Reportes", "Reportes", "getCreate") ?>"><span class="sub-item">Reportar un accidente</span></a></li>
-                    <li><a href="<?php echo getUrl("Reporeductor", "Reporeductor", "getCreate") ?>"><span class="sub-item">Reportar
-                    reductor en mal estado</span></a></li>
+                    <li><a href="<?php echo getUrl("Reportes", "Reportes", "getCreate") ?>"><span
+                          class="sub-item">Reportar un accidente</span></a></li>
+                    <li><a href="<?php echo getUrl("Reporeductor", "Reporeductor", "getCreate") ?>"><span
+                          class="sub-item">Reportar
+                          reductor en mal estado</span></a></li>
                   </ul>
                 </div>
               </li>
@@ -94,6 +96,7 @@
               tienePermiso("Mis Reportes",    "Listar") ||
               tienePermiso("Mis PQRSF",       "Listar")
             ): ?>
+
               <li class="nav-item active">
                 <a data-bs-toggle="collapse" href="#historial" class="collapsed" aria-expanded="false">
                   <i class="fas fa-user-shield"></i>
@@ -102,29 +105,38 @@
                 </a>
                 <div class="collapse" id="historial">
                   <ul class="nav nav-collapse">
-                    <li>
-                      <a href="<?php echo getUrl("Senales", "Senales", "listar") ?>">
-                        <span class="sub-item">Historial de solicitudes</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="<?php echo getUrl("Reportes", "Reportes", "listar") ?>">
-                        <span class="sub-item">Historial de reportes</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="<?php echo getUrl("Pqrfs", "Pqrfs", "listar") ?>">
-                        <span class="sub-item">Historial de PQRFS</span>
-                      </a>
-                    </li>
+
+                    <?php if (tienePermiso("Mis Solicitudes", "Listar")): ?>
+                      <li>
+                        <a href="<?php echo getUrl("Senales", "Senales", "listar") ?>">
+                          <span class="sub-item">Historial de solicitudes</span>
+                        </a>
+                      </li>
+                    <?php endif; ?>
+
+                    <?php if (tienePermiso("Mis Reportes", "Listar")): ?>
+                      <li>
+                        <a href="<?php echo getUrl("Reportes", "Reportes", "listar") ?>">
+                          <span class="sub-item">Historial de reportes</span>
+                        </a>
+                      </li>
+                    <?php endif; ?>
+
+                    <?php if (tienePermiso("Mis PQRSF", "Listar")): ?>
+                      <li>
+                        <a href="<?php echo getUrl("Pqrfs", "Pqrfs", "listar") ?>">
+                          <span class="sub-item">Historial de PQRSF</span>
+                        </a>
+                      </li>
+                    <?php endif; ?>
+
                   </ul>
                 </div>
               </li>
             <?php endif; ?>
           </ul>
-
-
           <!-- Separación Funcionario -->
+
 
           <ul class="nav nav-secondary">
 
@@ -293,7 +305,21 @@
               </li>
             <?php endif; ?>
           </ul>
+          <ul class="nav nav-secondary">
 
+            <li class="nav-item active">
+
+              <a href="<?php echo getUrl("Acerca", "Acerca", "getAcerca"); ?>">
+
+                <i class="fas fa-info-circle"></i>
+
+                <p>Acerca de</p>
+
+              </a>
+
+            </li>
+
+          </ul>
           <!-- comentario épico -->
 
         </div>

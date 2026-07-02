@@ -49,8 +49,12 @@ class PqrfsController
         }
     }
 
-    public function listar(){
-        requierePermiso("PQRSF", "Listar");
+    public function listar()
+    {
+        requiereAlgunPermiso(array(
+            array("PQRSF", "Listar"),
+            array("Mis PQRSF", "Listar")
+        ));
 
         $obj = new PqrfsModel();
         $usuario = $_SESSION['id_usuario'];
@@ -79,7 +83,8 @@ class PqrfsController
         include_once '../view/Pqrfs/listar.php';
     }
 
-    public function getListar(){
+    public function getListar()
+    {
         $this->listar();
     }
 

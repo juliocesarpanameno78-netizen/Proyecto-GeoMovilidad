@@ -17,7 +17,8 @@ class SenalesController
     }
 
 
-    public function postCreate(){
+    public function postCreate()
+    {
 
         requierePermiso("Gestion de Solicitudes", "Registrar");
         $obj = new SenalesModel();
@@ -78,7 +79,16 @@ class SenalesController
         $sql = "INSERT INTO solicitudes_nueva_senal (sns_id, tsen_id, cats_id, sns_descripcion, est_id, usu_id, sns_imagen, sns_direccion, sns_coord_x, sns_coord_y) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)";
 
         $ejecutar = pg_query_params($conexion, $sql, array(
-            $sns_id, $tiposenal, $categoriasenal, $motivo, $estadosenal, $usuario, $ruta, $direccion, $coord_x, $coord_y
+            $sns_id,
+            $tiposenal,
+            $categoriasenal,
+            $motivo,
+            $estadosenal,
+            $usuario,
+            $ruta,
+            $direccion,
+            $coord_x,
+            $coord_y
         ));
 
         pg_query($conexion, 'SET session_replication_role = origin');
@@ -93,7 +103,10 @@ class SenalesController
 
     public function listar()
     {
-        requierePermiso("Gestion de Solicitudes", "Listar");
+        requiereAlgunPermiso(array(
+            array("Gestion de Solicitudes", "Listar"),
+            array("Mis Solicitudes", "Listar")
+        ));
 
         $obj = new SenalesModel();
         $id_rol = $_SESSION['id_rol'];
