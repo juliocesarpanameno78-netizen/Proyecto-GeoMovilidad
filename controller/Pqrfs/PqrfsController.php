@@ -88,6 +88,35 @@ class PqrfsController
         $this->listar();
     }
 
+    public function getDetalle()
+    {
+        requiereAlgunPermiso(array(
+            array("PQRSF", "Listar"),
+            array("Mis PQRSF", "Listar")
+        ));
+
+        $obj = new PqrfsModel();
+        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+        if ($id <= 0) {
+            $_SESSION['error_generico'] = 'Debe seleccionar una PQRSF valida.';
+            redirect(getUrl('Pqrfs', 'Pqrfs', 'getListar'));
+            return;
+        }
+
+        $detalle = $obj->obtenerDetalle($id, $_SESSION['id_rol'], $_SESSION['id_usuario']);
+
+        if (count($detalle) == 0) {
+            $_SESSION['error_generico'] = 'No se encontro la PQRSF seleccionada.';
+            redirect(getUrl('Pqrfs', 'Pqrfs', 'getListar'));
+            return;
+        }
+
+        $pqr = $detalle[0];
+
+        include_once '../view/Pqrfs/detalle.php';
+    }
+
     public function postAtender()
     {
         requierePermiso("PQRSF", "Editar");

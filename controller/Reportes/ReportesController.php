@@ -222,5 +222,34 @@ class ReportesController
     {
         $this->listar();
     }
+
+    public function getDetalle()
+    {
+        requiereAlgunPermiso(array(
+            array("Reportes", "Listar"),
+            array("Mis Reportes", "Listar")
+        ));
+
+        $obj = new ReportesModel();
+        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+        if ($id <= 0) {
+            $_SESSION['error_generico'] = 'Debe seleccionar un reporte valido.';
+            redirect(getUrl('Reportes', 'Reportes', 'getListar'));
+            return;
+        }
+
+        $detalle = $obj->obtenerDetalle($id, $_SESSION['id_rol'], $_SESSION['id_usuario']);
+
+        if (count($detalle) == 0) {
+            $_SESSION['error_generico'] = 'No se encontro el reporte seleccionado.';
+            redirect(getUrl('Reportes', 'Reportes', 'getListar'));
+            return;
+        }
+
+        $reporte = $detalle[0];
+
+        include_once '../view/Reportes/detalle.php';
+    }
 }
 ?>

@@ -49,13 +49,14 @@
                         <th>Descripción</th>
                         <th>Solicitante</th>
                         <th>Estado</th>
+                        <th>Ver detalle</th>
                         <th>Ir a gestionar</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     if (count($solicitudes) == 0) {
-                        echo "<tr><td colspan='8' class='text-center'>No hay solicitudes registradas</td></tr>";
+                        echo "<tr><td colspan='9' class='text-center'>No hay solicitudes registradas</td></tr>";
                     }
 
                     foreach ($solicitudes as $s) {
@@ -65,11 +66,16 @@
                         // Cada tipo de solicitud se gestiona (cambia de estado) desde su propio módulo
                         if ($s['tipo_solicitud'] == 'Señal') {
                             $url_gestion = getUrl('Senales', 'Senales', 'getListar');
+                            $tipo_param = 'senal';
                         } else if ($s['tipo_solicitud'] == 'Reductor') {
                             $url_gestion = getUrl('Reductor', 'Reductor', 'getListar');
+                            $tipo_param = 'reductor';
                         } else {
                             $url_gestion = getUrl('Via', 'Via', 'getListar');
+                            $tipo_param = 'via';
                         }
+
+                        $url_detalle = getUrl('Solicitudes', 'Solicitudes', 'getDetalle') . "&tipo=" . $tipo_param . "&id=" . $s['id'];
 
                         echo "<tr data-orientacion='" . strtolower($orientacion) . "'>";
                         echo "<td>" . $s['id'] . "</td>";
@@ -79,6 +85,7 @@
                         echo "<td>" . ($s['descripcion']) . "</td>";
                         echo "<td>" . ($s['usu_nombre']) . "</td>";
                         echo "<td><span class='badge badge-" . $badge . "'>" . ($s['est_nombre']) . "</span></td>";
+                        echo "<td><a href='" . $url_detalle . "' class='btn btn-sm btn-info text-white'>Ver</a></td>";
                         echo "<td><a href='" . $url_gestion . "' class='btn btn-sm btn-primary text-white'>Gestionar</a></td>";
                         echo "</tr>";
                     }
