@@ -28,5 +28,36 @@ class SolicitudesController
         include_once '../view/Solicitudes/listar.php';
     }
 
+    public function getDetalle()
+    {
+        requiereAlgunPermiso(array(
+            array("Gestion de Solicitudes", "Listar"),
+            array("Mis Solicitudes", "Listar")
+        ));
+
+        $obj = new SolicitudesModel();
+
+        $tipo = isset($_GET['tipo']) ? strtolower(trim($_GET['tipo'])) : '';
+        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+        if ($id <= 0 || !in_array($tipo, array('senal', 'reductor', 'via'))) {
+            $_SESSION['error_generico'] = 'Debe seleccionar una solicitud valida.';
+            redirect(getUrl('Solicitudes', 'Solicitudes', 'getListar'));
+            return;
+        }
+
+        $detalle = $obj->obtenerDetalle($tipo, $id, $_SESSION['id_rol'], $_SESSION['id_usuario']);
+
+        if (count($detalle) == 0) {
+            $_SESSION['error_generico'] = 'No se encontro la solicitud seleccionada.';
+            redirect(getUrl('Solicitudes', 'Solicitudes', 'getListar'));
+            return;
+        }
+
+        $solicitud = $detalle[0];
+
+        include_once '../view/Solicitudes/detalle.php';
+    }
+
 }
 ?>

@@ -45,7 +45,7 @@
 
         <div class="mt-5">
             <table class="table table-striped table-hover">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th>ID</th>
                         <th>Nombre del Rol</th>

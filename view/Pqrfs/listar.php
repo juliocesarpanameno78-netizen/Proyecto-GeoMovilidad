@@ -8,13 +8,14 @@
 
         <div class="mt-5">
             <table class="table table-striped table-hover" id="tablaPqrs">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th>#</th>
                         <th>Solicitante</th>
                         <th>Tipo</th>
                         <th>Descripción</th>
                         <th>Estado</th>
+                        <th>Ver detalle</th>
                         <?php if (esAdministrador() || esFuncionario()): ?>
                         <th>Acción</th>
                         <?php endif; ?>
@@ -33,6 +34,9 @@
                                 $badge = $estado == 'Pendiente' ? 'warning' : ($estado == 'Resuelto' ? 'success' : ($estado == 'Rechazado' ? 'danger' : 'info'));
                             ?>
                             <span class="badge badge-<?php echo $badge?>"><?php echo $estado?></span>
+                        </td>
+                        <td>
+                            <a href="<?php echo getUrl('Pqrfs', 'Pqrfs', 'getDetalle') . '&id=' . $pqr['pqr_id']; ?>" class="btn btn-sm btn-info text-white">Ver</a>
                         </td>
                         <?php if (esAdministrador() || esFuncionario()): ?>
                         <td>

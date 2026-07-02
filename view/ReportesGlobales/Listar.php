@@ -55,7 +55,7 @@
                 <div class="col-md-3 mb-3 d-flex align-items-end">
                     <button type="submit" class="btn btn-primary p-2">Filtrar</button>
                     <a href="<?php echo getUrl('ReportesGlobales', 'ReportesGlobales', 'getListar'); ?>&seccion=accidentes"
-                        class="btn btn-secondary p-2 ms-2">Limpiar</a>
+                        class="btn btn-secondary p-2 ms-2 text-white">Limpiar</a>
                 </div>
             </form>
 

@@ -104,19 +104,19 @@
 
                         // Badge de estado
                         if ($usuario['id_estado'] == 1) {
-                            echo "<td><span class='badge bg-success'>Habilitado</span></td>";
+                            echo "<td><span class='badge bg-success text-white'>Habilitado</span></td>";
                         } else {
-                            echo "<td><span class='badge bg-danger'>Inhabilitado</span></td>";
+                            echo "<td><span class='badge bg-danger text-white'>Inhabilitado</span></td>";
                         }
 
                         // Botón Editar + botón Habilitar/Inhabilitar
                         $btn_estado = $usuario['id_estado'] == 1
                             ? "<a href='" . getUrl("Usuarios", "Usuarios", "cambiarEstado") . "&id_usuario=" . $usuario['id_usuario'] . "&id_estado=2'
                                 onclick=\"return confirm('¿Seguro que deseas inhabilitar este usuario?')\"
-                                class='btn btn-danger btn-sm'>Inhabilitar</a>"
+                                class='btn btn-danger btn-sm text-white'>Inhabilitar</a>"
                             : "<a href='" . getUrl("Usuarios", "Usuarios", "cambiarEstado") . "&id_usuario=" . $usuario['id_usuario'] . "&id_estado=1'
                                 onclick=\"return confirm('¿Seguro que deseas habilitar este usuario?')\"
-                                class='btn btn-success btn-sm'>Habilitar</a>";
+                                class='btn btn-success btn-sm text-white'>Habilitar</a>";
 
                         echo "<td class='d-flex gap-2'>
                                 <a href='" . getUrl("Usuarios", "Usuarios", "getUpdate") . "&id_usuario=" . $usuario['id_usuario'] . "'>
